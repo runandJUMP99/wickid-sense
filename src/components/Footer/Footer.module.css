@@ -2,10 +2,10 @@
     background: #216353;
 }
 
-
-
-/* 
-edffea
-75daad
-216353
-7a4d1d */
+.Footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 1rem;
+}

@@ -1,9 +1,8 @@
 .Header ul {
-    background: #edffea;
-    color: #7a4d1d;
+    background: #75daad;
     display: flex;
     font-weight: bold;
-    justify-content: space-between;
+    justify-content: space-around;
     list-style: none;
     margin: 0;
     padding: 2rem 1rem;
@@ -13,8 +12,3 @@
 
 
 
-/* 
-edffea
-75daad
-216353
-7a4d1d */

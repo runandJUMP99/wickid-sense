@@ -1,3 +1,16 @@
 .Favorites {
-    background: lightgreen;
+    background: #216353;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.Favorites h2 {
+    margin: 0;
+}
+
+.Candles {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
 }
