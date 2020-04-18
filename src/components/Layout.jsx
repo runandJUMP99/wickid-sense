@@ -1,16 +1,17 @@
 import React from "react";
-import { Route, Link } from "react-router";
+import { Route } from "react-router";
 
-import Body from "./Body/Body";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
-
+import Home from "./Home/Home";
+import Products from "./Products/Products";
 
 const Layout = () => {
     return (
         <div>
             <Header />
-            <Body />
+            <Route path="/" exact component={Home}/>
+            <Route path="/products" component={Products}/>
             <Footer />
         </div>
     );
