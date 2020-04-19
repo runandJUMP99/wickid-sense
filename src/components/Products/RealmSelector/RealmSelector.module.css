@@ -1,0 +1,23 @@
+.RealmSelector {
+    background: #cfcfff;
+    padding: 2rem;
+}
+
+.Selections {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.Selections p {
+    margin: 1rem;
+    text-decoration: underline;
+}
+
+.Selections p:hover,
+.Selections p:active {
+    color: gray;
+    cursor: pointer;
+    text-decoration: none
+}
