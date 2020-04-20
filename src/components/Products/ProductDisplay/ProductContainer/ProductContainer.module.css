@@ -1,0 +1,10 @@
+.ProductContainer {
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 2px #eee;
+    height: 20rem;
+    overflow: hidden;
+}
+
+.ProductContainer img {
+    width: 100%;
+}

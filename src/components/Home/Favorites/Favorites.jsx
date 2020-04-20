@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card from "./Card/Card";
+import Card from "../../UI/Card/Card";
 
 import classes from "./Favorites.module.css";
 
@@ -12,23 +12,19 @@ const Favorites = () => {
                 <Card 
                     name="Zora's Wave"
                     img=""
-                    price="$9.99" 
-                />
+                    price="$9.99" />
                 <Card 
                     name="Peachy Peach"
                     img=""
-                    price="$10.99" 
-                />
+                    price="$10.99" />
                 <Card 
                     name="Dragon Leather"
                     img=""
-                    price="$8.99" 
-                />
+                    price="$8.99" />
                 <Card 
                     name="Nice Cream"
                     img=""
-                    price="$7.99" 
-                />
+                    price="$7.99" />
             </div>
         </div>
     );

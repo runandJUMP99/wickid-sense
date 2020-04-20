@@ -9,6 +9,15 @@
     width: 100%
 }
 
+.Header li {
+    color: white;
+}
+
+.Header li:hover {
+    color: #216353;
+    text-decoration: none;
+}
+
 
 
 

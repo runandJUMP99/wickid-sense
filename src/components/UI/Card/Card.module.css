@@ -2,11 +2,12 @@
     background: white;
     box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.5);
     color: black;
-    height: 10rem;
+    height: 15rem;
     margin: 1rem;
+    overflow: hidden;
     position: relative;
     transition: box-shadow 1s ease-out;
-    width: 10rem;
+    width: 15rem;
 }
 
 .Card:hover,
@@ -17,6 +18,10 @@
 
 .Card h3 {
     font-size: 1.5rem;
+}
+
+.Card img {
+    width: 100%;
 }
 
 .Card p {

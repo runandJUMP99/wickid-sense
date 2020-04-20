@@ -7,15 +7,9 @@ const Header = (props) => {
     return (
         <div className={classes.Header}>
             <ul>
-                <li>
-                    <NavLink to="/">home</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/products">products</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/">shop our wares</NavLink>
-                </li>
+                <NavLink to="/"><li>home</li></NavLink> 
+                <NavLink to="/products"><li>products</li></NavLink>
+                <NavLink to="/"><li>shop our wares</li></NavLink>
             </ul>
         </div>
     );

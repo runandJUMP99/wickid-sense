@@ -8,3 +8,14 @@
 [0419/153315.186:ERROR:process_info.cc(359)] UncheckedAllocate
 [0419/153558.715:ERROR:process_info.cc(359)] UncheckedAllocate
 [0419/153814.024:ERROR:process_info.cc(359)] UncheckedAllocate
+[0419/164806.868:ERROR:process_info.cc(359)] UncheckedAllocate
+[0419/164806.949:ERROR:http_transport_win.cc(155)] WinHttpOpen: The operation completed successfully. (0x0)
+[0419/164807.221:ERROR:process_info.cc(359)] UncheckedAllocate
+[0419/165442.230:ERROR:process_info.cc(359)] UncheckedAllocate
+[0419/170532.379:ERROR:process_info.cc(359)] UncheckedAllocate
+[0419/170533.300:ERROR:process_info.cc(359)] UncheckedAllocate
+[0419/170911.645:ERROR:process_info.cc(359)] UncheckedAllocate
+[0419/170911.662:ERROR:process_info.cc(359)] UncheckedAllocate
+[0420/145620.423:ERROR:process_info.cc(359)] UncheckedAllocate
+[0420/145620.872:ERROR:filesystem_win.cc(148)] DeleteFile C:\Users\Foolish Laptop\AppData\Local\Google\Chrome\User Data\Crashpad\reports\365e15af-b5b2-40f3-b699-1c5daf5607e2.dmp: The process cannot access the file because it is being used by another process. (0x20)
+[0420/145621.243:ERROR:process_info.cc(359)] UncheckedAllocate
