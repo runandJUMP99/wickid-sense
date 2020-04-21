@@ -1,3 +1,9 @@
+.Header {
+    left: 0;
+    position: fixed;
+    top: 0;
+}
+
 .Header ul {
     background: #75daad;
     display: none;

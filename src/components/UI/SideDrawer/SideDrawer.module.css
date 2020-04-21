@@ -1,3 +1,31 @@
 .SideDrawer {
-    background: darkmagenta;
+    background: #313131;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+    width: 80%;
+    z-index: 10
+}
+
+.MobileNavItems {
+    width: 90%;
+    height: 100%;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.MobileNavItem {
+    margin: 1rem 0;
+}
+
+.MobileNavItem a {
+    font-size: 1.5rem;
 }
