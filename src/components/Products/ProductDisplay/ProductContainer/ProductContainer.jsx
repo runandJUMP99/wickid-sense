@@ -22,7 +22,9 @@ const ProductContainer = (props) => {
 
     return (
         <div className={classes.ProductContainer}>
-            <img src={selectedImg} alt="selected candle"/>
+            <img style={{
+            opacity: props.fade ? 0 : 1
+        }} src={selectedImg} alt="selected candle"/>
         </div>
     );
 }

@@ -13,10 +13,10 @@ const ProductDisplay = () => {
         info: "ride the wave of this bossa nova. this candle will make you feel as calm and tranquil like a zora swimming downstream"
     });
 
-    const [transition, setTransition] = useState({transition: false})
+    const [fade, setFade] = useState(false);
 
     const handleClick = (selectedCard) => {
-        setTransition({transition: true});
+        setFade(true);
 
         setTimeout(() => {
             switch (selectedCard) {
@@ -42,21 +42,23 @@ const ProductDisplay = () => {
                     })  
                     break;
             }
-        }, 500);
+        }, 1000);
 
         setTimeout(() => {
-            setTransition({transition: false});
-        }, 500)
+            setFade(false);
+        }, 1000);
     }
 
     return (
         <div className={classes.ProductDisplay}>
-            <ProductContainer name={selectedImg.name}/>
+            <ProductContainer 
+                name={selectedImg.name}
+                fade={fade}/>
             <ProductInfo 
-            name={selectedImg.name}
-            price={selectedImg.price}
-            info={selectedImg.info}
-            transition={transition}/>
+                name={selectedImg.name}
+                price={selectedImg.price}
+                info={selectedImg.info}
+                fade={fade}/>
             <ProductSelector handleClick={handleClick}/>
         </div>
     );

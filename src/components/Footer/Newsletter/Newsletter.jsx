@@ -6,7 +6,7 @@ const Newsletter = () => {
     return (
         <div className={classes.Newsletter}>
             <h3>our ravens will send word your way</h3>
-            <input type="text" placeHolder="your email"/>
+            <input type="text" placeholder="your email"/>
             <button>sign up</button>
         </div>
     );

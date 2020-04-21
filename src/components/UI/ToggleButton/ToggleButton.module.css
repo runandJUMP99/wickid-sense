@@ -1,0 +1,21 @@
+.ToggleButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding-bottom: 0;
+    padding-top: 0;
+    vertical-align: middle;
+    width: 3rem;
+}
+
+.ToggleButton:focus {
+    outline: none;
+}
+
+.ToggleButton__bar {
+    background: black;
+    display: block;
+    height: 0.2rem;
+    margin: 0.6rem 0;
+    width: 100%;
+}
