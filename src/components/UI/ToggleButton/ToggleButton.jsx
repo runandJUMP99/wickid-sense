@@ -2,10 +2,10 @@ import React from "react";
 
 import classes from "./ToggleButton.module.css";
 
-const ToggleButton = () => {
+const ToggleButton = (props) => {
     return(
         <div>
-            <button className={classes.ToggleButton}>
+            <button className={classes.ToggleButton} onClick={props.onClick}>
                 <span className={classes.ToggleButton__bar}></span>
                 <span className={classes.ToggleButton__bar}></span>
                 <span className={classes.ToggleButton__bar}></span>

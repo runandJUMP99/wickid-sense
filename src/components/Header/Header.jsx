@@ -1,19 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
+import NavigationLinks from "./NavigationLinks/NavigationLinks";
 import ToggleButton from "../UI/ToggleButton/ToggleButton";
 
 import classes from "./Header.module.css";
 
-const Header = () => {
+const Header = (props) => {
     return (
         <div className={classes.Header}>
-            <ToggleButton />
-            <ul>
-                <NavLink to="/"><li>home</li></NavLink> 
-                <NavLink to="/products"><li>products</li></NavLink>
-                <NavLink to="/"><li>shop our wares</li></NavLink>
-            </ul>
+            <ToggleButton onClick={props.onClick}/>
+            <nav>
+                <NavigationLinks />
+            </nav>
         </div>
     );
 }

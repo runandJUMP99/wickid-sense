@@ -1,29 +1,17 @@
 .Header {
+    background: #75daad;
     left: 0;
     position: fixed;
     top: 0;
+    width: 100%;
 }
 
-.Header ul {
-    background: #75daad;
+.Header nav {
     display: none;
-    font-weight: bold;
-    justify-content: space-around;
-    list-style: none;
-    margin: 0;
-    padding: 2rem 1rem;
-    width: 100%
 }
 
-.Header li {
-    color: white;
+@media (min-width: 41rem) {
+    .Header nav {
+        display: flex;
+    }
 }
-
-.Header li:hover {
-    color: #216353;
-    text-decoration: none;
-}
-
-
-
-

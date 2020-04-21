@@ -25,3 +25,11 @@
 [0421/162019.596:ERROR:process_info.cc(359)] UncheckedAllocate
 [0421/162032.182:ERROR:process_info.cc(359)] UncheckedAllocate
 [0421/170447.292:ERROR:process_info.cc(359)] UncheckedAllocate
+[0421/182256.282:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0421/182256.321:ERROR:process_info.cc(359)] UncheckedAllocate
+[0421/183435.363:ERROR:process_info.cc(359)] UncheckedAllocate
+[0421/184151.745:ERROR:process_info.cc(359)] UncheckedAllocate
+[0421/190914.751:ERROR:process_info.cc(359)] UncheckedAllocate
+[0421/191102.735:ERROR:process_info.cc(359)] UncheckedAllocate
+[0421/191500.265:ERROR:process_info.cc(359)] UncheckedAllocate
+[0421/191505.161:ERROR:process_info.cc(359)] UncheckedAllocate

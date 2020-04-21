@@ -1,7 +1,9 @@
 .ToggleButton {
     background: transparent;
-    border: none;
+    border: 1px solid black;
+    border-radius: 4px;
     cursor: pointer;
+    margin: 0.25rem;
     padding-bottom: 0;
     padding-top: 0;
     vertical-align: middle;
@@ -18,4 +20,10 @@
     height: 0.2rem;
     margin: 0.6rem 0;
     width: 100%;
+}
+
+@media (min-width: 41rem) {
+    .ToggleButton {
+        display: none;
+    }
 }

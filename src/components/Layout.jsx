@@ -14,14 +14,14 @@ const Layout = () => {
         showBackdrop: false,
         showModal: false,
         showSideDrawer: false
-    })
+    });
 
     function toggleModal() {
         setModal(prevValue => {
             return {
                 showBackdrop: !prevValue.showBackdrop,
-                showModal: !prevValue.showModal,
-                showSideDrawer: !prevValue.showModal
+                // showModal: !prevValue.showModal,
+                showSideDrawer: !prevValue.showSideDrawer
             };
         });
     }
@@ -31,7 +31,7 @@ const Layout = () => {
             <Backdrop show={modal.showSideDrawer} onClick={toggleModal}/>
             <Modal show={modal.showModal} onClick={toggleModal}/>
             <SideDrawer show={modal.showSideDrawer} onClick={toggleModal} />
-            <Header />
+            <Header onClick={toggleModal}/>
             <Route path="/" exact component={Home}/>
             <Route path="/products" component={Products}/>
             <Footer />

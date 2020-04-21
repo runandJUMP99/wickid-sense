@@ -1,0 +1,27 @@
+.NavigationLinks ul {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding: 2rem 1rem;
+    width: 100%
+}
+
+.Header li {
+    color: white;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.Header li:hover {
+    color: #216353;
+    text-decoration: none;
+}
+
+@media (min-width: 41rem) {
+    .NavigationLinks ul {
+        flex-direction: row;
+    }
+}
