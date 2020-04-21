@@ -7,8 +7,17 @@ import Spike from "../../../../assets/images/spike.png";
 const ProductContainer = (props) => {
     let selectedImg = Spike;
 
-    if (props.img === "img2") {
-        selectedImg = SleepyGrape;
+    switch (props.name) {
+        case "spike":
+            selectedImg = Spike            
+            break;
+        case "sleepygrape":
+            selectedImg = SleepyGrape
+            break;
+    
+        default:
+            selectedImg = Spike     
+            break;
     }
 
     return (

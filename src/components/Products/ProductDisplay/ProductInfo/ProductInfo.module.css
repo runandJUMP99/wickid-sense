@@ -1,5 +1,17 @@
 .ProductInfo {
     color: white;
     margin: 1rem 0;
+    transition: opacity 1s ease-out;
 }
 
+/* @keyframes transition {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  } */

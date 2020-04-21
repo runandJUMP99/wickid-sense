@@ -13,11 +13,12 @@ const ProductSelector = (props) => {
             name="spike"
             img={Spike}
             price="9.99"
-            handleClick={props.handleClick} />
+            handleClick={() => props.handleClick("spike")} />
             <Card 
             name="sleepygrape"
             img={SleepyGrape}
-            price="9.99"/>
+            price="9.99"
+            handleClick={() => props.handleClick("sleepygrape")} />
         </div>
     );
 }

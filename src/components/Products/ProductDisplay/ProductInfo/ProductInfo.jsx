@@ -2,12 +2,14 @@ import React from "react";
 
 import classes from "./ProductInfo.module.css";
 
-const ProductInfo = () => {
+const ProductInfo = (props) => {
     return (
-        <div className={classes.ProductInfo}>
-            <h2>zora's wave</h2>
-            <p>$9.99</p>
-            <p>ride the wave of this bossa nova. this candle will make you feel as calm and tranquil like a zora swimming downstream</p>
+        <div style={{
+            opacity: props.transition ? 1 : 0
+        }} className={classes.ProductInfo}>
+            <h2>{props.name}</h2>
+            <p>{props.price}</p>
+            <p>{props.info}</p>
         </div>
     )
 }

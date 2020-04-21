@@ -19,3 +19,5 @@
 [0420/145620.423:ERROR:process_info.cc(359)] UncheckedAllocate
 [0420/145620.872:ERROR:filesystem_win.cc(148)] DeleteFile C:\Users\Foolish Laptop\AppData\Local\Google\Chrome\User Data\Crashpad\reports\365e15af-b5b2-40f3-b699-1c5daf5607e2.dmp: The process cannot access the file because it is being used by another process. (0x20)
 [0420/145621.243:ERROR:process_info.cc(359)] UncheckedAllocate
+[0420/195308.458:ERROR:process_info.cc(359)] UncheckedAllocate
+[0420/195308.539:ERROR:process_info.cc(359)] UncheckedAllocate
