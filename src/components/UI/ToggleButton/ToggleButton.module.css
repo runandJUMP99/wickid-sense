@@ -23,7 +23,7 @@
 }
 
 @media (min-width: 41rem) {
-    .ToggleButton {
+    .ToggleButtonContainer {
         display: none;
     }
 }

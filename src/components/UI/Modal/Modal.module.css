@@ -1,3 +1,4 @@
 .Modal {
     background: lightskyblue;
+    z-index: 100;
 }

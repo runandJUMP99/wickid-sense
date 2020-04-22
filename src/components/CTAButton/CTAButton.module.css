@@ -1,0 +1,22 @@
+.CTAButton {
+    animation: float 4s infinite ease-in-out;
+    background: #eee;
+    border: 8px solid #ccc;
+    border-radius: 32px;
+    cursor: pointer;
+    margin: 1rem 2rem;
+    text-align: center;
+    width: 200px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0.2rem);
+    }
+    50% {
+        transform: translateY(-0.3rem);
+    }
+    100% {
+        transform: translateY(0.2rem);
+    }
+  }

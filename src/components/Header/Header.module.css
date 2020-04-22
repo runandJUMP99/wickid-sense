@@ -1,17 +1,28 @@
 .Header {
     background: #75daad;
+    display: flex;
+    justify-content: space-between;
     left: 0;
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 20;
 }
 
 .Header nav {
     display: none;
 }
 
+.CTAButton {
+    display: none;
+}
+
 @media (min-width: 41rem) {
     .Header nav {
         display: flex;
+    }
+
+    .CTAButton {
+        display: block;
     }
 }
