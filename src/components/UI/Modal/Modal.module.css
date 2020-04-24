@@ -1,13 +1,14 @@
 .Modal {
-    background: white;
-    border: 1px solid #ccc;
+    background: #313131;
+    border: 8px solid #616161;
+    border-radius: 16px;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     height: initial;
     left: 5%;
     padding: 1rem;
-    position: fixed;
+    position: absolute;
     top: 10%;
-    transition: opacity 0.2s ease-out, transform 0.5s ease-out;
+    transition: all 2s cubic-bezier(0.38,-0.18, 0.25, 1.27);
     width: 90%;
     z-index: 110;
 }

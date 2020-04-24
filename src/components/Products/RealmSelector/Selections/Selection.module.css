@@ -1,6 +1,6 @@
 .Selection {
-    background: #eee;
-    border: 1px solid lightgray;
+    background: #313131;
+    border: 2px solid #b4b4b4;
     border-radius: 50%;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     height: 18rem;
@@ -18,11 +18,11 @@
 
 
 .Selection h3 {
-    background: #ccc;
-    border: 4px solid #eee;
+    background: #616161;
+    border: 4px solid #b4b4b4;
     border-radius: 8px;
     bottom: 2%;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 2px black;
     color: white;
     font-size: 1.2rem;
     left: 0;

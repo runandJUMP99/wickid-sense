@@ -9,7 +9,6 @@ const Products = () => {
     return (
         <div className={classes.Products}>
             <ProductDisplay />
-            <RealmSelector />
         </div>
     )
 }

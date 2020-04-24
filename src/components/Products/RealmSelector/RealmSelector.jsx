@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import Selection from "./Selections/Selections";
 
@@ -10,6 +11,7 @@ import awakening from "../../../assets/images/sleepygrape.png"
 const RealmSelector = (props) => {
     return (
         <div className={classes.RealmSelector}>
+            <h1>choose wisely</h1>
             <div className={classes.Selections}>
                 <Selection 
                     name="forrest of enchantment"
@@ -23,8 +25,8 @@ const RealmSelector = (props) => {
                     name="pools of awakening"
                     img={awakening}
                     onClick={props.onClick}/>
-                <p onClick={props.onClick}>... just show me some candles, please</p>
             </div>
+            <p onClick={props.onClick}><NavLink to="/products">... just show me some candles, please</NavLink></p>
         </div>
     );
 }

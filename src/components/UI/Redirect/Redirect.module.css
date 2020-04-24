@@ -1,0 +1,62 @@
+.Redirect {
+    background: darkorchid;
+}
+
+.shopping-modal {
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    height: initial;
+    left: 30%;
+    padding: 1rem;
+    position: fixed;
+    top: 10%;
+    transition: opacity 0.2s ease-out, transform 0.5s ease-out;
+    width: 40%;
+    z-index: 102;
+}
+
+.Redirect h2 {
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+
+.Redirect h3 {
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+.RedirectActions {
+    text-align: center;
+}
+
+.RedirectActions button {
+    background: red;
+    border-color: red;
+}
+
+.RedirectActions button:hover,
+.RedirectActions button:active {
+    background: #ff5454;
+    border-color: #ff5454;
+}
+
+.RedirectAction {
+    background: #3fc5f0;
+    border: 1px solid #3fc5f0;
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+.RedirectAction:hover,
+.RedirectAction:active {
+    background: #33ffcc;
+    border-color: #33ffcc;
+    color: white;
+    text-decoration: none;
+}

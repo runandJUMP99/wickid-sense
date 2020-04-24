@@ -2,9 +2,9 @@ import React from "react";
 
 import classes from "./CTAButton.module.css";
 
-const CTAButton = () => {
+const CTAButton = (props) => {
     return (
-        <div className={classes.CTAButton}>shop our wares</div>
+        <div onClick={() => props.onClick("redirect")} className={classes.CTAButton}>shop our wares</div>
     )
 }
 
