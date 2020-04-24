@@ -1,12 +1,12 @@
 .RealmSelector {
     background: #cfcfff;
     padding: 2rem;
+    width: 100%;
 }
 
 .Selections {
     align-items: center;
     display: flex;
-    flex-direction: column;
     text-align: center;
 }
 

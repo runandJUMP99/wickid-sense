@@ -2,9 +2,12 @@ import React from "react";
 
 import classes from "./Modal.module.css";
 
-const Modal = () => {
+const Modal = (props) => {
     return (
-        <div style={{display: "none"}}className={classes.Modal}>Modal</div>
+        <div style={{
+            opacity: props.show ? 1 : 0,
+            transform: props.show ? "translateY(0)" : "translateY(-1500px)",
+        }} className={classes.Modal}>{props.children}</div>
     );
 }
 

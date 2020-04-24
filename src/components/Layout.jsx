@@ -7,6 +7,7 @@ import Header from "./Header/Header";
 import Home from "./Home/Home";
 import Modal from "./UI/Modal/Modal";
 import Products from "./Products/Products";
+import RealmSelector from "./Products/RealmSelector/RealmSelector";
 import SideDrawer from "./UI/SideDrawer/SideDrawer";
 
 const Layout = () => {
@@ -20,16 +21,18 @@ const Layout = () => {
         setModal(prevValue => {
             return {
                 showBackdrop: !prevValue.showBackdrop,
-                // showModal: !prevValue.showModal,
-                showSideDrawer: !prevValue.showSideDrawer
+                showModal: !prevValue.showModal,
+                // showSideDrawer: !prevValue.showSideDrawer
             };
         });
     }
 
     return (
         <div>
-            <Backdrop show={modal.showSideDrawer} onClick={toggleModal}/>
-            <Modal show={modal.showModal} onClick={toggleModal}/>
+            <Backdrop show={modal.showBackdrop} onClick={toggleModal}/>
+            <Modal show={modal.showModal} onClick={toggleModal}>
+                <RealmSelector onClick={toggleModal}/>
+            </Modal>
             <SideDrawer show={modal.showSideDrawer} onClick={toggleModal} />
             <Header onClick={toggleModal}/>
             <Route path="/" exact component={Home}/>
