@@ -9,3 +9,11 @@
     transition: opacity 1s ease-out;
     width: 100%;
 }
+
+@media (min-width: 41rem) {
+    .ProductContainer {
+        display: inline-block;
+        margin: 1rem 0;
+        width: 50%;
+    }
+}

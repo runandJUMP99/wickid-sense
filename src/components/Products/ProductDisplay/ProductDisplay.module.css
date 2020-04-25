@@ -2,3 +2,9 @@
     background: #313131;
     padding: 2rem;
 }
+
+@media (min-width: 41rem) {
+    .ProductDisplayTop {
+        display: flex;
+    }
+}

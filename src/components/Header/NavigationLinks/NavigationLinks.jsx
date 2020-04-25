@@ -7,7 +7,7 @@ const NavigationLinks = (props) => {
     return (
         <div className={classes.NavigationLinks}>
             <ul>
-                <li><NavLink to="/">home</NavLink></li>
+                <li><NavLink onClick={props.onClick} to="/">home</NavLink></li>
                 <li><NavLink onClick={() => props.onClick("products")} to="/">products</NavLink></li>
             </ul>
         </div>

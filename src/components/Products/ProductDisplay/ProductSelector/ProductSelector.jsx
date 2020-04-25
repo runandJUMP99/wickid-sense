@@ -10,15 +10,25 @@ const ProductSelector = (props) => {
     return (
         <div className={classes.ProductSelector}>
             <Card 
-            name="spike"
-            img={Spike}
-            price="9.99"
-            handleClick={() => props.handleClick("spike")} />
+                name="spike"
+                img={Spike}
+                price="9.99"
+                handleClick={() => props.handleClick("spike")} />
             <Card 
-            name="sleepygrape"
-            img={SleepyGrape}
-            price="9.99"
-            handleClick={() => props.handleClick("sleepygrape")} />
+                name="sleepygrape"
+                img={SleepyGrape}
+                price="9.99"
+                handleClick={() => props.handleClick("sleepygrape")} />
+            <Card 
+                name="spike"
+                img={Spike}
+                price="9.99"
+                handleClick={() => props.handleClick("spike")} />
+            <Card 
+                name="sleepygrape"
+                img={SleepyGrape}
+                price="9.99"
+                handleClick={() => props.handleClick("sleepygrape")} />
         </div>
     );
 }

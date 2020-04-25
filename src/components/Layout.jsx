@@ -21,18 +21,31 @@ const Layout = () => {
     const [modalContent, setModalContent] = useState();
 
     function toggleModal(content) {
-        if (content === "products") {
-            setModalContent(<RealmSelector onClick={toggleModal}/>);
-        } else if (content === "redirect") {
-            setModalContent(<Redirect onClick={toggleModal}/>);
+        if (content === "sidedrawer") {
+            setModal({
+                showBackdrop: true,
+                showModal: false,
+                showSideDrawer: true
+            });
+        } else if (content === "products" || content === "redirect") {
+            if (content === "products") {
+                setModalContent(<RealmSelector onClick={toggleModal}/>);
+            } else if (content === "redirect") {
+                setModalContent(<Redirect onClick={toggleModal}/>);
+            }
+            
+            setModal({
+                showBackdrop: true,
+                showModal: true,
+                showSideDrawer: false
+            });
+        } else {
+            setModal({
+                showBackdrop: false,
+                showModal: false,
+                showSideDrawer: false
+            });
         }
-        setModal(prevValue => {
-            return {
-                showBackdrop: !prevValue.showBackdrop,
-                showModal: !prevValue.showModal,
-                // showSideDrawer: !prevValue.showSideDrawer
-            };
-        });
     }
 
     return (

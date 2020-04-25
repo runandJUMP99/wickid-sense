@@ -51,14 +51,16 @@ const ProductDisplay = () => {
 
     return (
         <div className={classes.ProductDisplay}>
-            <ProductContainer 
-                name={selectedImg.name}
-                fade={fade}/>
-            <ProductInfo 
-                name={selectedImg.name}
-                price={selectedImg.price}
-                info={selectedImg.info}
-                fade={fade}/>
+            <div className={classes.ProductDisplayTop}>
+                <ProductContainer 
+                    name={selectedImg.name}
+                    fade={fade}/>
+                <ProductInfo 
+                    name={selectedImg.name}
+                    price={selectedImg.price}
+                    info={selectedImg.info}
+                    fade={fade}/>   
+            </div>
             <ProductSelector handleClick={handleClick}/>
         </div>
     );

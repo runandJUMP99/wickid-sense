@@ -3,3 +3,11 @@
     margin: 1rem 0;
     transition: opacity 1s ease-out;
 }
+
+@media (min-width: 41rem) {
+    .ProductInfo {
+        display: inline-block;
+        padding-left: 2rem;
+        width: 50%;
+    }
+}
