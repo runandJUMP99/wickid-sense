@@ -46,6 +46,8 @@ const Layout = () => {
                 showSideDrawer: false
             });
         }
+        var blob = document.getElementById("root");
+        blob.scrollIntoView();
     }
 
     return (
@@ -58,7 +60,7 @@ const Layout = () => {
             <Header onClick={toggleModal}/>
             <Route path="/" exact component={Home}/>
             <Route path="/products" component={Products}/>
-            <Footer />
+            <Footer onClick={toggleModal}/>
         </div>
     );
 }

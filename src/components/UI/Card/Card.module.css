@@ -1,6 +1,6 @@
 .Card {
     background: white;
-    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 2px 1px black;
     color: black;
     height: 15rem;
     margin: 1rem;
@@ -12,7 +12,7 @@
 
 .Card:hover,
 .Card:active {
-    box-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 12px 3px black;
     cursor: pointer;
 }
 

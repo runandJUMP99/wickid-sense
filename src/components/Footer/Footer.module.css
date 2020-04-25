@@ -1,11 +1,17 @@
 .Footer {
-    background: #216353;
+    background: #313131;
 }
 
 .Footer ul {
+    color: #ccc;
     list-style: none;
     display: flex;
     justify-content: space-around;
     margin: 0;
     padding: 1rem;
+}
+
+.Footer li:hover {
+    color: #eee;
+    cursor: pointer;
 }

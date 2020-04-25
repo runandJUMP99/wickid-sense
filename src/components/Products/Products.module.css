@@ -1,3 +1,14 @@
-.Products {
+.ProductDisplay {
+    background: #313131;
     margin-top: 3rem;
+}
+
+.ProductDisplayTop {
+    padding: 2rem;
+}
+
+@media (min-width: 41rem) {
+    .ProductDisplayTop {
+        display: flex;
+    }
 }

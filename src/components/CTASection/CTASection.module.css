@@ -1,0 +1,13 @@
+.CTASection {
+    align-items: center;
+    background: #edffea;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    text-align: center;
+}
+
+.CTASection h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}

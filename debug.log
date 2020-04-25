@@ -44,3 +44,39 @@
 [0424/151955.022:ERROR:filesystem_win.cc(148)] DeleteFile C:\Users\Foolish Laptop\AppData\Local\Google\Chrome\User Data\Crashpad\reports\a32452bd-7da6-4f22-9fb1-ff6744bac177.dmp: The process cannot access the file because it is being used by another process. (0x20)
 [0424/160241.363:ERROR:process_info.cc(359)] UncheckedAllocate
 [0424/160241.370:ERROR:process_info.cc(359)] UncheckedAllocate
+[0425/145540.933:ERROR:process_info.cc(359)] UncheckedAllocate
+[0425/160026.350:ERROR:process_info.cc(359)] UncheckedAllocate
+[0425/160026.404:ERROR:process_info.cc(359)] UncheckedAllocate
+[0425/181841.074:ERROR:process_info.cc(359)] UncheckedAllocate
+[0425/181841.981:ERROR:process_reader_win.cc(182)] ResumeThread: The parameter is incorrect. (0x57)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.983:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.984:ERROR:exception_snapshot_win.cc(98)] thread ID 6564 not found in process
+[0425/181841.985:ERROR:process_reader_win.cc(182)] ResumeThread: The parameter is incorrect. (0x57)
+[0425/181841.985:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.985:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.985:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.985:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.985:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.985:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.985:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.985:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.985:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181841.985:ERROR:process_reader_win.cc(123)] NtOpenThread: An invalid Client ID was specified. (0xc000000b)
+[0425/181841.989:ERROR:exception_snapshot_win.cc(98)] thread ID 18204 not found in process
+[0425/181842.015:ERROR:process_reader_win.cc(182)] ResumeThread: The parameter is incorrect. (0x57)
+[0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
