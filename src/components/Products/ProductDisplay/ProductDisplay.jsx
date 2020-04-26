@@ -8,10 +8,10 @@ const ProductDisplay = (props) => {
     let selectedImg = Spike;
 
     switch (props.name) {
-        case "peachypeach":
+        case "peachy peach":
             selectedImg = SleepyGrape            
             break;
-        case "nicecream":
+        case "nice cream":
             selectedImg = SleepyGrape
             break;
     

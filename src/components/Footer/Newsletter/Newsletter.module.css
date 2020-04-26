@@ -1,7 +1,15 @@
 .Newsletter {
     color: white;
-    padding: 1rem;
+    padding: 2rem;
     text-align: center;
+}
+
+.Newsletter h3 {
+    font-family: "Lexend Giga";
+}
+
+.Newsletter p {
+    font-size: 0.7rem;
 }
 
 .Newsletter input {

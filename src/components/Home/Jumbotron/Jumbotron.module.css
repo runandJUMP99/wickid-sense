@@ -1,6 +1,17 @@
 .Jumbotron {
-    background: #edffea;
-    height: 3rem;
-    text-align: center;
-    width: 100%
+    background: url(../../../assets/images/candles.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: #eee;
+    padding: 5rem 2rem;
+    text-align: right;
+}
+
+.Jumbotron h1 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.Jumbotron h3 {
+    font-size: 1rem;
 }

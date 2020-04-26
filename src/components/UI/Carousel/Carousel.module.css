@@ -1,4 +1,6 @@
-.Carousel {
-    background: lightslategray;
-    height: 17rem;
+.Carousel img {
+    border-radius: 50%;
+    height: 5rem;
+    margin: auto;
+    width: 5rem;
 }

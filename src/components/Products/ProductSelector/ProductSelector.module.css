@@ -6,3 +6,7 @@
     margin: 2rem;
     padding: 2rem 0;
 }
+
+.ProductSelector a:hover {
+    text-decoration: none;
+}

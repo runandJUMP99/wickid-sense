@@ -1,6 +1,11 @@
 .Testimonials {
-    background: #7a4d1d;
+    background: #216353;
     color: white;
-    padding: 2rem;
+    padding: 2rem 0;
     text-align: center;
+}
+
+.Testimonials h2 {
+    font-family: "Lexend Giga";
+    padding-bottom: 2rem;
 }
