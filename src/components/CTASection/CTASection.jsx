@@ -4,11 +4,11 @@ import CTAButton from "../CTAButton/CTAButton";
 
 import classes from "./CTASection.module.css";
 
-const CTASection = () => {
+const CTASection = (props) => {
     return (
         <div className={classes.CTASection}>
             <h1>make haste! shop now!!</h1>
-            <CTAButton />
+            <CTAButton onClick={props.onClick} />
         </div>
     );
 }

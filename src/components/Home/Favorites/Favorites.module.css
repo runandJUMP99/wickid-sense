@@ -1,6 +1,6 @@
 .Favorites {
-    background: #216353;
-    color: white;
+    background: #edffea;
+    color: black;
     padding: 2rem;
     text-align: center;
 }
@@ -13,7 +13,7 @@
 .Candles {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     padding-top: 2rem;
 }
 

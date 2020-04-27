@@ -9,7 +9,7 @@ const Redirect = (props) => {
             <h3>do you wish to continue?</h3>
             <div className={classes.RedirectActions}>
                 <button className={classes.RedirectAction} onClick={props.onClick} type="button">no!</button>
-                <a className={classes.RedirectAction} href="https://www.storenvy.com/just4yourPets">yes!</a>
+                <a className={classes.RedirectAction} href="/">yes!</a>
             </div>
         </div>        
     );

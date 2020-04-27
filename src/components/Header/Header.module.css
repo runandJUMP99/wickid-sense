@@ -1,9 +1,9 @@
 .Header {
     background: #75daad;
     display: flex;
+    height: 4rem;
     justify-content: space-between;
     left: 0;
-    position: fixed;
     top: 0;
     width: 100%;
     z-index: 20;

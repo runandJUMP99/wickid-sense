@@ -26,9 +26,14 @@
     text-decoration: underline;
 }
 
+.RealmSelector p:hover {
+    text-decoration: none;
+}
+
 .Selections {
     align-items: center;
     display: flex;
+    font-family: "Lexend Giga";
     justify-content: center;
     flex-wrap: wrap;
     text-align: center;

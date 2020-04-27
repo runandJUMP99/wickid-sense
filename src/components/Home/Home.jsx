@@ -5,15 +5,13 @@ import Favorites from "./Favorites/Favorites"
 import Jumbotron from "./Jumbotron/Jumbotron";
 import Testimonials from "./Testimonials/Testimonials";
 
-import classes from "./Home.module.css";
-
-const Home = () => {
+const Home = (props) => {
     return (
-        <div className={classes.Home}>
+        <div>
             <Jumbotron />
             <Favorites />
             <Testimonials />
-            <CTASection />
+            <CTASection onClick={props.onClick}/>
         </div>
     );
 }

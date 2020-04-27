@@ -1,9 +1,13 @@
 .Card {
-    background: #edffea;
+    align-items: center;
+    background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 2px 1px black;
+    box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.5);
     color: black;
+    display: flex;
+    flex-direction: column;
     height: 15rem;
+    justify-content: space-around;
     margin: 1rem;
     overflow: hidden;
     position: relative;
@@ -13,7 +17,7 @@
 
 .Card:hover,
 .Card:active {
-    box-shadow: 0 4px 12px 3px black;
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
 
@@ -22,12 +26,8 @@
 }
 
 .Card img {
-    width: 100%;
-}
-
-.Card p {
-    position: absolute;
-    bottom: 0.2rem;
-    left: 0;
-    right: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.5);
+    height: 10rem;
+    width: 10rem;
 }

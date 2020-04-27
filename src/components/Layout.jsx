@@ -7,6 +7,7 @@ import Header from "./Header/Header";
 import Home from "./Home/Home";
 import Modal from "./UI/Modal/Modal";
 import Products from "./Products/Products";
+import Products1 from "./Products/Products1";
 import RealmSelector from "./Products/RealmSelector/RealmSelector";
 import Redirect from "./UI/Redirect/Redirect";
 import SideDrawer from "./UI/SideDrawer/SideDrawer";
@@ -60,6 +61,7 @@ const Layout = () => {
             <Header onClick={toggleModal}/>
             <Route path="/" exact component={Home}/>
             <Route path="/products" component={Products}/>
+            <Route path="/products1" component={Products1}/>
             <Footer onClick={toggleModal}/>
         </div>
     );

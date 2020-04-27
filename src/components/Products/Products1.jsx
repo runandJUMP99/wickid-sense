@@ -9,7 +9,7 @@ import classes from "./Products.module.css"
 
 const Product = (props) => {
     const [selectedImg, setSelectedImg] = useState({
-        name: "zora's wave",
+        name: "products1",
         price: "$9.99",
         info: "ride the wave of this bossa nova. this candle will make you feel as calm and tranquil like a zora swimming downstream"
     });
@@ -23,7 +23,7 @@ const Product = (props) => {
             switch (selectedCard) {
                 case "zoraswave":
                     setSelectedImg({
-                        name: "zora's wave",
+                        name: "products1",
                         price: "$9.99",
                         info: "ride the wave of this bossa nova. this candle will make you feel as calm and tranquil like a zora swimming downstream."
                     })           
@@ -51,7 +51,7 @@ const Product = (props) => {
                     break;
                 default:
                     setSelectedImg({
-                        name: "zora's wave",
+                        name: "products1",
                         price: "$9.99",
                         info: "ride the wave of this bossa nova. this candle will make you feel as calm and tranquil like a zora swimming downstream"
                     })  
