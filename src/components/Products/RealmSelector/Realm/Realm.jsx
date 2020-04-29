@@ -1,10 +1,10 @@
 import React from "react";
 
-import classes from "./Selection.module.css";
+import classes from "./Realm.module.css";
 
-const Selection = (props) => {
+const Realm = (props) => {
     return (
-        <div onClick={props.onClick} className={classes.Selection}>
+        <div onClick={props.onClick} className={classes.Realm}>
             <img className={classes.Img} src={props.img} alt={props.name}/>
             <div className={classes.Gradient}></div>
             <h3>{props.name}</h3>
@@ -12,4 +12,4 @@ const Selection = (props) => {
     );
 }
 
-export default Selection;
+export default Realm;

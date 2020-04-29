@@ -1,0 +1,37 @@
+.Signup {
+    align-items: center;
+    background-color: #fce2db;
+    background-image: -webkit-linear-gradient(65deg, #75daad 50%, #edffea 50%);
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-around;
+    -ms-flex-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;  
+}
+ 
+.Signup form {
+    width: 100%;
+    max-width: 330px;
+    margin: auto;
+ }
+
+.SignupBackground {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+}
+
+form input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+form input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}

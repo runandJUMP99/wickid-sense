@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import Selection from "./Selections/Selections";
+import Selection from "./Realm/Realm";
 
 import classes from "./RealmSelector.module.css";
 import forrest from "../../../assets/images/sand-walrus.png"
