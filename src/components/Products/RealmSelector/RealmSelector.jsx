@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import Selection from "./Realm/Realm";
+import Realm from "./Realm/Realm";
 
 import classes from "./RealmSelector.module.css";
 import forrest from "../../../assets/images/sand-walrus.png"
@@ -14,19 +14,19 @@ const RealmSelector = (props) => {
             <h1>choose wisely...</h1>
             <div className={classes.Selections}>
                 <NavLink to="/products">
-                    <Selection
+                    <Realm
                         name="forrest of enchantment"
                         img={forrest}
                         onClick={props.onClick}/>
                 </NavLink>
                 <NavLink to="/products">
-                    <Selection 
+                    <Realm 
                         name="scorched cavern"
                         img={cavern}
                         onClick={props.onClick}/>
                 </NavLink>
                 <NavLink to="/products1">
-                    <Selection 
+                    <Realm 
                         name="pools of awakening"
                         img={awakening}
                         onClick={props.onClick}/>

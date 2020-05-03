@@ -1,14 +1,8 @@
 .Jumbotron {
-    background: url(../../../assets/images/candles.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
     color: #eee;
     padding: 8rem 2rem 2rem;
     text-align: right;
-}
-
-.Jumbotron div {
-
+    width: 100%;
 }
 
 .Jumbotron h1 {

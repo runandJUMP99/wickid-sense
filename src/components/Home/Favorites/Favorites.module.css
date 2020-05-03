@@ -1,8 +1,11 @@
 .Favorites {
     background: #edffea;
+    border-radius: 16px;
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.5);
     color: black;
     padding: 2rem;
     text-align: center;
+    width: 85%;
 }
 
 .Favorites h2 {

@@ -1,10 +1,15 @@
 .CTASection {
     align-items: center;
     background: #edffea;
+    border-radius: 16px;
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
+    font-family: "Lexend Giga";
+    margin: 2rem;
     padding: 2rem;
     text-align: center;
+    width: 85%;
 }
 
 .CTASection h1 {
