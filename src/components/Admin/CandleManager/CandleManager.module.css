@@ -1,7 +1,6 @@
 .CandleManager {
     align-items: center;
-    background: #edffea;
+    background: #75daad;
     display: flex;
     flex-direction: column;
-    height: 100vh;
 }

@@ -1,27 +1,36 @@
 import React from "react";
 
-import Realm from "../../../Products/RealmSelector/Realm/Realm";
+import Realm from "./Realm/Realm";
 
 import classes from "./RealmEditor.module.css";
 import forrest from "../../../../assets/images/sand-walrus.png";
 
-const RealmEditorSelector = (props) => {
+const RealmEditor = (props) => {
     return (
         <div className={classes.RealmEditorSelector}>
-            <Realm
-                name="forrest of enchantment"
-                img={forrest}
-                onClick={() => props.onClick("realm")}/>
-            <Realm
-                name="forrest of enchantment"
-                img={forrest}
-                onClick={() => props.onClick("realm")}/>
-            <Realm
-                name="forrest of enchantment"
-                img={forrest}
-                onClick={() => props.onClick("realm")}/>   
+            <div>
+                <Realm
+                    name="forrest of enchantment"
+                    img={forrest}
+                    onChange={() => props.onChange("first")}/>
+                <p onClick={props.onClick}>edit</p>
+            </div>
+            <div>
+                <Realm
+                    name="forrest of enchantment"
+                    img={forrest}
+                    onChange={() => props.onChange("second")}/>
+                <p onClick={props.onClick}>edit</p>
+            </div>
+            <div>
+                <Realm
+                    name="forrest of enchantment"
+                    img={forrest}
+                    onChange={() => props.onChange("third")}/>   
+                <p onClick={props.onClick}>edit</p>
+            </div>
         </div>
     );
 }
 
-export default RealmEditorSelector;
+export default RealmEditor;

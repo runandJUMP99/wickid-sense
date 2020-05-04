@@ -1,0 +1,32 @@
+.Candle {
+    align-items: center;
+    background: #edffea;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.5);
+    display: flex;
+    margin: 0.5rem;
+    padding: 0.5rem 0.25rem;
+    transition: all 0.5s ease-out;
+    width: 325px;
+}
+
+.Candle:hover {
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.Img {
+    border: solid 4px #75daad;
+    border-radius: 50%; 
+    height: 6rem;
+    margin: 0.8rem;
+    width: 6rem;
+}
+
+.Info {
+    width: auto;
+}
+
+.Info h2 {
+    font-size: 1.2rem;
+}
