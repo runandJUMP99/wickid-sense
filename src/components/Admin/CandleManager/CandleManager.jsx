@@ -30,22 +30,44 @@ const CandleManager = () => {
         if (content === "realm") {
             setModalContent(<RealmEditorForm/>);
         } else if (content ==="candle") {
-            setModalContent(<CandleEditorForm/>);
+            setModalContent(<CandleEditorForm onClick={toggleModal} />);
         }  
     }
 
     const [candles, setCandles] = useState([]);
 
-    let shownCandles = [];
-    let i = 0;
+    function handleChange(realm) {
+        let candles = [];
 
-    function handleChange() {
-        shownCandles.push(<Candle />);
-        setCandles(shownCandles);
-        if (++i < 5) {
-            setTimeout(handleChange, 200); 
+        switch (realm) {
+            case 0:
+                candles = [<Candle name="Candle of Immunity" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Immunity of Candle" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Wisp of Enlightenment" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Enlightening Wisp" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Carl" onClick={() => toggleModal("candle")} />];
+                break;
+            case 1:
+                candles = [<Candle name="Candle of Immunity0" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Immunity of Candle0" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Wisp of Enlightenment0" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Enlightening Wisp0" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Carl0" onClick={() => toggleModal("candle")} />];
+                break;
+            case 2:
+                candles = [<Candle name="Candle of Immunity1" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Immunity of Candle1" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Wisp of Enlightenment1" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Enlightening Wisp1" onClick={() => toggleModal("candle")} />,
+                    <Candle name="Carl1" onClick={() => toggleModal("candle")} />];
+                break;
+            default:
+                candles = "changed";
+                break;
         }
-    }    
+
+        setCandles(candles);
+    }
 
     // useEffect((prevValue) => {
     //     console.log("useEffect start");
@@ -79,8 +101,3 @@ const CandleManager = () => {
 
 export default CandleManager;
 
-{/* <Candle name="Candle of Immunity" onClick={toggleModal} />,
-<Candle name="Immunity of Candle" onClick={toggleModal} />,
-<Candle name="Wisp of Enlightenment" onClick={toggleModal} />,
-<Candle name="Enlightening Wisp" onClick={toggleModal} />,
-<Candle name="Carl" onClick={toggleModal} /> */}

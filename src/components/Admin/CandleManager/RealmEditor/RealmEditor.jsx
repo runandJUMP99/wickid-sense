@@ -12,21 +12,21 @@ const RealmEditor = (props) => {
                 <Realm
                     name="forrest of enchantment"
                     img={forrest}
-                    onChange={() => props.onChange("first")}/>
+                    onChange={() => props.onChange(0)}/>
                 <p onClick={props.onClick}>edit</p>
             </div>
             <div>
                 <Realm
                     name="forrest of enchantment"
                     img={forrest}
-                    onChange={() => props.onChange("second")}/>
+                    onChange={() => props.onChange(1)}/>
                 <p onClick={props.onClick}>edit</p>
             </div>
             <div>
                 <Realm
                     name="forrest of enchantment"
                     img={forrest}
-                    onChange={() => props.onChange("third")}/>   
+                    onChange={() => props.onChange(2)}/>   
                 <p onClick={props.onClick}>edit</p>
             </div>
         </div>

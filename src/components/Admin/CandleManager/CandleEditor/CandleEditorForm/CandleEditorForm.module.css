@@ -1,3 +1,12 @@
 .CandleEditorForm {
-    background: hotpink;
+    align-items: center;
+    background: #edffea;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.CandleEditorForm form {
+    display: flex;
+    flex-direction: column;
 }
