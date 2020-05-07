@@ -80,3 +80,6 @@
 [0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
 [0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
 [0425/181842.016:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0507/185557.255:ERROR:process_info.cc(359)] UncheckedAllocate
+[0507/185559.014:ERROR:process_info.cc(359)] UncheckedAllocate
+[0507/185559.142:ERROR:process_info.cc(359)] UncheckedAllocate

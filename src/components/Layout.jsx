@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Route } from "react-router";
 
 import Backdrop from "./UI/Backdrop/Backdrop";
 import Footer from "./Footer/Footer";
@@ -7,7 +6,6 @@ import Header from "./Header/Header";
 import Home from "./Home/Home";
 import Modal from "./UI/Modal/Modal";
 import Products from "./Products/Products";
-import Products1 from "./Products/Products1";
 import RealmSelector from "./Products/RealmSelector/RealmSelector";
 import Redirect from "./UI/Redirect/Redirect";
 import SideDrawer from "./UI/SideDrawer/SideDrawer";
@@ -30,7 +28,7 @@ const Layout = () => {
             });
         } else if (content === "products" || content === "redirect") {
             if (content === "products") {
-                setModalContent(<RealmSelector onClick={toggleModal}/>);
+                setModalContent(<RealmSelector onClick={handleChange}/>);
             } else if (content === "redirect") {
                 setModalContent(<Redirect onClick={toggleModal}/>);
             }
@@ -46,9 +44,23 @@ const Layout = () => {
                 showModal: false,
                 showSideDrawer: false
             });
+
+            setTimeout(() => {
+                setModalContent()
+            }, 1000);
         }
         var blob = document.getElementById("root");
         blob.scrollIntoView();
+    }
+
+    const [content, setContent] = useState(<Home />);
+
+    function handleChange() {
+
+            setContent(<Products />);
+        
+
+        toggleModal();
     }
 
     return (
@@ -59,9 +71,7 @@ const Layout = () => {
             </Modal>
             <SideDrawer show={modal.showSideDrawer} onClick={toggleModal} />
             <Header onClick={toggleModal}/>
-            <Route path="/" exact component={Home}/>
-            <Route path="/products" component={Products}/>
-            <Route path="/products1" component={Products1}/>
+            {content}
             <Footer onClick={toggleModal}/>
         </div>
     );

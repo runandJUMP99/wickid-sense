@@ -28,7 +28,7 @@ const CandleManager = () => {
         });
 
         if (content === "realm") {
-            setModalContent(<RealmEditorForm/>);
+            setModalContent(<RealmEditorForm onClick={toggleModal}/>);
         } else if (content ==="candle") {
             setModalContent(<CandleEditorForm onClick={toggleModal} />);
         }  

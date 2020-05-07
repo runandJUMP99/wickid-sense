@@ -3,4 +3,5 @@
     background: #75daad;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }

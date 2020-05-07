@@ -38,10 +38,10 @@ const CandleEditorForm = (props) => {
                 touched: false
             },
             description: {
-                elementType: 'input',
+                elementType: 'textarea',
                 elementConfig: {
-                    type: 'text',
-                    placeholder: 'Description'
+                    placeholder: 'Description',
+                    rows: 4
                 },
                 value: '',
                 validation: {
@@ -136,6 +136,7 @@ const CandleEditorForm = (props) => {
                     changed={(event) => inputChangedHandler(event, formElement.id)} />
             ))}
             <Button clicked={props.onClick} btnType="Success" disabled={!form.formIsValid}>SUBMIT</Button>
+            <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
         </form>
     );
     if (form.loading) {

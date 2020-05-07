@@ -7,7 +7,7 @@ import forrest from "../../../../assets/images/sand-walrus.png";
 
 const RealmEditor = (props) => {
     return (
-        <div className={classes.RealmEditorSelector}>
+        <div className={classes.RealmEditor}>
             <div>
                 <Realm
                     name="forrest of enchantment"

@@ -5,8 +5,3 @@
     display: flex;
     justify-content: space-around;
 }
-
-.CandleEditorForm form {
-    display: flex;
-    flex-direction: column;
-}
