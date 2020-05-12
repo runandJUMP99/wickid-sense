@@ -9,7 +9,7 @@ import candle3 from "../../../assets/images/candle3.jpg";
 import candle4 from "../../../assets/images/candle4.jpg";
 
 const ProductSelector = (props) => {
-    const [cardContent, setCardContent] = useState(
+    return (
         <div className={classes.ProductSelector}>
             <Card 
                 name="zoras's wave"
@@ -33,8 +33,6 @@ const ProductSelector = (props) => {
                 onClick={() => props.handleClick("nicecream")} />
         </div>
     );
-
-    return cardContent;
 }
 
 export default ProductSelector;

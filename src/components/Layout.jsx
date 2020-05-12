@@ -28,7 +28,7 @@ const Layout = () => {
             });
         } else if (content === "products" || content === "redirect") {
             if (content === "products") {
-                setModalContent(<RealmSelector onClick={handleChange}/>);
+                setModalContent(<RealmSelector onClick={() => handleChange("products")}/>);
             } else if (content === "redirect") {
                 setModalContent(<Redirect onClick={toggleModal}/>);
             }
@@ -44,23 +44,28 @@ const Layout = () => {
                 showModal: false,
                 showSideDrawer: false
             });
-
-            setTimeout(() => {
-                setModalContent()
-            }, 1000);
+            
+            if (content !== "home") {
+                setTimeout(() => {
+                    setModalContent()
+                }, 1000);
+            }
         }
-        var blob = document.getElementById("root");
-        blob.scrollIntoView();
+        // var blob = document.getElementById("root");
+        // blob.scrollIntoView();
     }
 
-    const [content, setContent] = useState(<Home />);
+    const [content, setContent] = useState(<Home onClick={toggleModal} />);
 
-    function handleChange() {
-
+    function handleChange(selection) {
+        if (selection === "products") {
             setContent(<Products />);
-        
-
-        toggleModal();
+            toggleModal();
+        }
+        else {
+            setContent(<Home onClick={toggleModal} />);
+            toggleModal("home");
+        }
     }
 
     return (
@@ -69,8 +74,11 @@ const Layout = () => {
             <Modal show={modal.showModal} onClick={toggleModal}>
                 {modalContent}
             </Modal>
-            <SideDrawer show={modal.showSideDrawer} onClick={toggleModal} />
-            <Header onClick={toggleModal}/>
+            <SideDrawer 
+                show={modal.showSideDrawer} 
+                onClick={toggleModal} 
+                onChange={() => handleChange("home")} />
+            <Header onClick={toggleModal} onChange={() => handleChange("home")}/>
             {content}
             <Footer onClick={toggleModal}/>
         </div>

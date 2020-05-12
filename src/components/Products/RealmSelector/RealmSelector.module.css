@@ -21,12 +21,15 @@
 }
 
 .RealmSelector p {
+    color: #ccc;
     margin: 1rem;
     text-align: center;
     text-decoration: underline;
 }
 
 .RealmSelector p:hover {
+    color: #eee;
+    cursor: pointer;
     text-decoration: none;
 }
 

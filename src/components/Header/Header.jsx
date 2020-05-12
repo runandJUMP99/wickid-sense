@@ -11,7 +11,7 @@ const Header = (props) => {
         <div className={classes.Header}>
             <ToggleButton onClick={props.onClick}/>
             <nav>
-                <NavigationLinks onClick={props.onClick}/>
+                <NavigationLinks onClick={props.onClick} onChange={props.onChange}/>
             </nav>
             <div className={classes.CTAButton}>
                 <CTAButton onClick={props.onClick}/>

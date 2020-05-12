@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import Button from "../../../../UI/Button/Button";
 import Input from "../../../../UI/Input/Input";
@@ -16,7 +17,7 @@ const RealmEditorForm = (props) => {
                     type: 'text',
                     placeholder: 'Realm Name'
                 },
-                value: '',
+                value: props.name,
                 validation: {
                     required: true
                 },
@@ -30,7 +31,7 @@ const RealmEditorForm = (props) => {
                     type: 'file',
                     placeholder: 'Price'
                 },
-                value: '',
+                value: props.img,
                 validation: {
                     required: true
                 },
@@ -127,7 +128,7 @@ const RealmEditorForm = (props) => {
         </form>
     );
     if (form.loading) {
-        form = <Spinner />;
+        newForm = <Spinner />;
     }
 
     return (
@@ -138,4 +139,12 @@ const RealmEditorForm = (props) => {
     );
 }
 
-export default RealmEditorForm;
+const mapStateToProps = state => {
+    return {
+        name: state.name,
+        img: state.img,
+        candles: state.candles
+    };
+};
+
+export default connect(mapStateToProps)(RealmEditorForm);

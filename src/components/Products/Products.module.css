@@ -1,13 +1,14 @@
-.ProductDisplay {
-    background: #313131;
+.Products {
+    background: #216353;
+    padding-top: 4rem;
 }
 
-.ProductDisplayTop {
+.ProductsTop {
     padding: 2rem;
 }
 
 @media (min-width: 41rem) {
-    .ProductDisplayTop {
+    .ProductsTop {
         display: flex;
     }
 }

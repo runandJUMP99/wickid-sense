@@ -11,7 +11,7 @@ const SideDrawer = (props) => {
             transform: props.show ? "translateX(0)" : "translateX(-100%)",
         }}>
             <nav>
-                <NavigationLinks onClick={props.onClick}/>
+                <NavigationLinks onClick={props.onClick} onChange={props.onChange}/>
             </nav>
             <div className={classes.CTAButton}>
                 <CTAButton onClick={props.onClick}/>

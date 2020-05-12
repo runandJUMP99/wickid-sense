@@ -6,7 +6,7 @@
     height: initial;
     left: 5%;
     padding: 1rem;
-    position: absolute;
+    position: fixed;
     top: 10%;
     transition: all 1.5s cubic-bezier(0.38,-0.18, 0.25, 1.27);
     width: 90%;

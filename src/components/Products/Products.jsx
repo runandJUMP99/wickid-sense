@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import CTASection from "../CTASection/CTASection";
 import ProductDisplay from "./ProductDisplay/ProductDisplay";
 import ProductInfo from "./ProductInfo/ProductInfo";
 import ProductSelector from "./ProductSelector/ProductSelector";
@@ -65,8 +64,8 @@ const Product = (props) => {
     }
 
     return (
-        <div className={classes.ProductDisplay}>
-            <div className={classes.ProductDisplayTop}>
+        <div className={classes.Products}>
+            <div className={classes.ProductsTop}>
                 <ProductDisplay
                     name={selectedImg.name}
                     fade={fade}/>
@@ -77,7 +76,6 @@ const Product = (props) => {
                     fade={fade}/>   
             </div>
             <ProductSelector handleClick={handleClick}/>
-            <CTASection onClick={props.onClick}/>
         </div>
     );
 }
