@@ -4,7 +4,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Admin from "./components/Admin/Admin";
 import CandleManager from "./components/Admin/CandleManager/CandleManager";
 import Layout from "./components/Layout";
-import Products from "./components/Products/Products";
 
 import './App.css';
 import "./index.css";

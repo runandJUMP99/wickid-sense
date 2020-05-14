@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, {useState} from "react";
 
 import Button from "../../../../UI/Button/Button";
 import CandleImg from "../Candle/CandleImg/CandleImg";
@@ -7,6 +6,7 @@ import Input from "../../../../UI/Input/Input";
 import Spinner from "../../../../UI/Spinner/Spinner";
 
 import classes from "./CandleEditorForm.module.css";
+import axios from "../../../../../axios";
 
 const CandleEditorForm = (props) => {
     const [form, setForm] = useState({
@@ -56,6 +56,8 @@ const CandleEditorForm = (props) => {
         loading: false
     });
 
+    
+
     function submitHandler(event) {
         event.preventDefault();
         // this.setState( { loading: true } );
@@ -64,14 +66,14 @@ const CandleEditorForm = (props) => {
             formData[formElementIdentifier] = form.inputs[formElementIdentifier].value;
         }
 
-        // axios.post( '/orders.json', order )
-        //     .then( response => {
-        //         this.setState( { loading: false } );
-        //         this.props.history.push( '/' );
-        //     } )
-        //     .catch( error => {
-        //         this.setState( { loading: false } );
-        //     } );
+        axios.post('/realms/realm/candles.json', formData)
+            .then( response => {
+                // setForm( { loading: false } );
+                // this.props.history.push( '/' );
+            } )
+            .catch( error => {
+                // this.setState( { loading: false } );
+            } );
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -140,8 +142,9 @@ const CandleEditorForm = (props) => {
             <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
         </form>
     );
+
     if (form.loading) {
-        form = <Spinner />;
+        setForm(<Spinner />);
     }
 
     return (

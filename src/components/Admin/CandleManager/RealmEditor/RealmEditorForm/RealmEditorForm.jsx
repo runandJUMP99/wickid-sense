@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 
 import Button from "../../../../UI/Button/Button";
 import Input from "../../../../UI/Input/Input";
@@ -7,6 +6,7 @@ import Realm from "../Realm/Realm";
 import Spinner from "../../../../UI/Spinner/Spinner";
 
 import classes from "./RealmEditorForm.module.css";
+import axios from "../../../../../axios";
 
 const RealmEditorForm = (props) => {
     const [form, setForm] = useState({
@@ -51,14 +51,14 @@ const RealmEditorForm = (props) => {
             formData[formElementIdentifier] = form.inputs[formElementIdentifier].value;
         }
 
-        // axios.post( '/orders.json', order )
-        //     .then( response => {
-        //         this.setState( { loading: false } );
-        //         this.props.history.push( '/' );
-        //     } )
-        //     .catch( error => {
-        //         this.setState( { loading: false } );
-        //     } );
+        axios.post("/realms.json", formData)
+            .then( response => {
+                // this.setState( { loading: false } );
+                // this.props.history.push( '/' );
+            } )
+            .catch( error => {
+                // this.setState( { loading: false } );
+            } );
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -139,12 +139,4 @@ const RealmEditorForm = (props) => {
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        name: state.name,
-        img: state.img,
-        candles: state.candles
-    };
-};
-
-export default connect(mapStateToProps)(RealmEditorForm);
+export default (RealmEditorForm);

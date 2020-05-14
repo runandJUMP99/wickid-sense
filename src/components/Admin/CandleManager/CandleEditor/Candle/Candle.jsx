@@ -6,12 +6,12 @@ import classes from "./Candle.module.css";
 
 const Candle = (props) => {
     return (
-        <div  onClick={props.onClick}className={classes.Candle}>
+        <div  onClick={props.onClick} className={classes.Candle}>
             <CandleImg />
             <div className={classes.Info}>
                 <h2>{props.name}</h2>
-                <p>Price: $9.99</p>
-                <p>Description...</p>
+                <p>{props.price}</p>
+                <p>{props.description}</p>
             </div>
         </div>
     );

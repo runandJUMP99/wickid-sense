@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import classes from "./Signup.module.css";
 
 const Signup = () => {
-    const [form, setForm] = useState({
+    const form = useState({
         inputs: {
             email: {
                 elementType: 'input',
@@ -36,43 +36,42 @@ const Signup = () => {
         }
     });
 
-    function checkValidity(value, rules) {
-        let isValid = true;
+    // function checkValidity(value, rules) {
+    //     let isValid = true;
         
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
+    //     if (rules.required) {
+    //         isValid = value.trim() !== '' && isValid;
+    //     }
 
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
-        }
+    //     if (rules.minLength) {
+    //         isValid = value.length >= rules.minLength && isValid;
+    //     }
 
-        return isValid;
-    }
+    //     return isValid;
+    // }
 
-    function inputChangedHandler(event, inputName) {
-        const updatedInputs = {
-            ...form.inputs,
-            [inputName]: {
-                ...form.inputs[inputName],
-                 value: event.target.value,
-                 valid: this.checkValidity(event.target.value, form.inputs[inputName].validation),
-                 touched: true
-            }
-        };
+    // function inputChangedHandler(event, inputName) {
+    //     const updatedInputs = {
+    //         ...form.inputs,
+    //         [inputName]: {
+    //             ...form.inputs[inputName],
+    //              value: event.target.value,
+    //              valid: this.checkValidity(event.target.value, form.inputs[inputName].validation),
+    //              touched: true
+    //         }
+    //     };
 
-        setForm(prevValue => {
-            return {
-                ...prevValue,
-                inputs: updatedInputs
-            }
-        });
-    }
+    //     setForm(prevValue => {
+    //         return {
+    //             ...prevValue,
+    //             inputs: updatedInputs
+    //         }
+    //     });
+    // }
 
-    function submitHandler(event) {
-        event.preventDefault();
-        
-    }
+    // function submitHandler(event) {
+    //     event.preventDefault(); 
+    // }
 
     return (
         <div className={classes.Signup}>
