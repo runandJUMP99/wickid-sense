@@ -1,34 +1,55 @@
-import React from "react";
+import React, {useState} from "react";
+import axios from "../../../../axios";
 
-import Realm from "./Realm/Realm";
+import Realm from "../../../Products/RealmSelector/Realm/Realm";
+import Spinner from "../../../UI/Spinner/Spinner";
 
 import classes from "./RealmEditor.module.css";
-import forrest from "../../../../assets/images/sand-walrus.png";
 
 const RealmEditor = (props) => {
+    const [realms, setRealms] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+        axios.get("/realms.json")
+            .then(res => {
+                setLoading(false);
+                
+                const fetchedRealms = [];
+
+                for (let key in res.data) {
+                    fetchedRealms.push({
+                        ...res.data[key],
+                        id: key
+                    });
+                }
+
+                const updatedRealms = fetchedRealms.map(realm => {
+                    return (
+                        <Realm
+                            key={realm.id}
+                            name={realm.name}
+                            img={realm.img}
+                            onClick={() => props.onChange(0)} />
+                    );
+                });
+                
+                setRealms(updatedRealms);
+            })
+            .catch(error => {
+                setLoading(false);
+            });
+
+    let content;
+
+    if (loading) {
+        content = <Spinner />;
+    } else {
+        content = realms;
+    }
+
     return (
         <div className={classes.RealmEditor}>
-            <div>
-                <Realm
-                    name="forrest of enchantment"
-                    img={forrest}
-                    onChange={() => props.onChange(0)}/>
-                <p onClick={props.onClick}>edit</p>
-            </div>
-            <div>
-                <Realm
-                    name="forrest of enchantment"
-                    img={forrest}
-                    onChange={() => props.onChange(1)}/>
-                <p onClick={props.onClick}>edit</p>
-            </div>
-            <div>
-                <Realm
-                    name="forrest of enchantment"
-                    img={forrest}
-                    onChange={() => props.onChange(2)}/>   
-                <p onClick={props.onClick}>edit</p>
-            </div>
+            {content}
         </div>
     );
 }

@@ -21,8 +21,8 @@ const CandleManager = () => {
 
     const [modalContent, setModalContent] = useState();
 
-    function toggleModal(content) {
-        // console.log(event.target);
+    function toggleModal(event, content) {
+        console.log(event);
         setModal(prevValue => {
             return {
                 showBackdrop: !prevValue.showBackdrop,
@@ -45,9 +45,20 @@ const CandleManager = () => {
 
         switch (realm) {
             case 0:
-                axios.get("/realms/realm/candles.json")
+                axios.get("/realms.json")
                     .then(res => {
                         setLoading(false);
+
+                        const fetchedRealms = [];
+
+                        for (let key in res.data) {
+                            fetchedRealms.push({
+                                ...res.data[key],
+                                id: key
+                            });
+                        }
+
+                        console.log(fetchedRealms);
                         
                         const fetchedCandles = [];
 
@@ -64,7 +75,7 @@ const CandleManager = () => {
                                 description={candle.description}
                                 name={candle.name}
                                 price={candle.price}
-                                onClick={() => toggleModal("candle")} />
+                                onClick={(event) => toggleModal(event, "candle")} />
                             );
                         });
                         
@@ -75,24 +86,34 @@ const CandleManager = () => {
                     });
                 break;
             case 1:
-                setTimeout(() => {
-                    setCandles([<Candle key="0" name="Candle of Immunity0" onClick={() => toggleModal("candle")} />,
-                    <Candle key="1" name="Immunity of Candle0" onClick={() => toggleModal("candle")} />,
-                    <Candle key="2" name="Wisp of Enlightenment0" onClick={() => toggleModal("candle")} />,
-                    <Candle key="3" name="Enlightening Wisp0" onClick={() => toggleModal("candle")} />,
-                    <Candle key="4" name="Carl0" onClick={() => toggleModal("candle")} />]);
-                    setLoading(false);
-                }, 1000);
+                return (
+                    setTimeout(() => {
+                        setCandles(
+                            <Candle
+                                key="0"
+                                description="i am a candle"
+                                name="candle"
+                                price="price"
+                                onClick={(event) => toggleModal(event, "candle")} />
+                        );
+                        setLoading(false);
+                    }, 1000)
+                );
                 break;
             case 2:
-                setTimeout(() => {
-                    setCandles([<Candle key="0" name="Candle of Immunity1" onClick={() => toggleModal("candle")} />,
-                    <Candle key="1" name="Immunity of Candle1" onClick={() => toggleModal("candle")} />,
-                    <Candle key="2" name="Wisp of Enlightenment1" onClick={() => toggleModal("candle")} />,
-                    <Candle key="3" name="Enlightening Wisp1" onClick={() => toggleModal("candle")} />,
-                    <Candle key="4" name="Carl1" onClick={() => toggleModal("candle")} />]);
-                    setLoading(false);
-                }, 1000);
+                return (
+                    setTimeout(() => {
+                        setCandles(
+                            <Candle
+                                key="1"
+                                description="i am also a candle"
+                                name="also a candle"
+                                price="also a price"
+                                onClick={(event) => toggleModal(event, "candle")} />
+                        );
+                        setLoading(false);
+                    }, 1000)
+                );
                 break;
             default:
                 setCandles([]);
@@ -118,7 +139,18 @@ const CandleManager = () => {
     let content;
 
     if (loading) {
-        content = <Spinner />;
+        content = (
+            <div style={{
+                background: "#edffea",
+                borderRadius: "8px",
+                boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
+                margin: "auto",
+                padding: "1rem",
+                width: "325px"
+            }}>
+                <Spinner />
+            </div>
+        );
     } else {
         content = candles;
     }
@@ -130,7 +162,7 @@ const CandleManager = () => {
                 {modalContent}
             </Modal>
             <h1>assistant regional candle manager</h1>
-            <RealmEditor onChange={handleChange} onClick={() => toggleModal("realm")}/>
+            <RealmEditor onChange={handleChange} onClick={(event) => toggleModal(event, "realm")}/>
             <CandleEditor onClick={() => toggleModal("candle")}>
                 {content}
             </CandleEditor>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Button from "../../../../UI/Button/Button";
 import Input from "../../../../UI/Input/Input";
-import Realm from "../Realm/Realm";
+import Realm from "../../../../Products/RealmSelector/Realm/Realm";
 import Spinner from "../../../../UI/Spinner/Spinner";
 
 import classes from "./RealmEditorForm.module.css";
