@@ -10,60 +10,59 @@ import axios from "../../../../../axios";
 
 const RealmEditorForm = (props) => {
     const [form, setForm] = useState({
-        inputs: {
-            name: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Realm Name'
-                },
-                value: props.name,
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
+        name: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Realm Name'
             },
-            img: {
-                elementType: 'input',
-                elementConfig: {
-                    accept: "image/*",
-                    type: 'file',
-                    placeholder: 'Price'
-                },
-                value: props.img,
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
+            value: "",
+            validation: {
+                required: true
             },
+            valid: false,
+            touched: false
         },
-        formIsValid: false,
-        loading: false
+        img: {
+            elementType: 'input',
+            elementConfig: {
+                accept: "image/*",
+                type: 'file',
+                placeholder: 'Price'
+            },
+            value: "",
+            validation: {
+                required: true
+            },
+            valid: false,
+            touched: false
+        }
     });
+    
+    const [formIsValid, setFormIsValid] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     function submitHandler(event) {
         event.preventDefault();
-        // this.setState( { loading: true } );
+        setLoading(true);
         const formData = {};
-        for (let formElementIdentifier in form.inputs) {
-            formData[formElementIdentifier] = form.inputs[formElementIdentifier].value;
+        for (let formElementIdentifier in form) {
+            formData[formElementIdentifier] = form[formElementIdentifier].value;
         }
 
         axios.post("/realms.json", formData)
             .then( response => {
-                // this.setState( { loading: false } );
-                // this.props.history.push( '/' );
-            } )
+                setLoading(false);
+                console.log(response.data.name);
+            })
             .catch( error => {
-                // this.setState( { loading: false } );
+                setLoading(false);
             } );
     }
 
     function inputChangedHandler(event, inputIdentifier) {
         const updatedRealm = {
-            ...form.inputs
+            ...form
         };
         const updatedRealmElement = { 
             ...updatedRealm[inputIdentifier]
@@ -80,7 +79,8 @@ const RealmEditorForm = (props) => {
             formIsValid = updatedRealm[inputIdentifier].valid && formIsValid;
         }
         
-        setForm({inputs: updatedRealm, formIsValid: formIsValid});
+        setForm(updatedRealm);
+        setFormIsValid(formIsValid);
     }
 
     function checkValidity(value, rules) {
@@ -103,10 +103,10 @@ const RealmEditorForm = (props) => {
 
     const formElementsArray = [];
     
-    for (let key in form.inputs) {
+    for (let key in form) {
         formElementsArray.push({
             id: key,
-            config: form.inputs[key]
+            config: form[key]
         });
     }
 
@@ -123,11 +123,11 @@ const RealmEditorForm = (props) => {
                     touched={formElement.config.touched}
                     changed={(event) => inputChangedHandler(event, formElement.id)} />
             ))}
-            <Button clicked={props.onClick} btnType="Success" disabled={!form.formIsValid}>SUBMIT</Button>
+            <Button clicked={props.onClick} btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
             <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
         </form>
     );
-    if (form.loading) {
+    if (loading) {
         newForm = <Spinner />;
     }
 

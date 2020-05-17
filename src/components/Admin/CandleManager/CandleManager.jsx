@@ -22,7 +22,6 @@ const CandleManager = () => {
     const [modalContent, setModalContent] = useState();
 
     function toggleModal(event, content) {
-        console.log(event);
         setModal(prevValue => {
             return {
                 showBackdrop: !prevValue.showBackdrop,
@@ -45,46 +44,45 @@ const CandleManager = () => {
 
         switch (realm) {
             case 0:
-                axios.get("/realms.json")
-                    .then(res => {
-                        setLoading(false);
+                return (
+                    axios.get("/realms.json")
+                        .then(res => {
+                            setLoading(false);
 
-                        const fetchedRealms = [];
+                            const fetchedRealms = [];
 
-                        for (let key in res.data) {
-                            fetchedRealms.push({
-                                ...res.data[key],
-                                id: key
+                            for (let key in res.data) {
+                                fetchedRealms.push({
+                                    ...res.data[key],
+                                    id: key
+                                });
+                            }
+                            
+                            const fetchedCandles = [];
+
+                            for (let key in fetchedRealms) {
+                                fetchedCandles.push({
+                                    ...res.data[key],
+                                    id: key
+                                });
+                            }
+
+                            const updatedCandles = fetchedCandles.map(candle => {
+                                return (<Candle
+                                    key={candle.id}
+                                    description={candle.description}
+                                    name={candle.name}
+                                    price={candle.price}
+                                    onClick={(event) => toggleModal(event, "candle")} />
+                                );
                             });
-                        }
-
-                        console.log(fetchedRealms);
-                        
-                        const fetchedCandles = [];
-
-                        for (let key in res.data) {
-                            fetchedCandles.push({
-                                ...res.data[key],
-                                id: key
-                            });
-                        }
-
-                        const updatedCandles = fetchedCandles.map(candle => {
-                            return (<Candle
-                                key={candle.id}
-                                description={candle.description}
-                                name={candle.name}
-                                price={candle.price}
-                                onClick={(event) => toggleModal(event, "candle")} />
-                            );
-                        });
-                        
-                        setCandles(updatedCandles);
-                    })
-                    .catch(error => {
-                        setLoading(false);
-                    });
-                break;
+                            
+                            setCandles(updatedCandles);
+                        })
+                        .catch(error => {
+                            setLoading(false);
+                        })
+                );
             case 1:
                 return (
                     setTimeout(() => {
@@ -99,7 +97,6 @@ const CandleManager = () => {
                         setLoading(false);
                     }, 1000)
                 );
-                break;
             case 2:
                 return (
                     setTimeout(() => {
@@ -114,7 +111,6 @@ const CandleManager = () => {
                         setLoading(false);
                     }, 1000)
                 );
-                break;
             default:
                 setCandles([]);
                 break;
@@ -166,7 +162,7 @@ const CandleManager = () => {
             <CandleEditor onClick={() => toggleModal("candle")}>
                 {content}
             </CandleEditor>
-            <Button clicked={() => toggleModal("candle")} btnType="Success">Add Candle</Button>
+            <Button clicked={(event) => toggleModal(event, "candle")} btnType="Success">Add Candle</Button>
         </div>
     );
 }

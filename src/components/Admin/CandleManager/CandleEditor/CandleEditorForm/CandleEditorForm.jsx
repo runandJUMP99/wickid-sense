@@ -10,75 +10,73 @@ import axios from "../../../../../axios";
 
 const CandleEditorForm = (props) => {
     const [form, setForm] = useState({
-        inputs: {
-            name: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Candle Name'
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
+        name: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Candle Name'
             },
-            price: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Price'
-                },
-                value: '',
-                validation: {
-                    required: true,
-                    isNumeric: true
-                },
-                valid: false,
-                touched: false
+            value: '',
+            validation: {
+                required: true
             },
-            description: {
-                elementType: 'textarea',
-                elementConfig: {
-                    placeholder: 'Description',
-                    rows: 4
-                },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
-            }
+            valid: false,
+            touched: false
         },
-        formIsValid: false,
-        loading: false
+        price: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Price'
+            },
+            value: '',
+            validation: {
+                required: true,
+                isNumeric: true
+            },
+            valid: false,
+            touched: false
+        },
+        description: {
+            elementType: 'textarea',
+            elementConfig: {
+                placeholder: 'Description',
+                rows: 4
+            },
+            value: '',
+            validation: {
+                required: true
+            },
+            valid: false,
+            touched: false
+        }
     });
 
+    const [formIsValid, setFormIsValid] = useState(false);
+    const [loading, setLoading] = useState(false);
     
 
     function submitHandler(event) {
         event.preventDefault();
-        // this.setState( { loading: true } );
+        setLoading(true);
         const formData = {};
-        for (let formElementIdentifier in form.inputs) {
-            formData[formElementIdentifier] = form.inputs[formElementIdentifier].value;
+        for (let formElementIdentifier in form) {
+            formData[formElementIdentifier] = form[formElementIdentifier].value;
         }
 
         axios.post('/realms/realm/candles.json', formData)
             .then( response => {
-                // setForm( { loading: false } );
-                // this.props.history.push( '/' );
+                setLoading(false);
+                props.history.push( '/' );
             } )
             .catch( error => {
-                // this.setState( { loading: false } );
+                setLoading(false);
             } );
     }
 
     function inputChangedHandler(event, inputIdentifier) {
         const updatedCandle = {
-            ...form.inputs
+            ...form
         };
         const updatedCandleElement = { 
             ...updatedCandle[inputIdentifier]
@@ -95,7 +93,8 @@ const CandleEditorForm = (props) => {
             formIsValid = updatedCandle[inputIdentifier].valid && formIsValid;
         }
         
-        setForm({inputs: updatedCandle, formIsValid: formIsValid});
+        setForm(updatedCandle);
+        setFormIsValid(formIsValid);
     }
 
     function checkValidity(value, rules) {
@@ -118,10 +117,10 @@ const CandleEditorForm = (props) => {
 
     const formElementsArray = [];
     
-    for (let key in form.inputs) {
+    for (let key in form) {
         formElementsArray.push({
             id: key,
-            config: form.inputs[key]
+            config: form[key]
         });
     }
 
@@ -138,12 +137,12 @@ const CandleEditorForm = (props) => {
                     touched={formElement.config.touched}
                     changed={(event) => inputChangedHandler(event, formElement.id)} />
             ))}
-            <Button clicked={props.onClick} btnType="Success" disabled={!form.formIsValid}>SUBMIT</Button>
+            <Button clicked={props.onClick} btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
             <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
         </form>
     );
 
-    if (form.loading) {
+    if (loading) {
         setForm(<Spinner />);
     }
 

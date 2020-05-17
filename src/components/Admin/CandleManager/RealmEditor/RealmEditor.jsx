@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "../../../../axios";
 
 import Realm from "../../../Products/RealmSelector/Realm/Realm";
@@ -10,6 +10,7 @@ const RealmEditor = (props) => {
     const [realms, setRealms] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
         axios.get("/realms.json")
             .then(res => {
                 setLoading(false);
@@ -25,11 +26,13 @@ const RealmEditor = (props) => {
 
                 const updatedRealms = fetchedRealms.map(realm => {
                     return (
-                        <Realm
-                            key={realm.id}
-                            name={realm.name}
-                            img={realm.img}
-                            onClick={() => props.onChange(0)} />
+                        <div key={realm.id}>
+                            <Realm
+                                name={realm.name}
+                                img={realm.img}
+                                onClick={() => props.onChange(0)} />
+                            <p onClick={props.onClick}>edit</p>
+                        </div>
                     );
                 });
                 
@@ -38,6 +41,7 @@ const RealmEditor = (props) => {
             .catch(error => {
                 setLoading(false);
             });
+    }, [props]);
 
     let content;
 
