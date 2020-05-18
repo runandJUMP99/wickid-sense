@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 import './index.css';
 import App from './App';
-import reducer from "./store/reducers/auth";
+import authReducer from "./store/reducers/auth";
+import candlesReducer from "./store/reducers/candles";
 
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+  auth: authReducer,
+  candles: candlesReducer
+});
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>

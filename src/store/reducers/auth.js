@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
+    authRedirectPath: "/candlemanager",
     error: null,
     loading: false,
     token: null,
@@ -34,6 +35,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 token: null,
                 userId: null
+            };
+        case actionTypes.SET_AUTH_REDIRECT_PATH:
+            return {
+                ...state,
+                authRedirectPath: action.path
             };
         default:
             return state;

@@ -26,7 +26,7 @@
 }
 
 .Delete {
-    background: #75daad;
+    background: #bef0b6;
     border-radius: 50%;
     bottom: 7%;
     padding: 0.3rem;
@@ -36,7 +36,7 @@
 }
 
 .Delete:hover {
-    background: #bef0b6;
+    background: #89ffca;
 }
 
 @keyframes appear {

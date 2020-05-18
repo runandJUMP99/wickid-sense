@@ -15,7 +15,7 @@
     width: 100%;
     max-width: 330px;
     margin: auto;
- }
+}
 
 .SignupBackground {
     background: white;
@@ -33,4 +33,15 @@ form input[type="password"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.Signup button {
+    background: #216353;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.5);
+    color: #edffea;
+}
+
+.Signup button:hover {
+    background: #31d8ae;
+    box-shadow: 0 1px 4px 2px rgba(0, 0, 0, 0.5);
 }
