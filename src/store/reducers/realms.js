@@ -1,23 +1,20 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-    candle: {
-        realm: "",
+    realm: {
         name: "",
         img: "",
-        price: "",
-        description: ""
     },
     loading: false
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADD_CANDLE_START:
+        case actionTypes.ADD_REALM_START:
             return {
                 loading: true
             };
-        case actionTypes.ADD_CANDLE_SUCCESS:
+        case actionTypes.ADD_REALM_SUCCESS:
             const newOrder = {
                 ...action.orderData, 
                 id: action.orderId
@@ -28,22 +25,22 @@ const reducer = (state = initialState, action) => {
                 purchased: true,
                 orders: state.orders.concat(newOrder)                
             };
-        case actionTypes.ADD_CANDLE_FAIL:
+        case actionTypes.ADD_REALM_FAIL:
             return {
                 ...state, 
                 loading: false
             };
-        case actionTypes.FETCH_CANDLES_START:
+        case actionTypes.FETCH_REALMS_START:
             return {
                 ...state, loading: true
             };
-        case actionTypes.FETCH_CANDLES_SUCCESS:
+        case actionTypes.FETCH_REALMS_SUCCESS:
             return {
                 ...state, 
                 orders: action.orders,
                 loading: false
             };
-        case actionTypes.FETCH_CANDLES_FAIL:
+        case actionTypes.FETCH_REALMS_FAIL:
             return {
                 ...state, 
                 loading: false

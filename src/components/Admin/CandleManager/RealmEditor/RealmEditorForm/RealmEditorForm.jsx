@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import Button from "../../../../UI/Button/Button";
 import Input from "../../../../UI/Input/Input";
@@ -6,7 +7,7 @@ import Realm from "../../../../Products/RealmSelector/Realm/Realm";
 import Spinner from "../../../../UI/Spinner/Spinner";
 
 import classes from "./RealmEditorForm.module.css";
-import axios from "../../../../../axios";
+import * as actions from "../../../../../store/actions/index";
 
 const RealmEditorForm = (props) => {
     const [form, setForm] = useState({
@@ -22,42 +23,33 @@ const RealmEditorForm = (props) => {
             },
             valid: false,
             touched: false
-        },
-        img: {
-            elementType: 'input',
-            elementConfig: {
-                accept: "image/*",
-                type: 'file',
-                placeholder: 'Price'
-            },
-            value: "",
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
         }
+        // img: {
+        //     elementType: 'input',
+        //     elementConfig: {
+        //         accept: "image/*",
+        //         type: 'file',
+        //         placeholder: 'Price'
+        //     },
+        //     value: "",
+        //     validation: {
+        //         required: true
+        //     },
+        //     valid: false,
+        //     touched: false
+        // }
     });
     
     const [formIsValid, setFormIsValid] = useState(false);
-    const [loading, setLoading] = useState(false);
 
     function submitHandler(event) {
         event.preventDefault();
-        setLoading(true);
         const formData = {};
         for (let formElementIdentifier in form) {
             formData[formElementIdentifier] = form[formElementIdentifier].value;
         }
 
-        axios.post("/realms.json", formData)
-            .then( response => {
-                setLoading(false);
-                console.log(response.data.name);
-            })
-            .catch( error => {
-                setLoading(false);
-            } );
+        props.onAddRealm(formData)
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -127,7 +119,7 @@ const RealmEditorForm = (props) => {
             <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
         </form>
     );
-    if (loading) {
+    if (props.loading) {
         newForm = <Spinner />;
     }
 
@@ -139,4 +131,16 @@ const RealmEditorForm = (props) => {
     );
 }
 
-export default (RealmEditorForm);
+const mapStateToProps = state => {
+    return {
+        loading: state.realms.loading
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddRealm: (realmData) => dispatch(actions.addRealm(realmData))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RealmEditorForm);

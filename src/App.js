@@ -1,21 +1,53 @@
-import React from 'react';
-import { BrowserRouter, Route } from "react-router-dom";
+import React, {Suspense} from 'react';
+import {connect} from "react-redux";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-import Admin from "./components/Admin/Admin";
-import CandleManager from "./components/Admin/CandleManager/CandleManager";
 import Layout from "./components/Layout";
+import Spinner from "./components/UI/Spinner/Spinner";
 
 import './App.css';
 import "./index.css";
 
-function App() {
+const Admin = React.lazy(() => {
+  return import("./components/Admin/Admin");
+})
+
+const CandleManager = React.lazy(() => {
+  return import("./components/Admin/CandleManager/CandleManager");
+})
+
+function App(props) {
+  let routes = (
+    <Switch>
+      <Route path="/" exact component={Layout} />
+      <Route path="/admin" render={() => <Admin {...props} />} />
+    </Switch>
+  );
+
+
+  if (props.isAuthenticated) {
+    routes = (
+      <Switch>
+        <Route path="/" exact component={Layout} />
+        <Route path="/admin" render={() => <Admin {...props} />} />
+        <Route path="/candlemanager" render={() => <CandleManager {...props} />} />
+        <Redirect to="/" />
+      </Switch>
+    );
+  }
   return (
     <BrowserRouter>
-        <Route path="/" exact component={Layout} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/candlemanager" component={CandleManager} />
+      <Suspense fallback={<Spinner />}>
+        {routes}
+      </Suspense>
     </BrowserRouter>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
+
+export default connect(mapStateToProps)(App);

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { connect } from "react-redux";
 
 import Button from "../../../../UI/Button/Button";
 import CandleImg from "../Candle/CandleImg/CandleImg";
@@ -6,7 +7,7 @@ import Input from "../../../../UI/Input/Input";
 import Spinner from "../../../../UI/Spinner/Spinner";
 
 import classes from "./CandleEditorForm.module.css";
-import axios from "../../../../../axios";
+import * as actions from "../../../../../store/actions/index";
 
 const CandleEditorForm = (props) => {
     const [form, setForm] = useState({
@@ -52,26 +53,16 @@ const CandleEditorForm = (props) => {
         }
     });
 
-    const [formIsValid, setFormIsValid] = useState(false);
-    const [loading, setLoading] = useState(false);
-    
+    const [formIsValid, setFormIsValid] = useState(false);    
 
     function submitHandler(event) {
         event.preventDefault();
-        setLoading(true);
         const formData = {};
         for (let formElementIdentifier in form) {
             formData[formElementIdentifier] = form[formElementIdentifier].value;
         }
 
-        axios.post('/realms/realm/candles.json', formData)
-            .then( response => {
-                setLoading(false);
-                props.history.push( '/' );
-            } )
-            .catch( error => {
-                setLoading(false);
-            } );
+        props.onAddCandle(formData);
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -125,7 +116,7 @@ const CandleEditorForm = (props) => {
     }
 
     let newForm = (
-        <form onSubmit={submitHandler}>
+        <React.Fragment>
             {formElementsArray.map(formElement => (
                 <Input 
                     key={formElement.id}
@@ -139,19 +130,33 @@ const CandleEditorForm = (props) => {
             ))}
             <Button clicked={props.onClick} btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
             <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
-        </form>
+        </React.Fragment>
     );
 
-    if (loading) {
-        setForm(<Spinner />);
+    if (props.loading) {
+        newForm = <Spinner />;
     }
 
     return (
         <div className={classes.CandleEditorForm}>
             <CandleImg />
-            {newForm}
+            <form onSubmit={submitHandler}>
+                {newForm}
+            </form> 
         </div>
     );
 }
 
-export default CandleEditorForm;
+const mapStateToProps = state => {
+    return {
+        loading: state.candles.loading,
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddCandle: (candleData) => dispatch(actions.addCandle(candleData))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CandleEditorForm);
