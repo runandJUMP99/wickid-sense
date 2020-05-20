@@ -1,13 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-    candle: {
-        realm: "",
-        name: "",
-        img: "",
-        price: "",
-        description: ""
-    },
+    candles: [],
     loading: false
 };
 
@@ -18,15 +12,15 @@ const reducer = (state = initialState, action) => {
                 loading: true
             };
         case actionTypes.ADD_CANDLE_SUCCESS:
-            const newOrder = {
-                ...action.orderData, 
-                id: action.orderId
+            const newCandle = {
+                ...action.candleData, 
+                id: action.candleId
             };
             return {
                 ...state,
                 loading: false,
                 purchased: true,
-                orders: state.orders.concat(newOrder)                
+                candles: state.candles.concat(newCandle)                
             };
         case actionTypes.ADD_CANDLE_FAIL:
             return {
@@ -40,7 +34,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_CANDLES_SUCCESS:
             return {
                 ...state, 
-                orders: action.orders,
+                candles: action.candles,
                 loading: false
             };
         case actionTypes.FETCH_CANDLES_FAIL:

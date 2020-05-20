@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import axios from "../../../axios";
+import React, {useEffect, useState} from "react";
+import {connect} from "react-redux";
 
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import Button from "../../UI/Button/Button";
@@ -12,8 +12,9 @@ import RealmEditor from "./RealmEditor/RealmEditor";
 import Spinner from "../../UI/Spinner/Spinner";
 
 import classes from "./CandleManager.module.css";
+import * as actions from "../../../store/actions/index";
 
-const CandleManager = () => {
+const CandleManager = (props) => {
     const [modal, setModal] = useState({
         showBackdrop: false,
         showModal: false,
@@ -36,119 +37,51 @@ const CandleManager = () => {
         }  
     }
 
-    const [candles, setCandles] = useState([]);
-    const [loading, setLoading] = useState(false);
+    let candles = (
+        <div style={{
+            background: "#edffea",
+            borderRadius: "8px",
+            boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
+            margin: "auto",
+            padding: "1rem",
+            width: "325px"
+        }}>
+            <Spinner />
+        </div>
+    );
+    
+    if (!props.loading) {
+        candles = props.candles.map(candle => (
+            <Candle
+                description={candle.description}
+                name={candle.name}
+                price={candle.price} />
+        ));
+    }
+
+    useEffect(() => {
+        props.onFetchCandles();
+
+
+    }, []);
 
     function handleChange(realm) {
-        setLoading(true);
-
         switch (realm) {
             case 0:
                 return (
-                    axios.get("/realms.json")
-                        .then(res => {
-                            setLoading(false);
-
-                            const fetchedRealms = [];
-
-                            for (let key in res.data) {
-                                fetchedRealms.push({
-                                    ...res.data[key],
-                                    id: key
-                                });
-                            }
-                            
-                            const fetchedCandles = [];
-
-                            for (let key in fetchedRealms) {
-                                fetchedCandles.push({
-                                    ...res.data[key],
-                                    id: key
-                                });
-                            }
-
-                            const updatedCandles = fetchedCandles.map(candle => {
-                                return (<Candle
-                                    key={candle.id}
-                                    description={candle.description}
-                                    name={candle.name}
-                                    price={candle.price}
-                                    onClick={(event) => toggleModal(event, "candle")} />
-                                );
-                            });
-                            
-                            setCandles(updatedCandles);
-                        })
-                        .catch(error => {
-                            setLoading(false);
-                        })
+                    props.onFetchCandles("firstRealm")        
                 );
             case 1:
-                return (
-                    setTimeout(() => {
-                        setCandles(
-                            <Candle
-                                key="0"
-                                description="i am a candle"
-                                name="candle"
-                                price="price"
-                                onClick={(event) => toggleModal(event, "candle")} />
-                        );
-                        setLoading(false);
-                    }, 1000)
-                );
+                // return (
+
+                // );
             case 2:
-                return (
-                    setTimeout(() => {
-                        setCandles(
-                            <Candle
-                                key="1"
-                                description="i am also a candle"
-                                name="also a candle"
-                                price="also a price"
-                                onClick={(event) => toggleModal(event, "candle")} />
-                        );
-                        setLoading(false);
-                    }, 1000)
-                );
+                // return (
+
+                // );
             default:
-                setCandles([]);
                 break;
         }
-    }
-
-    // useEffect((prevValue) => {
-    //     console.log("useEffect start");
-    //     axios.get("https://wickid-sense.firebaseio.com/realm/candles.json")
-    //         .then( response => {
-    //             console.log("axios.then setrealm");
-    //             setRealm({
-    //                 ...prevValue,
-    //                 candles: response.data
-    //             });
-    //         } )
-    //         .catch( error => {
-    //             console.log(error);
-    //         } );
-    // });
-
-    let content;
-
-    if (loading) {
-        content = (
-            <div style={{
-                background: "#edffea",
-                borderRadius: "8px",
-                boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
-                margin: "auto",
-                padding: "1rem",
-                width: "325px"
-            }}>
-                <Spinner />
-            </div>
-        );
-    } else {
-        content = candles;
     }
 
     return (
@@ -160,12 +93,24 @@ const CandleManager = () => {
             <h1>assistant regional candle manager</h1>
             <RealmEditor onChange={handleChange} onClick={(event) => toggleModal(event, "realm")}/>
             <CandleEditor onClick={() => toggleModal("candle")}>
-                {content}
+                {candles}
             </CandleEditor>
             <Button clicked={(event) => toggleModal(event, "candle")} btnType="Success">Add Candle</Button>
         </div>
     );
 }
 
-export default CandleManager;
+const mapStateToProps = state => {
+    return {
+        candles: state.candles.candles,
+        loading: state.auth.loading
+    };
+};
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchCandles: () => dispatch(actions.fetchCandles())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CandleManager);

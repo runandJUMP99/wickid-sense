@@ -11,6 +11,19 @@ import * as actions from "../../../../../store/actions/index";
 
 const CandleEditorForm = (props) => {
     const [form, setForm] = useState({
+        realm: {
+            elementType: "select",
+            elementConfig: {
+                options: [
+                    {value: "firstRealm", displayValue: "REALM OF FIRST"},
+                    {value: "secondRealm", displayValue: "REALM OF SECOND"},
+                    {value: "thirdRealm", displayValue: "REALM OF THIRD"},
+                ]
+            },
+            value: "firstRealm",
+            validation: {},
+            valid: true
+        },
         name: {
             elementType: 'input',
             elementConfig: {

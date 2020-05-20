@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, {useEffect, Suspense} from 'react';
 import {connect} from "react-redux";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
@@ -7,6 +7,8 @@ import Spinner from "./components/UI/Spinner/Spinner";
 
 import './App.css';
 import "./index.css";
+import * as actions from "./store/actions/index";
+
 
 const Admin = React.lazy(() => {
   return import("./components/Admin/Admin");
@@ -17,6 +19,10 @@ const CandleManager = React.lazy(() => {
 })
 
 function App(props) {
+  useEffect(() => {
+    props.onTryAutoSignup();
+  }, [props]);
+
   let routes = (
     <Switch>
       <Route path="/" exact component={Layout} />
@@ -50,4 +56,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -9,7 +9,7 @@ const Logout = (props) => {
         props.onLogout();
     }, [props]);
 
-    return <Redirect to="/"/>;
+    return <Redirect to="/admin"/>;
 }
 
 const mapDispatchToProps = dispatch => {

@@ -36,10 +36,10 @@ export const addCandleFail = (error) => {
     };
 };
 
-export const fetchCandles = (token, userId) => {
+export const fetchCandles = (realm) => {
     return dispatch => {
         dispatch(fetchCandlesStart());
-        // const queryParams = "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
+        // const queryParams = '?orderBy="realm"&equalTo="' + realm + '"';
         axios.get("/candles.json")
             .then(res => {
                 const fetchedCandles = [];
@@ -58,6 +58,12 @@ export const fetchCandles = (token, userId) => {
             });
     };
 };
+                        
+export const fetchCandlesStart = () => {
+    return {
+        type: actionTypes.FETCH_CANDLES_START,
+    };
+};
 
 export const fetchCandlesSuccess = (orders) => {
     return {
@@ -70,11 +76,5 @@ export const fetchCandlesFail = (error) => {
     return {
         type: actionTypes.FETCH_CANDLES_FAIL,
         error: error
-    };
-};
-
-export const fetchCandlesStart = () => {
-    return {
-        type: actionTypes.FETCH_CANDLES_START,
     };
 };

@@ -24,7 +24,7 @@ export const addRealmStart = () => {
 export const addRealmSuccess = (id, realmData) => {
     return {
         type: actionTypes.ADD_REALM_SUCCESS,
-        orderId: id,
+        realmId: id,
         realmData: realmData
     };
 };
@@ -39,7 +39,6 @@ export const addRealmFail = (error) => {
 export const fetchRealms = (token, userId) => {
     return dispatch => {
         dispatch(fetchRealmsStart());
-        // const queryParams = "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
         axios.get("/realms.json")
             .then(res => {
                 const fetchedRealms = [];
@@ -59,10 +58,16 @@ export const fetchRealms = (token, userId) => {
     };
 };
 
-export const fetchRealmsSuccess = (orders) => {
+export const fetchRealmsStart = () => {
+    return {
+        type: actionTypes.FETCH_REALMS_START,
+    };
+};
+
+export const fetchRealmsSuccess = (realms) => {
     return {
         type: actionTypes.FETCH_REALMS_SUCCESS,
-        orders: orders
+        realms: realms
     };
 };
 
@@ -70,11 +75,5 @@ export const fetchRealmsFail = (error) => {
     return {
         type: actionTypes.FETCH_REALMS_FAIL,
         error: error
-    };
-};
-
-export const fetchRealmsStart = () => {
-    return {
-        type: actionTypes.FETCH_REALMS_START,
     };
 };

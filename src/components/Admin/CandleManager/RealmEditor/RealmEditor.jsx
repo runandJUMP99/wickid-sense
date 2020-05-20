@@ -1,61 +1,51 @@
 import React, {useState, useEffect} from "react";
-import axios from "../../../../axios";
+import {connect} from "react-redux";
 
+import Button from "../../../UI/Button/Button";
 import Realm from "../../../Products/RealmSelector/Realm/Realm";
 import Spinner from "../../../UI/Spinner/Spinner";
 
 import classes from "./RealmEditor.module.css";
+import * as actions from "../../../../store/actions/index";
 
 const RealmEditor = (props) => {
-    const [realms, setRealms] = useState([]);
-    const [loading, setLoading] = useState(true);
-
     useEffect(() => {
-        axios.get("/realms.json")
-            .then(res => {
-                setLoading(false);
-                
-                const fetchedRealms = [];
+        props.onFetchRealms();
+    }, []);
 
-                for (let key in res.data) {
-                    fetchedRealms.push({
-                        ...res.data[key],
-                        id: key
-                    });
-                }
+    let content = <Spinner />;
 
-                const updatedRealms = fetchedRealms.map(realm => {
-                    return (
-                        <div key={realm.id}>
-                            <Realm
-                                name={realm.name}
-                                img={realm.img}
-                                onClick={() => props.onChange(0)} />
-                            <p onClick={props.onClick}>edit</p>
-                        </div>
-                    );
-                });
-                
-                setRealms(updatedRealms);
-            })
-            .catch(error => {
-                setLoading(false);
-            });
-    }, [props]);
-
-    let content;
-
-    if (loading) {
-        content = <Spinner />;
-    } else {
-        content = realms;
+    if (!props.loading) {
+        content = props.realms.map(realm => (
+            <React.Fragment>
+                <Realm 
+                    key={realm.id}
+                    name={realm.name} 
+                    onClick={() => props.onChange(0)} />
+                <p onClick={props.onClick}>edit</p>
+            </React.Fragment>
+        ));
     }
-
+    
     return (
         <div className={classes.RealmEditor}>
             {content}
+            <Button clicked={() => props.onClick("realm")} btnType="Success">Add Realm</Button>
         </div>
     );
 }
 
-export default RealmEditor;
+const mapStateToProps = state => {
+    return {
+        loading: state.realms.loading,
+        realms: state.realms.realms
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchRealms: () => dispatch(actions.fetchRealms())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RealmEditor);

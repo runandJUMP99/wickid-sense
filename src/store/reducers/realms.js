@@ -1,10 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-    realm: {
-        name: "",
-        img: "",
-    },
+    realms: [],
     loading: false
 };
 
@@ -15,15 +12,15 @@ const reducer = (state = initialState, action) => {
                 loading: true
             };
         case actionTypes.ADD_REALM_SUCCESS:
-            const newOrder = {
-                ...action.orderData, 
-                id: action.orderId
+            const newRealm = {
+                ...action.realmData, 
+                id: action.realmId
             };
             return {
                 ...state,
                 loading: false,
                 purchased: true,
-                orders: state.orders.concat(newOrder)                
+                realms: state.realms.concat(newRealm)                
             };
         case actionTypes.ADD_REALM_FAIL:
             return {
@@ -37,7 +34,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_REALMS_SUCCESS:
             return {
                 ...state, 
-                orders: action.orders,
+                realms: action.realms,
                 loading: false
             };
         case actionTypes.FETCH_REALMS_FAIL:
