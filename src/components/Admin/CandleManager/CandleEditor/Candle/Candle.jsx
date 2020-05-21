@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 import CandleImg from "./CandleImg/CandleImg";
 import DeleteIcon from '@material-ui/icons/Delete';

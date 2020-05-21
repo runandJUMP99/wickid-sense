@@ -39,7 +39,7 @@ export const editCandleStart = () => {
 export const addCandleSuccess = (id, candleData) => {
     return {
         type: actionTypes.ADD_CANDLE_SUCCESS,
-        orderId: id,
+        candleId: id,
         candleData: candleData
     };
 };
@@ -47,7 +47,7 @@ export const addCandleSuccess = (id, candleData) => {
 export const removeCandleSuccess = (id, candleData) => {
     return {
         type: actionTypes.REMOVE_CANDLE_SUCCESS,
-        orderId: id,
+        candleId: id,
         candleData: candleData
     };
 };

@@ -9,6 +9,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.EDIT_CANDLE_START:
             return {
+                ...state,
                 loading: true
             };
         case actionTypes.ADD_CANDLE_SUCCESS:

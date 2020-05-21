@@ -128,19 +128,21 @@ const CandleEditorForm = (props) => {
 
     let newForm = (
         <React.Fragment>
-            {formElementsArray.map(formElement => (
-                <Input 
-                    key={formElement.id}
-                    elementType={formElement.config.elementType}
-                    elementConfig={formElement.config.elementConfig}
-                    value={formElement.config.value}
-                    invalid={!formElement.config.valid}
-                    shouldValidate={formElement.config.validation}
-                    touched={formElement.config.touched}
-                    changed={(event) => inputChangedHandler(event, formElement.id)} />
-            ))}
-            <Button clicked={props.onClick} btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
-            <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
+            <form onSubmit={submitHandler}>
+                {formElementsArray.map(formElement => (
+                    <Input 
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        invalid={!formElement.config.valid}
+                        shouldValidate={formElement.config.validation}
+                        touched={formElement.config.touched}
+                        changed={(event) => inputChangedHandler(event, formElement.id)} />
+                ))}
+                <Button clicked={props.onClick} btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
+                <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
+            </form> 
         </React.Fragment>
     );
 
@@ -151,9 +153,7 @@ const CandleEditorForm = (props) => {
     return (
         <div className={classes.CandleEditorForm}>
             <CandleImg />
-            <form onSubmit={submitHandler}>
-                {newForm}
-            </form> 
+            {newForm}
         </div>
     );
 }

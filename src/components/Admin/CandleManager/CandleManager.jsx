@@ -37,11 +37,11 @@ const CandleManager = (props) => {
         }  
     }
 
-    let fetchedCandles;
-
     function handleChange(realm) {
         props.onFetchCandles();
     }
+
+    let fetchedCandles;
 
     if (props.loading) {
         fetchedCandles = (
@@ -63,8 +63,7 @@ const CandleManager = (props) => {
                 description={candle.description}
                 name={candle.name}
                 price={candle.price}
-                // onDelete={} 
-                />
+                onDelete={props.onRemoveCandle(candle.id)} />
         ));
     }
 
@@ -93,7 +92,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchCandles: () => dispatch(actions.fetchCandles())
+        onFetchCandles: () => dispatch(actions.fetchCandles()),
+        onRemoveCandle: (candleId) => dispatch(actions.removeCandle(candleId))
     };
 };
 
