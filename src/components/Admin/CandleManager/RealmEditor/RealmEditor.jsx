@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 
 import Button from "../../../UI/Button/Button";
@@ -16,12 +16,12 @@ const RealmEditor = (props) => {
     let content = <Spinner />;
 
     if (!props.loading) {
+        let i = 0;
         content = props.realms.map(realm => (
-            <React.Fragment>
+            <React.Fragment key={realm.id}>
                 <Realm 
-                    key={realm.id}
                     name={realm.name} 
-                    onClick={() => props.onChange(0)} />
+                    onClick={() => props.onChange(realm.id)} />
                 <p onClick={props.onClick}>edit</p>
             </React.Fragment>
         ));

@@ -12,9 +12,9 @@ const Candle = (props) => {
             <div className={classes.Info}>
                 <h2>{props.name}</h2>
                 <p>{props.price}</p>
-                <p>{props.description}</p>
+                <p>{props.description.slice(0, 15)} ...</p>
             </div>
-            <div className={classes.Delete}>
+            <div onClick={props.onDelete} className={classes.Delete}>
                 <DeleteIcon />
             </div>
         </div>

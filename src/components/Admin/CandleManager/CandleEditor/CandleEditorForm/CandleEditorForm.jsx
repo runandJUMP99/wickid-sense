@@ -14,11 +14,9 @@ const CandleEditorForm = (props) => {
         realm: {
             elementType: "select",
             elementConfig: {
-                options: [
-                    {value: "firstRealm", displayValue: "REALM OF FIRST"},
-                    {value: "secondRealm", displayValue: "REALM OF SECOND"},
-                    {value: "thirdRealm", displayValue: "REALM OF THIRD"},
-                ]
+                options: props.realms.map(realm => (
+                    {value: realm.id, displayValue: realm.name}
+                ))
             },
             value: "firstRealm",
             validation: {},
@@ -163,6 +161,7 @@ const CandleEditorForm = (props) => {
 const mapStateToProps = state => {
     return {
         loading: state.candles.loading,
+        realms: state.realms.realms
     };
 };
 

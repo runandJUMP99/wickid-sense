@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 
 import Backdrop from "../../UI/Backdrop/Backdrop";
@@ -37,51 +37,35 @@ const CandleManager = (props) => {
         }  
     }
 
-    let candles = (
-        <div style={{
-            background: "#edffea",
-            borderRadius: "8px",
-            boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
-            margin: "auto",
-            padding: "1rem",
-            width: "325px"
-        }}>
-            <Spinner />
-        </div>
-    );
-    
-    if (!props.loading) {
-        candles = props.candles.map(candle => (
-            <Candle
-                description={candle.description}
-                name={candle.name}
-                price={candle.price} />
-        ));
-    }
-
-    useEffect(() => {
-        props.onFetchCandles();
-
-
-    }, []);
+    let fetchedCandles;
 
     function handleChange(realm) {
-        switch (realm) {
-            case 0:
-                return (
-                    props.onFetchCandles("firstRealm")        
-                );
-            case 1:
-                // return (
+        props.onFetchCandles();
+    }
 
-                // );
-            case 2:
-                // return (
-
-                // );
-            default:
-                break;
-        }
+    if (props.loading) {
+        fetchedCandles = (
+            <div style={{
+                background: "#edffea",
+                borderRadius: "8px",
+                boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
+                margin: "auto",
+                padding: "1rem",
+                width: "325px"
+            }}>
+                <Spinner />
+            </div>
+        );
+    } else {
+        fetchedCandles = props.candles.map(candle => (
+            <Candle
+                key={candle.id}
+                description={candle.description}
+                name={candle.name}
+                price={candle.price}
+                // onDelete={} 
+                />
+        ));
     }
 
     return (
@@ -93,7 +77,7 @@ const CandleManager = (props) => {
             <h1>assistant regional candle manager</h1>
             <RealmEditor onChange={handleChange} onClick={(event) => toggleModal(event, "realm")}/>
             <CandleEditor onClick={() => toggleModal("candle")}>
-                {candles}
+                {fetchedCandles}
             </CandleEditor>
             <Button clicked={(event) => toggleModal(event, "candle")} btnType="Success">Add Candle</Button>
         </div>
@@ -103,7 +87,7 @@ const CandleManager = (props) => {
 const mapStateToProps = state => {
     return {
         candles: state.candles.candles,
-        loading: state.auth.loading
+        loading: state.candles.loading
     };
 };
 

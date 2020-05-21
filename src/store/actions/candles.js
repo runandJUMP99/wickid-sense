@@ -3,21 +3,36 @@ import axios from "../../axios";
 
 export const addCandle = (candleData) => {
     return dispatch => {
-        dispatch(addCandleStart());
+        dispatch(editCandleStart());
+        console.log("editCandleStart");
 
         axios.post("/candles.json", candleData)
             .then(response => {
                 dispatch(addCandleSuccess(response.data.name, candleData));
             })
             .catch(error => {
-                dispatch(addCandleFail(error));
+                dispatch(editCandleFail(error));
             });
     };
 };
 
-export const addCandleStart = () => {
+export const removeCandle = (candleId) => {
+    return dispatch => {
+        dispatch(editCandleStart());
+
+        axios.delete("/candles.json", candleId)
+            .then(response => {
+                dispatch(removeCandleSuccess(candleId));
+            })
+            .catch(error => {
+                dispatch(editCandleFail(error));
+            });
+    };
+};
+
+export const editCandleStart = () => {
     return {
-        type: actionTypes.ADD_CANDLE_START
+        type: actionTypes.EDIT_CANDLE_START
     };
 };
 
@@ -29,9 +44,17 @@ export const addCandleSuccess = (id, candleData) => {
     };
 };
 
-export const addCandleFail = (error) => {
+export const removeCandleSuccess = (id, candleData) => {
     return {
-        type: actionTypes.ADD_CANDLE_FAIL,
+        type: actionTypes.REMOVE_CANDLE_SUCCESS,
+        orderId: id,
+        candleData: candleData
+    };
+};
+
+export const editCandleFail = (error) => {
+    return {
+        type: actionTypes.EDIT_CANDLE_FAIL,
         error: error
     };
 };
@@ -65,10 +88,10 @@ export const fetchCandlesStart = () => {
     };
 };
 
-export const fetchCandlesSuccess = (orders) => {
+export const fetchCandlesSuccess = (candles) => {
     return {
         type: actionTypes.FETCH_CANDLES_SUCCESS,
-        orders: orders
+        candles: candles
     };
 };
 
@@ -78,3 +101,9 @@ export const fetchCandlesFail = (error) => {
         error: error
     };
 };
+
+// case actionTypes.REMOVE_PERSON:
+//             return {
+//                 ...state,
+//                 persons: state.persons.filter(person => person.id !== action.personId)
+//             }

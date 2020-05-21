@@ -7,7 +7,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADD_CANDLE_START:
+        case actionTypes.EDIT_CANDLE_START:
             return {
                 loading: true
             };
@@ -19,10 +19,14 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                purchased: true,
                 candles: state.candles.concat(newCandle)                
             };
-        case actionTypes.ADD_CANDLE_FAIL:
+        case actionTypes.REMOVE_CANDLE_SUCCESS:
+            return {
+                ...state,
+                loading: false
+            };
+        case actionTypes.EDIT_CANDLE_FAIL:
             return {
                 ...state, 
                 loading: false
