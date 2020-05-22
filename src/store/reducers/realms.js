@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
     realms: [],
-    loading: false
+    loading: false,
+    setRealmId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -36,7 +37,8 @@ const reducer = (state = initialState, action) => {
             };
         case actionTypes.FETCH_REALMS_START:
             return {
-                ...state, loading: true
+                ...state, 
+                loading: true
             };
         case actionTypes.FETCH_REALMS_SUCCESS:
             return {
@@ -48,6 +50,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, 
                 loading: false
+            };
+        case actionTypes.SET_REALM_ID:
+            return {
+                ...state,
+                setRealmId: action.realmId
             };
         default:
             return state;

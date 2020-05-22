@@ -14,18 +14,19 @@
 }
 
 .Icons {
-    border-radius: 50%;
-    padding: 0.4rem;
+    background: #bef0b6;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 0 0.2rem;
+    padding: 0.2rem;
     text-align: center;
-    transition: background-color 0.2s linear;
+    transition: all 0.2s linear;
     width: auto;
 }
 
-.Icons:hover {
-    background-color: #bef0b6;
-    cursor: pointer;
-}
-
+.Icons:hover,
 .Icons:active {
-    background-color: #89ffca;
+    border-radius: 50%;
+    background: #89ffca;
+    cursor: pointer;
 }

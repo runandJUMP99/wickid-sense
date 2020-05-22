@@ -14,11 +14,12 @@ const CandleEditorForm = (props) => {
         realm: {
             elementType: "select",
             elementConfig: {
-                options: props.realms.map(realm => (
-                    {value: realm.id, displayValue: realm.name}
-                ))
+                options: props.realms.map(realm => ({
+                    value: realm.id, 
+                    displayValue: realm.name
+                }))
             },
-            value: "firstRealm",
+            value: props.realms[0].id,
             validation: {},
             valid: true
         },

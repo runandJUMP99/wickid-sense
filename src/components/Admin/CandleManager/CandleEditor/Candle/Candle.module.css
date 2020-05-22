@@ -28,20 +28,20 @@
 }
 
 .Delete {
-    border-radius: 50%;
+    background: #bef0b6;
+    border-radius: 8px;
     bottom: 7%;
-    padding: 0.3rem;
+    padding: 0.2rem;
     right: 3%;
     position: absolute;
     transition: background-color 0.2s linear;
 }
 
-.Delete:hover {
-    background: #bef0b6;
-}
-
+.Delete:hover,
 .Delete:active {
+    border-radius: 50%;
     background: #89ffca;
+    cursor: pointer;
 }
 
 @keyframes appear {

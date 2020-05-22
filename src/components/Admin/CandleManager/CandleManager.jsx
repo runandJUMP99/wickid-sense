@@ -28,9 +28,9 @@ const CandleManager = (props) => {
 
         if (content === "realm") {
             setModalContent(<RealmEditorForm onClick={toggleModal}/>);
-        } else if (content ==="candle") {
+        } else if (content === "candle") {
             setModalContent(<CandleEditorForm onClick={toggleModal} />);
-        }  
+        }
     }
 
     return (
@@ -40,7 +40,9 @@ const CandleManager = (props) => {
                 {modalContent}
             </Modal>
             <h1>assistant regional candle manager</h1>
-            <RealmEditor onClick={() => toggleModal(null, "realm")} onEdit={(event) => toggleModal(event, "realm")}/>
+            <RealmEditor 
+                onAdd={() => toggleModal(null, "realm")} 
+                onEdit={(event) => toggleModal(event, "realm")} />
             <CandleEditor onClick={() => toggleModal("candle")} />
             <Button clicked={(event) => toggleModal(event, "candle")} btnType="Success">Add Candle</Button>
         </div>

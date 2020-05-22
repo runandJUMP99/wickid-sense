@@ -1,0 +1,46 @@
+.DeleteMessage {
+    color: white;
+}
+
+.DeleteMessage h2 {
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+
+.DeleteMessage h3 {
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+.DeleteMessageActions {
+    text-align: center;
+}
+
+.DeleteMessageActions button {
+    background: #616161;
+}
+
+.DeleteMessageActions button:hover,
+.DeleteMessageActions button:active {
+    background: #888888;
+}
+
+.DeleteMessageAction {
+    background: #75daad;
+    border: none;
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+.DeleteMessageAction:hover,
+.DeleteMessageAction:active {
+    background: #33ffcc;
+    border-color: #33ffcc;
+    color: white;
+    text-decoration: none;
+}

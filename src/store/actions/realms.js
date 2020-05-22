@@ -98,3 +98,10 @@ export const fetchRealmsFail = (error) => {
         error: error
     };
 };
+
+export const setRealmId = (realmId) => {
+    return {
+        type: actionTypes.SET_REALM_ID,
+        realmId: realmId
+    };
+};
