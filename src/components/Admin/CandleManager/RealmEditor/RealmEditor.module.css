@@ -3,19 +3,29 @@
     border-radius: 16px;
     box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.5);
     color: #216353;
-    display: flex;
     justify-content: space-around;
     width: 90%;
 }
 
-.RealmEditor p {
-    font-size: 0.8rem;
-    text-align: center;
-    text-decoration: underline;
+.Realms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-.RealmEditor p:hover {
-    color: #75daad;
+.Icons {
+    border-radius: 50%;
+    padding: 0.4rem;
+    text-align: center;
+    transition: background-color 0.2s linear;
+    width: auto;
+}
+
+.Icons:hover {
+    background-color: #bef0b6;
     cursor: pointer;
-    text-decoration: none;
+}
+
+.Icons:active {
+    background-color: #89ffca;
 }

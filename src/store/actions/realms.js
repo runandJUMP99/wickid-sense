@@ -1,23 +1,37 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios";
 
-export const addRealm = (realmData) => {
+export const addRealm = (token, realmData) => {
     return dispatch => {
-        dispatch(addRealmStart());
+        dispatch(editRealmStart());
 
-        axios.post("/realms.json", realmData)
+        axios.post("/realms.json?auth=" + token, realmData)
             .then(response => {
                 dispatch(addRealmSuccess(response.data.name, realmData));
             })
             .catch(error => {
-                dispatch(addRealmFail(error));
+                dispatch(editRealmFail(error));
             });
     };
 };
 
-export const addRealmStart = () => {
+export const removeRealm = (token, realmId) => {
+    return dispatch => {
+        dispatch(editRealmStart());
+
+        axios.delete("/realms/" + realmId + ".json?auth=" + token)
+            .then(response => {
+                dispatch(removeRealmSuccess(realmId));
+            })
+            .catch(error => {
+                dispatch(editRealmFail(error));
+            });
+    };
+};
+
+export const editRealmStart = () => {
     return {
-        type: actionTypes.ADD_REALM_START
+        type: actionTypes.EDIT_REALM_START
     };
 };
 
@@ -29,9 +43,16 @@ export const addRealmSuccess = (id, realmData) => {
     };
 };
 
-export const addRealmFail = (error) => {
+export const removeRealmSuccess = (realmId) => {
     return {
-        type: actionTypes.ADD_REALM_FAIL,
+        type: actionTypes.REMOVE_REALM_SUCCESS,
+        realmId: realmId
+    };
+};
+
+export const editRealmFail = (error) => {
+    return {
+        type: actionTypes.EDIT_REALM_FAIL,
         error: error
     };
 };

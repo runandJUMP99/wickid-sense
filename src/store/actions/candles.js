@@ -1,12 +1,11 @@
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios";
 
-export const addCandle = (candleData) => {
+export const addCandle = (token, candleData) => {
     return dispatch => {
         dispatch(editCandleStart());
-        console.log("editCandleStart");
 
-        axios.post("/candles.json", candleData)
+        axios.post("/candles.json?auth=" + token, candleData)
             .then(response => {
                 dispatch(addCandleSuccess(response.data.name, candleData));
             })
@@ -16,11 +15,11 @@ export const addCandle = (candleData) => {
     };
 };
 
-export const removeCandle = (candleId) => {
+export const removeCandle = (token, candleId) => {
     return dispatch => {
         dispatch(editCandleStart());
 
-        axios.delete("/candles.json", candleId)
+        axios.delete("/candles/" + candleId + ".json?auth=" + token)
             .then(response => {
                 dispatch(removeCandleSuccess(candleId));
             })
@@ -44,11 +43,10 @@ export const addCandleSuccess = (id, candleData) => {
     };
 };
 
-export const removeCandleSuccess = (id, candleData) => {
+export const removeCandleSuccess = (candleId) => {
     return {
         type: actionTypes.REMOVE_CANDLE_SUCCESS,
-        candleId: id,
-        candleData: candleData
+        candleId: candleId
     };
 };
 
@@ -62,8 +60,8 @@ export const editCandleFail = (error) => {
 export const fetchCandles = (realm) => {
     return dispatch => {
         dispatch(fetchCandlesStart());
-        // const queryParams = '?orderBy="realm"&equalTo="' + realm + '"';
-        axios.get("/candles.json")
+        const queryParams = '?orderBy="realm"&equalTo="' + realm + '"';
+        axios.get("/candles.json" + queryParams)
             .then(res => {
                 const fetchedCandles = [];
 
@@ -101,9 +99,3 @@ export const fetchCandlesFail = (error) => {
         error: error
     };
 };
-
-// case actionTypes.REMOVE_PERSON:
-//             return {
-//                 ...state,
-//                 persons: state.persons.filter(person => person.id !== action.personId)
-//             }

@@ -69,11 +69,12 @@ const CandleEditorForm = (props) => {
     function submitHandler(event) {
         event.preventDefault();
         const formData = {};
+        
         for (let formElementIdentifier in form) {
             formData[formElementIdentifier] = form[formElementIdentifier].value;
         }
 
-        props.onAddCandle(formData);
+        props.onAddCandle(props.token, formData);
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -161,13 +162,14 @@ const CandleEditorForm = (props) => {
 const mapStateToProps = state => {
     return {
         loading: state.candles.loading,
-        realms: state.realms.realms
+        realms: state.realms.realms,
+        token: state.auth.token
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddCandle: (candleData) => dispatch(actions.addCandle(candleData))
+        onAddCandle: (token, candleData) => dispatch(actions.addCandle(token, candleData))
     };
 };
 

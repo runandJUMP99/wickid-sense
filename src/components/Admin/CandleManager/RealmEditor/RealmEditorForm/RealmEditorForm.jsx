@@ -49,7 +49,7 @@ const RealmEditorForm = (props) => {
             formData[formElementIdentifier] = form[formElementIdentifier].value;
         }
 
-        props.onAddRealm(formData)
+        props.onAddRealm(props.token, formData)
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -133,13 +133,14 @@ const RealmEditorForm = (props) => {
 
 const mapStateToProps = state => {
     return {
-        loading: state.realms.loading
+        loading: state.realms.loading,
+        token: state.auth.token
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddRealm: (realmData) => dispatch(actions.addRealm(realmData))
+        onAddRealm: (token, realmData) => dispatch(actions.addRealm(token, realmData))
     };
 };
 

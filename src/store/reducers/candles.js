@@ -19,12 +19,13 @@ const reducer = (state = initialState, action) => {
             };
             return {
                 ...state,
-                loading: false,
-                candles: state.candles.concat(newCandle)                
+                candles: state.candles.concat(newCandle),              
+                loading: false
             };
         case actionTypes.REMOVE_CANDLE_SUCCESS:
             return {
                 ...state,
+                candles: state.candles.filter(candle => candle.id !== action.candleId),
                 loading: false
             };
         case actionTypes.EDIT_CANDLE_FAIL:
