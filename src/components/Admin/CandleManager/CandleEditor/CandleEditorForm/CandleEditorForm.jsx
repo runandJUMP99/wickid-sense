@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
 
 import Button from "../../../../UI/Button/Button";
@@ -71,7 +71,39 @@ const CandleEditorForm = (props) => {
         }
     });
 
-    const [formIsValid, setFormIsValid] = useState(false);    
+    const [formIsValid, setFormIsValid] = useState(false); 
+
+    useEffect(() => {
+        props.onSetCandleId();
+    }, [props]);
+    
+    if (props.setCandleId) {
+        const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
+
+        let setCandleRealm = setCandle[0].realm;
+        const setCandleName = setCandle[0].name;
+        const setCandlePrice = setCandle[0].price;
+        const setCandleDescription = setCandle[0].description;
+
+        props.realms.forEach(realm => {
+            if (realm.id === setCandleRealm) {
+                setCandleRealm = realm.name;
+            }
+        });
+
+        const setCandleInfo = [setCandleRealm, setCandleName, setCandlePrice, setCandleDescription];
+    
+        const updatedCandle = {
+            ...form
+        };
+
+        let i = 0;
+    
+        for (let key in updatedCandle) {
+            updatedCandle[key].value = setCandleInfo[i];
+            i++;
+        }
+    }   
 
     function submitHandler(event) {
         event.preventDefault();
@@ -82,11 +114,6 @@ const CandleEditorForm = (props) => {
         }
 
         props.onAddCandle(props.token, formData);
-    }
-
-    if (props.setCandleId) {
-        const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
-        console.log(setCandle);
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -183,7 +210,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddCandle: (token, candleData) => dispatch(actions.addCandle(token, candleData))
+        onAddCandle: (token, candleData) => dispatch(actions.addCandle(token, candleData)),
+        onSetCandleId: (candleId) => dispatch(actions.setCandleId(candleId))
     };
 };
 

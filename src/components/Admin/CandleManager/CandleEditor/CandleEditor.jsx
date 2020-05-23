@@ -25,7 +25,9 @@ const CandleEditor = (props) => {
             }
         });
 
-        props.onSetCandleId(candleId);
+        if (!modal.showBackdrop) {
+            props.onSetCandleId(candleId);
+        }
     }
 
     let fetchedCandles = (
