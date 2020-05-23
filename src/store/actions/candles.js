@@ -15,6 +15,20 @@ export const addCandle = (token, candleData) => {
     };
 };
 
+export const editCandle = (token, candleData) => {
+    return dispatch => {
+        dispatch(editCandleStart());
+
+        axios.put("/candles/" + candleData.id + ".json?auth=" + token, candleData)
+            .then(response => {
+                dispatch(addCandleSuccess(response.data.name, candleData));
+            })
+            .catch(error => {
+                dispatch(editCandleFail(error));
+            });
+    };
+};
+
 export const removeCandle = (token, candleId) => {
     return dispatch => {
         dispatch(editCandleStart());
@@ -97,5 +111,12 @@ export const fetchCandlesFail = (error) => {
     return {
         type: actionTypes.FETCH_CANDLES_FAIL,
         error: error
+    };
+};
+
+export const setCandleId = (candleId) => {
+    return {
+        type: actionTypes.SET_CANDLE_ID,
+        candleId: candleId
     };
 };

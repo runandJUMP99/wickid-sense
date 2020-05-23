@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
     candles: [],
-    loading: false
+    loading: false,
+    setCandleId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,13 +21,15 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 candles: state.candles.concat(newCandle),              
-                loading: false
+                loading: false,
+                setCandleId: null
             };
         case actionTypes.REMOVE_CANDLE_SUCCESS:
             return {
                 ...state,
                 candles: state.candles.filter(candle => candle.id !== action.candleId),
-                loading: false
+                loading: false,
+                setCandleId: null
             };
         case actionTypes.EDIT_CANDLE_FAIL:
             return {
@@ -48,6 +51,11 @@ const reducer = (state = initialState, action) => {
                 ...state, 
                 loading: false
             };
+            case actionTypes.SET_CANDLE_ID:
+                return {
+                    ...state,
+                    setCandleId: action.candleId
+                };
         default:
             return state;
     }

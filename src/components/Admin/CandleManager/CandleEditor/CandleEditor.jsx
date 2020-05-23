@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 
+import Backdrop from "../../../UI/Backdrop/Backdrop";
 import Candle from "./Candle/Candle";
+import CandleEditorForm from "./CandleEditorForm/CandleEditorForm";
+import Modal from "../../../UI/Modal/Modal";
 import Spinner from "../../../UI/Spinner/Spinner";
 
 import classes from "./CandleEditor.module.css";
@@ -9,6 +12,22 @@ import * as actions from "../../../../store/actions/index";
 
 
 const CandleEditor = (props) => {
+    const [modal, setModal] = useState({
+        showBackdrop: false,
+        showModal: false,
+    });
+
+    function toggleModal(candleId) {
+        setModal(prevValue => {
+            return {
+                showBackdrop: !prevValue.showBackdrop,
+                showModal: !prevValue.showModal
+            }
+        });
+
+        props.onSetCandleId(candleId);
+    }
+
     let fetchedCandles = (
         <div style={{
             background: "#edffea",
@@ -29,12 +48,17 @@ const CandleEditor = (props) => {
                 description={candle.description}
                 name={candle.name}
                 price={candle.price}
-                onDelete={() => props.onRemoveCandle(props.token, candle.id)} />
+                onDelete={() => props.onRemoveCandle(props.token, candle.id)}
+                onEdit={() => toggleModal(candle.id)} />
         ));
     }
 
     return (
         <div className={classes.CandleEditor}>
+            <Backdrop show={modal.showBackdrop} onClick={toggleModal}/>
+            <Modal show={modal.showModal}>
+                <CandleEditorForm />
+            </Modal>
             {fetchedCandles}
         </div>
     );
@@ -50,7 +74,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRemoveCandle: (token, candleId) => dispatch(actions.removeCandle(token, candleId))
+        onRemoveCandle: (token, candleId) => dispatch(actions.removeCandle(token, candleId)),
+        onSetCandleId: (candleId) => dispatch(actions.setCandleId(candleId))
     };
 };
 

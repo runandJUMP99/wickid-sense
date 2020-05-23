@@ -10,6 +10,12 @@ import classes from "./CandleEditorForm.module.css";
 import * as actions from "../../../../../store/actions/index";
 
 const CandleEditorForm = (props) => {
+    let optionValue = "";
+    
+    if (props.realms.length !== 0) {
+        optionValue = props.realms[0].id;
+    }
+
     const [form, setForm] = useState({
         realm: {
             elementType: "select",
@@ -19,7 +25,7 @@ const CandleEditorForm = (props) => {
                     displayValue: realm.name
                 }))
             },
-            value: props.realms[0].id,
+            value: optionValue,
             validation: {},
             valid: true
         },
@@ -76,6 +82,11 @@ const CandleEditorForm = (props) => {
         }
 
         props.onAddCandle(props.token, formData);
+    }
+
+    if (props.setCandleId) {
+        const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
+        console.log(setCandle);
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -162,8 +173,10 @@ const CandleEditorForm = (props) => {
 
 const mapStateToProps = state => {
     return {
+        candles: state.candles.candles,
         loading: state.candles.loading,
         realms: state.realms.realms,
+        setCandleId: state.candles.setCandleId,
         token: state.auth.token
     };
 };

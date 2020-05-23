@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {connect} from "react-redux";
 
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import Button from "../../UI/Button/Button";
@@ -18,7 +19,7 @@ const CandleManager = (props) => {
 
     const [modalContent, setModalContent] = useState();
 
-    function toggleModal(event, content) {
+    function toggleModal(content) {
         setModal(prevValue => {
             return {
                 showBackdrop: !prevValue.showBackdrop,
@@ -30,6 +31,8 @@ const CandleManager = (props) => {
             setModalContent(<RealmEditorForm onClick={toggleModal}/>);
         } else if (content === "candle") {
             setModalContent(<CandleEditorForm onClick={toggleModal} />);
+        } else {
+            
         }
     }
 
@@ -41,12 +44,18 @@ const CandleManager = (props) => {
             </Modal>
             <h1>assistant regional candle manager</h1>
             <RealmEditor 
-                onAdd={() => toggleModal(null, "realm")} 
-                onEdit={(event) => toggleModal(event, "realm")} />
-            <CandleEditor onClick={() => toggleModal("candle")} />
-            <Button clicked={(event) => toggleModal(event, "candle")} btnType="Success">Add Candle</Button>
+                onAdd={() => toggleModal("realm")} 
+                onEdit={() => toggleModal("realm")} />
+            <CandleEditor />
+            <Button clicked={() => toggleModal("candle")} btnType="Success" disabled={props.realms.length === 0}>Add Candle</Button>
         </div>
     );
 }
 
-export default CandleManager;
+const mapStateToProps = state => {
+    return {
+        realms: state.realms.realms
+    };
+};
+
+export default connect(mapStateToProps)(CandleManager);
