@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {connect} from "react-redux";
 
 import Backdrop from "../../../UI/Backdrop/Backdrop";
+import Button from "../../../UI/Button/Button";
 import Candle from "./Candle/Candle";
 import CandleEditorForm from "./CandleEditorForm/CandleEditorForm";
 import Modal from "../../../UI/Modal/Modal";
@@ -25,8 +26,12 @@ const CandleEditor = (props) => {
             }
         });
 
-        if (!modal.showBackdrop) {
+        if (!modal.showBackdrop && candleId) {
             props.onSetCandleId(candleId);
+        } else {
+            setTimeout(() => {
+                props.onSetCandleId(null);
+            }, 500);
         }
     }
 
@@ -62,6 +67,7 @@ const CandleEditor = (props) => {
                 <CandleEditorForm />
             </Modal>
             {fetchedCandles}
+            <Button clicked={() => toggleModal(null)} btnType="Success" disabled={props.realms.length === 0}>Add Candle</Button>
         </div>
     );
 }
@@ -70,6 +76,7 @@ const mapStateToProps = state => {
     return {
         candles: state.candles.candles,
         loading: state.candles.loading,
+        realms: state.realms.realms,
         token: state.auth.token
     };
 };

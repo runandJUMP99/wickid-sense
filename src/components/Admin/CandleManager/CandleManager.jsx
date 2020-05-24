@@ -1,8 +1,6 @@
 import React, {useState} from "react";
-import {connect} from "react-redux";
 
 import Backdrop from "../../UI/Backdrop/Backdrop";
-import Button from "../../UI/Button/Button";
 import CandleEditor from "./CandleEditor/CandleEditor";
 import CandleEditorForm from "./CandleEditor/CandleEditorForm/CandleEditorForm";
 import Modal from "../../UI/Modal/Modal";
@@ -47,15 +45,8 @@ const CandleManager = (props) => {
                 onAdd={() => toggleModal("realm")} 
                 onEdit={() => toggleModal("realm")} />
             <CandleEditor />
-            <Button clicked={() => toggleModal("candle")} btnType="Success" disabled={props.realms.length === 0}>Add Candle</Button>
         </div>
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        realms: state.realms.realms
-    };
-};
-
-export default connect(mapStateToProps)(CandleManager);
+export default CandleManager;

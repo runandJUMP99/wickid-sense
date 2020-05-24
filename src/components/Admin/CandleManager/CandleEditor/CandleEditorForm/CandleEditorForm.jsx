@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { connect } from "react-redux";
 
 import Button from "../../../../UI/Button/Button";
@@ -71,39 +71,53 @@ const CandleEditorForm = (props) => {
         }
     });
 
-    const [formIsValid, setFormIsValid] = useState(false); 
+    const [formIsValid, setFormIsValid] = useState(false);
 
-    useEffect(() => {
-        props.onSetCandleId();
-    }, [props]);
+    // if (props.setCandleId) {
+    //     const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
+
+    //     let setCandleRealm = setCandle[0].realm;
+    //     const setCandleName = setCandle[0].name;
+    //     const setCandlePrice = setCandle[0].price;
+    //     const setCandleDescription = setCandle[0].description;
+
+    //     const setCandleInfo = [setCandleRealm, setCandleName, setCandlePrice, setCandleDescription];
     
-    if (props.setCandleId) {
-        const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
+    //     const updatedCandle = {
+    //         ...form
+    //     };
 
-        let setCandleRealm = setCandle[0].realm;
-        const setCandleName = setCandle[0].name;
-        const setCandlePrice = setCandle[0].price;
-        const setCandleDescription = setCandle[0].description;
+    //     updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
+    //         value: realm.id, 
+    //         displayValue: realm.name
+    //     }));
+        
+    //     props.realms.forEach(realm => {
+    //         if (realm.id === setCandleRealm) {
+    //             setCandleRealm = realm.name;
+    //         }
+    //     });
 
-        props.realms.forEach(realm => {
-            if (realm.id === setCandleRealm) {
-                setCandleRealm = realm.name;
-            }
-        });
-
-        const setCandleInfo = [setCandleRealm, setCandleName, setCandlePrice, setCandleDescription];
+    //     let i = 0;
     
-        const updatedCandle = {
-            ...form
-        };
+    //     for (let key in updatedCandle) {
+    //         updatedCandle[key].value = setCandleInfo[i];
+    //         i++;
+    //     }
+    // } else {
+    //     const updatedCandle = {
+    //         ...form
+    //     };
 
-        let i = 0;
+    //     updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
+    //         value: realm.id, 
+    //         displayValue: realm.name
+    //     }));
     
-        for (let key in updatedCandle) {
-            updatedCandle[key].value = setCandleInfo[i];
-            i++;
-        }
-    }   
+    //     for (let key in updatedCandle) {
+    //         updatedCandle[key].value = "";
+    //     }
+    // }
 
     function submitHandler(event) {
         event.preventDefault();
