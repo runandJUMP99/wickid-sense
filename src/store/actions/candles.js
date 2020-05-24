@@ -15,11 +15,11 @@ export const addCandle = (token, candleData) => {
     };
 };
 
-export const editCandle = (token, candleData) => {
+export const editCandle = (token, candleData, candleId) => {
     return dispatch => {
         dispatch(editCandleStart());
 
-        axios.put("/candles/" + candleData.id + ".json?auth=" + token, candleData)
+        axios.put("/candles/" + candleId + ".json?auth=" + token, candleData)
             .then(response => {
                 dispatch(addCandleSuccess(response.data.name, candleData));
             })

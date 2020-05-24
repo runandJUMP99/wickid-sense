@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
 
 import Button from "../../../../UI/Button/Button";
@@ -10,22 +10,21 @@ import classes from "./CandleEditorForm.module.css";
 import * as actions from "../../../../../store/actions/index";
 
 const CandleEditorForm = (props) => {
-    let optionValue = "";
-    
-    if (props.realms.length !== 0) {
-        optionValue = props.realms[0].id;
-    }
+    // console.log(props.realms);
 
+    // if (props.realms.length !== 0) {
+    //     console.log(props.realms[0].id);
+    // }
     const [form, setForm] = useState({
         realm: {
             elementType: "select",
             elementConfig: {
                 options: props.realms.map(realm => ({
-                    value: realm.id, 
-                    displayValue: realm.name
-                }))
+                            value: realm.id, 
+                            displayValue: realm.name
+                        }))
             },
-            value: optionValue,
+            value: "",
             validation: {},
             valid: true
         },
@@ -73,61 +72,78 @@ const CandleEditorForm = (props) => {
 
     const [formIsValid, setFormIsValid] = useState(false);
 
-    // if (props.setCandleId) {
-    //     const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
-
-    //     let setCandleRealm = setCandle[0].realm;
-    //     const setCandleName = setCandle[0].name;
-    //     const setCandlePrice = setCandle[0].price;
-    //     const setCandleDescription = setCandle[0].description;
-
-    //     const setCandleInfo = [setCandleRealm, setCandleName, setCandlePrice, setCandleDescription];
+    useEffect(() => {
+        if (props.setCandleId) {
+            const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
     
-    //     const updatedCandle = {
-    //         ...form
-    //     };
-
-    //     updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
-    //         value: realm.id, 
-    //         displayValue: realm.name
-    //     }));
+            let setCandleRealm = setCandle[0].realm;
+            const setCandleName = setCandle[0].name;
+            const setCandlePrice = setCandle[0].price;
+            const setCandleDescription = setCandle[0].description;
+    
+            const setCandleInfo = [setCandleRealm, setCandleName, setCandlePrice, setCandleDescription];
         
-    //     props.realms.forEach(realm => {
-    //         if (realm.id === setCandleRealm) {
-    //             setCandleRealm = realm.name;
-    //         }
-    //     });
-
-    //     let i = 0;
+            const updatedCandle = {
+                ...form
+            };
     
-    //     for (let key in updatedCandle) {
-    //         updatedCandle[key].value = setCandleInfo[i];
-    //         i++;
-    //     }
-    // } else {
-    //     const updatedCandle = {
-    //         ...form
-    //     };
-
-    //     updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
-    //         value: realm.id, 
-    //         displayValue: realm.name
-    //     }));
+            updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
+                value: realm.id, 
+                displayValue: realm.name
+            }));
+            
+            props.realms.forEach(realm => {
+                if (realm.id === setCandleRealm) {
+                    setCandleRealm = realm.name;
+                }
+            });
     
-    //     for (let key in updatedCandle) {
-    //         updatedCandle[key].value = "";
-    //     }
-    // }
+            let i = 0;
+        
+            for (let key in updatedCandle) {
+                updatedCandle[key].value = setCandleInfo[i];
+                i++;
+            }
+    
+            setForm(updatedCandle);
+        } else {
+            const updatedCandle = {
+                ...form
+            };
+    
+            updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
+                value: realm.id, 
+                displayValue: realm.name
+            }));
+        
+            for (let key in updatedCandle) {
+                updatedCandle[key].value = "";
+            }
+    
+            setForm(updatedCandle);
+        }
+    }, [props.setCandleId, props.realms]);
 
     function submitHandler(event) {
         event.preventDefault();
-        const formData = {};
+        let formData = {};
         
         for (let formElementIdentifier in form) {
             formData[formElementIdentifier] = form[formElementIdentifier].value;
         }
 
-        props.onAddCandle(props.token, formData);
+        if (!formData.realm) {
+            formData = {
+                ...formData,
+                realm: props.realms[0].id
+            }
+        }
+
+        if (props.setCandleId) {
+            props.onEditCandle(props.token, formData, props.setCandleId);
+        } else {
+            props.onAddCandle(props.token, formData);
+        }
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -225,6 +241,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAddCandle: (token, candleData) => dispatch(actions.addCandle(token, candleData)),
+        onEditCandle: (token, candleData, candleId) => dispatch(actions.editCandle(token, candleData, candleId)),
         onSetCandleId: (candleId) => dispatch(actions.setCandleId(candleId))
     };
 };

@@ -61,14 +61,16 @@ const CandleEditor = (props) => {
     }
 
     return (
-        <div className={classes.CandleEditor}>
-            <Backdrop show={modal.showBackdrop} onClick={toggleModal}/>
-            <Modal show={modal.showModal}>
-                <CandleEditorForm />
-            </Modal>
-            {fetchedCandles}
+        <React.Fragment>
+            <div className={classes.CandleEditor}>
+                <Backdrop show={modal.showBackdrop} onClick={toggleModal}/>
+                <Modal show={modal.showModal}>
+                    <CandleEditorForm onClick={toggleModal}/>
+                </Modal>
+                {fetchedCandles}
+            </div>
             <Button clicked={() => toggleModal(null)} btnType="Success" disabled={props.realms.length === 0}>Add Candle</Button>
-        </div>
+        </React.Fragment>
     );
 }
 

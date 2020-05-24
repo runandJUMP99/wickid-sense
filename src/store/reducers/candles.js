@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
             };
             return {
                 ...state,
-                candles: state.candles.concat(newCandle),              
+                candles: [newCandle],              
                 loading: false,
                 setCandleId: null
             };

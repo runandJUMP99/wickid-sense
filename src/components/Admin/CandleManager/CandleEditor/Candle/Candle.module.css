@@ -6,7 +6,7 @@
     box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.5);
     color: #216353;
     display: flex;
-    margin: 0.5rem;
+    margin: 0 0.5rem;
     padding: 0.5rem 0.25rem;
     position: relative;
     transition: all 0.4s ease-out;
@@ -20,28 +20,12 @@
 }
 
 .Info {
+    text-align: left;
     width: auto;
 }
 
 .Info h2 {
     font-size: 1.2rem;
-}
-
-.Delete {
-    background: #bef0b6;
-    border-radius: 8px;
-    bottom: 7%;
-    padding: 0.2rem;
-    right: 3%;
-    position: absolute;
-    transition: background-color 0.2s linear;
-}
-
-.Delete:hover,
-.Delete:active {
-    border-radius: 50%;
-    background: #89ffca;
-    cursor: pointer;
 }
 
 @keyframes appear {

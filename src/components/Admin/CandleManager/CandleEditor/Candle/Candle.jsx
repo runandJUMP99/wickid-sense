@@ -1,22 +1,22 @@
 import React from "react";
 
+import CandleDelete from "./CandleDelete/CandleDelete";
 import CandleImg from "./CandleImg/CandleImg";
-import DeleteIcon from '@material-ui/icons/Delete';
 
 import classes from "./Candle.module.css";
 
 const Candle = (props) => {
     return (
-        <div  onClick={props.onEdit} className={classes.Candle}>
-            <CandleImg />
-            <div className={classes.Info}>
-                <h2>{props.name}</h2>
-                <p>{props.price}</p>
-                <p>{props.description.slice(0, 15)} ...</p>
+        <div>
+            <div  onClick={props.onEdit} className={classes.Candle}>
+                <CandleImg />
+                <div className={classes.Info}>
+                    <h2>{props.name}</h2>
+                    <p>{props.price}</p>
+                    <p>{props.description.slice(0, 15)} ...</p>
+                </div>
             </div>
-            <div onClick={props.onDelete} className={classes.Delete}>
-                <DeleteIcon />
-            </div>
+            <CandleDelete onDelete={props.onDelete} />
         </div>
     );
 }
