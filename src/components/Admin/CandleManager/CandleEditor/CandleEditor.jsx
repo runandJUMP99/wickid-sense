@@ -56,7 +56,8 @@ const CandleEditor = (props) => {
                 name={candle.name}
                 price={candle.price}
                 onDelete={() => props.onRemoveCandle(props.token, candle.id)}
-                onEdit={() => toggleModal(candle.id)} />
+                onEdit={() => toggleModal(candle.id)}
+                onFavorite={null} />
         ));
     }
 

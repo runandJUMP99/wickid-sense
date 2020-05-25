@@ -1,18 +1,23 @@
-.CandleDelete {
+.CandleOptions {
     animation: appear 1s ease-in-out;
-    background: #bef0b6;
-    border-radius: 8px;
-    bottom: 3rem;
+    bottom: 3.5rem;
+    color: #216353;
     display: inline-block;
     left: 8.5rem;
-    padding: 0.2rem;
     position: relative;
-    transition: all 0.2s linear;
     width: auto;
 }
 
-.CandleDelete:hover,
-.CandleDelete:active {
+.CandleOption {
+    background: #bef0b6;
+    border-radius: 8px;
+    margin: 0.2rem 0;
+    padding: 0.2rem;
+    transition: all 0.2s linear;
+}
+
+.CandleOption:hover,
+.CandleOption:active {
     border-radius: 50%;
     background: #89ffca;
     cursor: pointer;

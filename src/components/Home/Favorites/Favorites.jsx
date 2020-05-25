@@ -38,7 +38,7 @@ const Favorites = () => {
 
 const mapStateToProps = state => {
     return {
-        candles: state.props.candles
+        candles: state.candles.candles
     };
 };
 

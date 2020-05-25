@@ -43,6 +43,34 @@ export const removeCandle = (token, candleId) => {
     };
 };
 
+export const addFavoriteCandle = (token, candleData, candleId) => {
+    return dispatch => {
+        dispatch(editCandleStart());
+
+        axios.post("/favorites.json?auth=" + token, candleData)
+            .then(response => {
+                dispatch(addFavoriteCandleSuccess(response.data.name, candleData));
+            })
+            .catch(error => {
+                dispatch(editCandleFail(error));
+            });
+    };
+};
+
+export const removeFavoriteCandle = (token, candleData, candleId) => {
+    return dispatch => {
+        dispatch(editCandleStart());
+
+        axios.delete("/favorites/" + candleId + ".json?auth=" + token)
+            .then(response => {
+                dispatch(removeFavoriteCandleSuccess(response.data.name, candleData));
+            })
+            .catch(error => {
+                dispatch(editCandleFail(error));
+            });
+    };
+};
+
 export const editCandleStart = () => {
     return {
         type: actionTypes.EDIT_CANDLE_START
@@ -60,6 +88,21 @@ export const addCandleSuccess = (id, candleData) => {
 export const removeCandleSuccess = (candleId) => {
     return {
         type: actionTypes.REMOVE_CANDLE_SUCCESS,
+        candleId: candleId
+    };
+};
+
+export const addFavoriteCandleSuccess = (id, candleData) => {
+    return {
+        type: actionTypes.ADD_FAVORITE_CANDLE_SUCCESS,
+        candleId: id,
+        candleData: candleData
+    };
+};
+
+export const removeFavoriteCandleSuccess = (candleId) => {
+    return {
+        type: actionTypes.REMOVE_FAVORITE_CANDLE_SUCCESS,
         candleId: candleId
     };
 };

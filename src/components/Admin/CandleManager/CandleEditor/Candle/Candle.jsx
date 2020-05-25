@@ -1,6 +1,6 @@
 import React from "react";
 
-import CandleDelete from "./CandleDelete/CandleDelete";
+import CandleOptions from "./CandleOptions/CandleOptions";
 import CandleImg from "./CandleImg/CandleImg";
 
 import classes from "./Candle.module.css";
@@ -16,7 +16,9 @@ const Candle = (props) => {
                     <p>{props.description.slice(0, 15)} ...</p>
                 </div>
             </div>
-            <CandleDelete onDelete={props.onDelete} />
+            <CandleOptions 
+                onDelete={props.onDelete}
+                onFavorite={props.onFavorite} />
         </div>
     );
 }

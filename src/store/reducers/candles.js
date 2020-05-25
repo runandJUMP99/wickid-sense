@@ -32,6 +32,24 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 setCandleId: null
             };
+        case actionTypes.ADD_FAVORITE_CANDLE_SUCCESS:
+            const favoriteCandle = {
+                ...action.candleData, 
+                id: action.candleId
+            };
+            return {
+                ...state,
+                candles: [favoriteCandle],              
+                loading: false,
+                setCandleId: null
+            };
+        case actionTypes.REMOVE_FAVORITE_CANDLE_SUCCESS:
+            return {
+                ...state,
+                candles: state.candles.filter(candle => candle.id !== action.candleId),
+                loading: false,
+                setCandleId: null
+            };
         case actionTypes.EDIT_CANDLE_FAIL:
             return {
                 ...state, 
