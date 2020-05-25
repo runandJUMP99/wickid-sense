@@ -10,11 +10,6 @@ import classes from "./CandleEditorForm.module.css";
 import * as actions from "../../../../../store/actions/index";
 
 const CandleEditorForm = (props) => {
-    // console.log(props.realms);
-
-    // if (props.realms.length !== 0) {
-    //     console.log(props.realms[0].id);
-    // }
     const [form, setForm] = useState({
         realm: {
             elementType: "select",
@@ -73,6 +68,10 @@ const CandleEditorForm = (props) => {
     const [formIsValid, setFormIsValid] = useState(false);
 
     useEffect(() => {
+        const updatedCandle = {
+            ...form
+        };
+
         if (props.setCandleId) {
             const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
     
@@ -82,10 +81,6 @@ const CandleEditorForm = (props) => {
             const setCandleDescription = setCandle[0].description;
     
             const setCandleInfo = [setCandleRealm, setCandleName, setCandlePrice, setCandleDescription];
-        
-            const updatedCandle = {
-                ...form
-            };
     
             updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
                 value: realm.id, 
@@ -104,13 +99,8 @@ const CandleEditorForm = (props) => {
                 updatedCandle[key].value = setCandleInfo[i];
                 i++;
             }
-    
-            setForm(updatedCandle);
+
         } else {
-            const updatedCandle = {
-                ...form
-            };
-    
             updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
                 value: realm.id, 
                 displayValue: realm.name
@@ -119,9 +109,9 @@ const CandleEditorForm = (props) => {
             for (let key in updatedCandle) {
                 updatedCandle[key].value = "";
             }
-    
-            setForm(updatedCandle);
         }
+
+        setForm(updatedCandle);
     }, [props.setCandleId, props.realms]);
 
     function submitHandler(event) {
@@ -242,7 +232,6 @@ const mapDispatchToProps = dispatch => {
     return {
         onAddCandle: (token, candleData) => dispatch(actions.addCandle(token, candleData)),
         onEditCandle: (token, candleData, candleId) => dispatch(actions.editCandle(token, candleData, candleId)),
-        onSetCandleId: (candleId) => dispatch(actions.setCandleId(candleId))
     };
 };
 

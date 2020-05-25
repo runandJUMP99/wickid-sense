@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
     candles: [],
+    favoriteCandles: [],
     loading: false,
     setCandleId: null
 };

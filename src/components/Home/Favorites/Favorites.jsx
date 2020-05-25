@@ -1,8 +1,10 @@
 import React from "react";
+import {connect} from "react-redux";
 
 import Card from "../../UI/Card/Card";
 
 import classes from "./Favorites.module.css";
+import * as actions from "../../../store/actions/index";
 import candle1 from "../../../assets/images/candle1.jpg";
 import candle2 from "../../../assets/images/candle2.jpg";
 import candle3 from "../../../assets/images/candle3.jpg";
@@ -34,4 +36,16 @@ const Favorites = () => {
     );
 }
 
-export default Favorites;
+const mapStateToProps = state => {
+    return {
+        candles: state.props.candles
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchCandles: () => dispatch(actions.fetchCandles())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

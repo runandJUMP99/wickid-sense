@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
 
 import Button from "../../../../UI/Button/Button";
@@ -41,6 +41,38 @@ const RealmEditorForm = (props) => {
     });
     
     const [formIsValid, setFormIsValid] = useState(false);
+    const [realm, setRealm] = useState(<Realm />);
+
+    useEffect(() => {
+        const updatedRealm = {
+            ...form
+        };
+
+        let setRealmName;
+
+        if (props.setRealmId) {
+            const setRealm = props.realms.filter(realm => realm.id === props.setRealmId);
+            setRealmName = setRealm[0].name;
+            const setRealmInfo = [setRealmName];      
+    
+            let i = 0;
+        
+            for (let key in updatedRealm) {
+                updatedRealm[key].value = setRealmInfo;
+                i++;
+            }    
+
+        } else {   
+            setRealmName = null;
+
+            for (let key in updatedRealm) {
+                updatedRealm[key].value = "";
+            }    
+        }
+
+        setForm(updatedRealm);
+        setRealm(<Realm name={setRealmName} />)
+    }, [props.setRealmId]);
 
     function submitHandler(event) {
         event.preventDefault();
@@ -49,7 +81,11 @@ const RealmEditorForm = (props) => {
             formData[formElementIdentifier] = form[formElementIdentifier].value;
         }
 
-        props.onAddRealm(props.token, formData)
+        if (props.setRealmId) {
+            props.onEditRealm(props.token, formData, props.setRealmId);
+        } else {
+            props.onAddRealm(props.token, formData);
+        }
     }
 
     function inputChangedHandler(event, inputIdentifier) {
@@ -125,7 +161,7 @@ const RealmEditorForm = (props) => {
 
     return (
         <div className={classes.RealmEditorForm}>
-            <Realm />
+            {realm}
             {newForm}
         </div>
     );
@@ -134,13 +170,16 @@ const RealmEditorForm = (props) => {
 const mapStateToProps = state => {
     return {
         loading: state.realms.loading,
+        realms: state.realms.realms,
+        setRealmId: state.realms.setRealmId,
         token: state.auth.token
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddRealm: (token, realmData) => dispatch(actions.addRealm(token, realmData))
+        onAddRealm: (token, realmData) => dispatch(actions.addRealm(token, realmData)),
+        onEditRealm: (token, realmData, realmId) => dispatch(actions.editRealm(token, realmData, realmId)),
     };
 };
 

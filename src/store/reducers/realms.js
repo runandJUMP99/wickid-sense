@@ -21,7 +21,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                purchased: true,
                 realms: state.realms.concat(newRealm)                
             };
         case actionTypes.REMOVE_REALM_SUCCESS:

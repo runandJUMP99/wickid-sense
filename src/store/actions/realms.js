@@ -15,6 +15,22 @@ export const addRealm = (token, realmData) => {
     };
 };
 
+export const editRealm = (token, realmData, realmId) => {
+    return dispatch => {
+        dispatch(editRealmStart());
+        
+        axios.put("/realms/" + realmId + ".json?auth=" + token, realmData)
+            .then(response => {
+                dispatch(removeRealmSuccess(realmId));
+                dispatch(addRealmSuccess(realmId, realmData));
+            })
+            .catch(error => {
+                dispatch(editRealmFail(error));
+            });
+    };
+};
+
+
 export const removeRealm = (token, realmId) => {
     return dispatch => {
         dispatch(editRealmStart());
