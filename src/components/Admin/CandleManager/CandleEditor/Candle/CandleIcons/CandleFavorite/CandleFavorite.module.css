@@ -1,0 +1,14 @@
+.CandleFavorite {
+    background: #bef0b6;
+    border-radius: 8px;
+    margin: 0.2rem 0;
+    padding: 0.2rem;
+    transition: all 0.2s linear;
+}
+
+.CandleFavorite:hover,
+.CandleFavorite:active {
+    border-radius: 50%;
+    background: #89ffca;
+    cursor: pointer;
+}

@@ -4,6 +4,10 @@ import axios from "../../axios";
 export const addCandle = (token, candleData) => {
     return dispatch => {
         dispatch(editCandleStart());
+        candleData = {
+            ...candleData,
+            favorite: false
+        };
 
         axios.post("/candles.json?auth=" + token, candleData)
             .then(response => {
@@ -43,27 +47,24 @@ export const removeCandle = (token, candleId) => {
     };
 };
 
-export const addFavoriteCandle = (token, candleData, candleId) => {
+export const editFavoriteCandle = (token, candleData) => {
     return dispatch => {
-        dispatch(editCandleStart());
+        dispatch(editIconStart());
+        if (candleData.favorite) {
+            candleData = {
+                ...candleData,
+                favorite: !candleData.favorite
+            };
+        } else {
+            candleData = {
+                ...candleData,
+                favorite: true
+            };
+        }
 
-        axios.post("/favorites.json?auth=" + token, candleData)
+        axios.put("/candles/" + candleData.id + ".json?auth=" + token, candleData)
             .then(response => {
-                dispatch(addFavoriteCandleSuccess(response.data.name, candleData));
-            })
-            .catch(error => {
-                dispatch(editCandleFail(error));
-            });
-    };
-};
-
-export const removeFavoriteCandle = (token, candleData, candleId) => {
-    return dispatch => {
-        dispatch(editCandleStart());
-
-        axios.delete("/favorites/" + candleId + ".json?auth=" + token)
-            .then(response => {
-                dispatch(removeFavoriteCandleSuccess(response.data.name, candleData));
+                dispatch(editFavoriteCandleSuccess(candleData.id, candleData));
             })
             .catch(error => {
                 dispatch(editCandleFail(error));
@@ -74,6 +75,12 @@ export const removeFavoriteCandle = (token, candleData, candleId) => {
 export const editCandleStart = () => {
     return {
         type: actionTypes.EDIT_CANDLE_START
+    };
+};
+
+export const editIconStart = () => {
+    return {
+        type: actionTypes.EDIT_ICON_START
     };
 };
 
@@ -92,18 +99,11 @@ export const removeCandleSuccess = (candleId) => {
     };
 };
 
-export const addFavoriteCandleSuccess = (id, candleData) => {
+export const editFavoriteCandleSuccess = (id, candleData) => {
     return {
-        type: actionTypes.ADD_FAVORITE_CANDLE_SUCCESS,
+        type: actionTypes.EDIT_FAVORITE_CANDLE_SUCCESS,
         candleId: id,
         candleData: candleData
-    };
-};
-
-export const removeFavoriteCandleSuccess = (candleId) => {
-    return {
-        type: actionTypes.REMOVE_FAVORITE_CANDLE_SUCCESS,
-        candleId: candleId
     };
 };
 

@@ -1,0 +1,14 @@
+.Loader {
+  border: 8px solid #edffea;
+  border-bottom: 8px solid #7a4d1d;
+  border-top: 8px solid #7a4d1d;
+  border-radius: 50%;
+  width: 1.6rem;
+  height: 1.6rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

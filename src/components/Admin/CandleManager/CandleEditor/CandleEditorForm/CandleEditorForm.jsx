@@ -62,7 +62,7 @@ const CandleEditorForm = (props) => {
             },
             valid: false,
             touched: false
-        }
+        },
     });
 
     const [formIsValid, setFormIsValid] = useState(false);
@@ -112,7 +112,7 @@ const CandleEditorForm = (props) => {
         }
 
         setForm(updatedCandle);
-    }, [props.setCandleId, props.realms]);
+    }, [props.candles, props.realms, props.setCandleId]);
 
     function submitHandler(event) {
         event.preventDefault();

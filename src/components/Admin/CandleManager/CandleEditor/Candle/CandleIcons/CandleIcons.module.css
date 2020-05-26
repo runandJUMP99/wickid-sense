@@ -1,4 +1,4 @@
-.CandleOptions {
+.CandleIcons {
     animation: appear 1s ease-in-out;
     bottom: 3.5rem;
     color: #216353;
@@ -6,21 +6,6 @@
     left: 8.5rem;
     position: relative;
     width: auto;
-}
-
-.CandleOption {
-    background: #bef0b6;
-    border-radius: 8px;
-    margin: 0.2rem 0;
-    padding: 0.2rem;
-    transition: all 0.2s linear;
-}
-
-.CandleOption:hover,
-.CandleOption:active {
-    border-radius: 50%;
-    background: #89ffca;
-    cursor: pointer;
 }
 
 @keyframes appear {

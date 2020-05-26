@@ -53,11 +53,12 @@ const CandleEditor = (props) => {
             <Candle
                 key={candle.id}
                 description={candle.description}
+                favorite={candle.favorite}
                 name={candle.name}
                 price={candle.price}
                 onDelete={() => props.onRemoveCandle(props.token, candle.id)}
                 onEdit={() => toggleModal(candle.id)}
-                onFavorite={null} />
+                onFavorite={() => props.onEditFavoriteCandle(props.token, candle)} />
         ));
     }
 
@@ -86,6 +87,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onEditFavoriteCandle: (token, candleId) => dispatch(actions.editFavoriteCandle(token, candleId)),
         onRemoveCandle: (token, candleId) => dispatch(actions.removeCandle(token, candleId)),
         onSetCandleId: (candleId) => dispatch(actions.setCandleId(candleId))
     };

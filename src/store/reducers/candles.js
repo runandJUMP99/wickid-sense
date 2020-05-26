@@ -2,7 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
     candles: [],
-    favoriteCandles: [],
+    iconLoading: false,
     loading: false,
     setCandleId: null
 };
@@ -14,6 +14,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: true
             };
+        case actionTypes.EDIT_ICON_START:
+            return {
+                ...state,
+                iconLoading: true
+            };
         case actionTypes.ADD_CANDLE_SUCCESS:
             const newCandle = {
                 ...action.candleData, 
@@ -21,7 +26,8 @@ const reducer = (state = initialState, action) => {
             };
             return {
                 ...state,
-                candles: [newCandle],              
+                candles: [newCandle],
+                iconLoading: false,
                 loading: false,
                 setCandleId: null
             };
@@ -32,22 +38,15 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 setCandleId: null
             };
-        case actionTypes.ADD_FAVORITE_CANDLE_SUCCESS:
-            const favoriteCandle = {
-                ...action.candleData, 
-                id: action.candleId
-            };
+        case actionTypes.EDIT_FAVORITE_CANDLE_SUCCESS:
+            state.candles.forEach(candle => {
+                if (action.candleData.id === candle.id) {
+                    candle.favorite = !candle.favorite;
+                }
+            });
             return {
                 ...state,
-                candles: [favoriteCandle],              
-                loading: false,
-                setCandleId: null
-            };
-        case actionTypes.REMOVE_FAVORITE_CANDLE_SUCCESS:
-            return {
-                ...state,
-                candles: state.candles.filter(candle => candle.id !== action.candleId),
-                loading: false,
+                iconLoading: false,
                 setCandleId: null
             };
         case actionTypes.EDIT_CANDLE_FAIL:
