@@ -72,7 +72,7 @@ const RealmEditorForm = (props) => {
 
         setForm(updatedRealm);
         setRealm(<Realm name={setRealmName} />)
-    }, [props.setRealmId]);
+    }, [props.realms, props.setRealmId]);
 
     function submitHandler(event) {
         event.preventDefault();
@@ -152,7 +152,7 @@ const RealmEditorForm = (props) => {
                     changed={(event) => inputChangedHandler(event, formElement.id)} />
             ))}
             <Button clicked={props.onClick} btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
-            <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
+            <div className={classes.Cancel} onClick={props.onClick}>CANCEL</div>
         </form>
     );
     if (props.loading) {

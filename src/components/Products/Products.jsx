@@ -1,61 +1,38 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
+import {connect} from "react-redux";
 
 import ProductDisplay from "./ProductDisplay/ProductDisplay";
 import ProductInfo from "./ProductInfo/ProductInfo";
 import ProductSelector from "./ProductSelector/ProductSelector";
+import Spinner from "../UI/Spinner/Spinner";
 
 import classes from "./Products.module.css"
 
 const Product = (props) => {
-    const [selectedImg, setSelectedImg] = useState({
-        name: "zora's wave",
-        price: "$9.99",
-        info: "ride the wave of this bossa nova. this candle will make you feel as calm and tranquil like a zora swimming downstream"
-    });
-
+    const [selectedCandle, setSelectedCandle] = useState();
     const [fade, setFade] = useState(false);
 
-    const handleClick = (selectedCard) => {
+    useEffect(() => {
+        setSelectedCandle({
+            name: props.candles[0].name,
+            price: props.candles[0].price,
+            description: props.candles[0].description
+        });
+    });
+
+    const handleClick = (selection) => {
         setFade(true);
 
         setTimeout(() => {
-            switch (selectedCard) {
-                case "zoraswave":
-                    setSelectedImg({
-                        name: "zora's wave",
-                        price: "$9.99",
-                        info: "ride the wave of this bossa nova. this candle will make you feel as calm and tranquil like a zora swimming downstream."
-                    })           
-                    break;
-                case "peachypeach":
-                    setSelectedImg({
-                        name: "peachy peach",
-                        price: "$10.99",
-                        info: "find out why mario can't help but rescue his peach."
-                    })  
-                    break;
-                case "dragonleather":
-                    setSelectedImg({
-                        name: "dragon leather",
-                        price: "$10.99",
-                        info: "they say dragons once roamed these lands. this scent will help awaken your inner dragon rider."
-                    })  
-                    break;
-                case "nicecream":
-                    setSelectedImg({
-                        name: "nice cream",
-                        price: "$9.99",
-                        info: "nice cream! the frozen treat that's nice to eat!"
-                    })  
-                    break;
-                default:
-                    setSelectedImg({
-                        name: "zora's wave",
-                        price: "$9.99",
-                        info: "ride the wave of this bossa nova. this candle will make you feel as calm and tranquil like a zora swimming downstream"
-                    })  
-                    break;
-            }
+            props.candles.forEach(candle => {
+                if (candle.id === selection) {
+                    setSelectedCandle({
+                        name: candle.name,
+                        price: candle.price,
+                        description: candle.description
+                    });
+                }
+            });
         }, 1000);
 
         setTimeout(() => {
@@ -63,21 +40,53 @@ const Product = (props) => {
         }, 1000);
     }
 
+    let selectedInfo = (
+        <div style={{
+            background: "#edffea",
+            borderRadius: "8px",
+            boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
+            margin: "auto",
+            padding: "1rem",
+            width: "325px"
+        }}>
+            <Spinner />
+        </div>
+    );
+
+    if (!props.loading) {
+        selectedInfo = (
+            <ProductInfo 
+                name={selectedCandle.name}
+                price={selectedCandle.price}
+                info={selectedCandle.description}
+                fade={fade} />
+        ); 
+    }
+
     return (
         <div className={classes.Products}>
             <div className={classes.ProductsTop}>
-                <ProductDisplay
-                    name={selectedImg.name}
-                    fade={fade}/>
-                <ProductInfo 
-                    name={selectedImg.name}
-                    price={selectedImg.price}
-                    info={selectedImg.info}
-                    fade={fade}/>   
+                {/* <ProductDisplay
+                    name={selectedCandle.name}
+                    fade={fade}/> */}
+                {selectedInfo}  
             </div>
             <ProductSelector handleClick={handleClick}/>
         </div>
     );
 }
 
-export default Product;
+const mapStateToProps = state => {
+    return {
+        candles: state.candles.candles,
+        loading: state.candles.loading
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

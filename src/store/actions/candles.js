@@ -117,8 +117,13 @@ export const editCandleFail = (error) => {
 export const fetchCandles = (realm) => {
     return dispatch => {
         dispatch(fetchCandlesStart());
-        const queryParams = '?orderBy="realm"&equalTo="' + realm + '"';
-        axios.get("/candles.json" + queryParams)
+        
+        let path = "/candles.json";
+
+        if (realm) {
+            path = path + '?orderBy="realm"&equalTo="' + realm + '"';
+        }
+        axios.get(path)
             .then(res => {
                 const fetchedCandles = [];
 

@@ -5,3 +5,20 @@
     display: flex;
     justify-content: space-around;
 }
+
+.Cancel {
+    background-color: transparent;
+    border: none;
+    color: #944317;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 5px 10px;
+    margin: 0 10px 10px;
+    font-weight: bold;
+}
+
+.Cancel:focus {
+    outline: none;
+}

@@ -1,38 +1,47 @@
 import React from "react";
+import {connect} from "react-redux";
 
 import Card from "../../UI/Card/Card";
+import Spinner from "../../UI/Spinner/Spinner";
 
 import classes from "./ProductSelector.module.css";
-import candle1 from "../../../assets/images/candle1.jpg";
-import candle2 from "../../../assets/images/candle2.jpg";
-import candle3 from "../../../assets/images/candle3.jpg";
-import candle4 from "../../../assets/images/candle4.jpg";
 
 const ProductSelector = (props) => {
+    let fetchedCandles = (
+        <div style={{
+            background: "#edffea",
+            borderRadius: "8px",
+            boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
+            margin: "auto",
+            padding: "1rem",
+            width: "325px"
+        }}>
+            <Spinner />
+        </div>
+    );
+
+    if (!props.loading) {
+        fetchedCandles = props.candles.map(candle => (
+            <Card
+                key={candle.id}
+                name={candle.name}
+                img={null}
+                price={candle.price}
+                onClick={() => props.handleClick(candle.id)} />
+        ));
+    }
+
     return (
         <div className={classes.ProductSelector}>
-            <Card 
-                name="zoras's wave"
-                img={candle1}
-                price="9.99"
-                onClick={() => props.handleClick("zoraswave")} />
-            <Card 
-                name="peachy peach"
-                img={candle2}
-                price="9.99"
-                onClick={() => props.handleClick("peachypeach")} />
-            <Card 
-                name="dragon leather"
-                img={candle3}
-                price="9.99"
-                onClick={() => props.handleClick("dragonleather")} />
-            <Card 
-                name="nice cream"
-                img={candle4}
-                price="9.99"
-                onClick={() => props.handleClick("nicecream")} />
+            {fetchedCandles}
         </div>
     );
 }
 
-export default ProductSelector;
+const mapStateToProps = state => {
+    return {
+        candles: state.candles.candles
+    };
+};
+
+export default connect(mapStateToProps)(ProductSelector);

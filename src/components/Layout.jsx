@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {connect} from "react-redux";
 
 import Backdrop from "./UI/Backdrop/Backdrop";
 import Footer from "./Footer/Footer";
@@ -10,7 +11,9 @@ import RealmSelector from "./Products/RealmSelector/RealmSelector";
 import Redirect from "./UI/Redirect/Redirect";
 import SideDrawer from "./UI/SideDrawer/SideDrawer";
 
-const Layout = () => {
+import * as actions from "../store/actions/index";
+
+const Layout = (props) => {
     const [modal, setModal] = useState({
         showBackdrop: false,
         showModal: false,
@@ -28,7 +31,7 @@ const Layout = () => {
             });
         } else if (content === "products" || content === "redirect") {
             if (content === "products") {
-                setModalContent(<RealmSelector onClick={() => handleChange("products")}/>);
+                setModalContent(<RealmSelector onClick={handleChange}/>);
             } else if (content === "redirect") {
                 setModalContent(<Redirect onClick={toggleModal}/>);
             }
@@ -51,18 +54,18 @@ const Layout = () => {
                 }, 1000);
             }
         }
-        // var blob = document.getElementById("root");
-        // blob.scrollIntoView();
     }
 
     const [content, setContent] = useState(<Home onClick={toggleModal} />);
 
     function handleChange(selection) {
-        if (selection === "products") {
+        if (selection) {
+            props.onFetchCandles(selection);
             setContent(<Products />);
             toggleModal();
         }
         else {
+            console.log("else");
             setContent(<Home onClick={toggleModal} />);
             toggleModal("home");
         }
@@ -85,4 +88,10 @@ const Layout = () => {
     );
 }
 
-export default Layout;
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchCandles: (realm) => dispatch(actions.fetchCandles(realm)),
+    };
+};
+
+export default connect(null, mapDispatchToProps)(Layout);

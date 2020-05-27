@@ -1,26 +1,39 @@
-import React from "react";
-import {connect} from "react-redux";
+import React, {useEffect, useState} from "react";
 
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import SpinnerMini from "../../../../../../UI/SpinnerMini/SpinnerMini";
 
 import classes from "./CandleFavorite.module.css";
 
 const CandleFavorite = props => {
+    const [styles, setStyles] = useState(null);
+
+    useEffect(() => {
+        if (props.favorite) {
+            setStyles({
+                background: "#75daad",
+                color: "#edffea"
+            });
+        }
+    }, []);
+
+    function toggleStyles() {
+        if (styles) {
+            setStyles(null);
+        } else {
+            setStyles({
+                background: "#75daad",
+                color: "#edffea"
+            });
+        }
+    }
+
     return (
-        <div onClick={props.onFavorite} className={classes.CandleFavorite} style={{
-            background: props.favorite && "#75daad",
-            color: props.favorite && "#edffea"
-        }}>
-            {props.iconLoading ? <SpinnerMini /> : <FavoriteIcon />}
+        <div onClick={toggleStyles}>
+            <div onClick={props.onFavorite} className={classes.CandleFavorite} style={styles}>
+                <FavoriteIcon />
+            </div>
         </div>
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        iconLoading: state.candles.iconLoading
-    };
-};
-
-export default connect(mapStateToProps)(CandleFavorite);
+export default CandleFavorite;

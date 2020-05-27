@@ -201,7 +201,7 @@ const CandleEditorForm = (props) => {
                         changed={(event) => inputChangedHandler(event, formElement.id)} />
                 ))}
                 <Button clicked={props.onClick} btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
-                <Button clicked={props.onClick} btnType="Danger">CANCEL</Button>
+                <div className={classes.Cancel} onClick={props.onClick}>CANCEL</div>
             </form> 
         </React.Fragment>
     );

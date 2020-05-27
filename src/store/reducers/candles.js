@@ -2,7 +2,6 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
     candles: [],
-    iconLoading: false,
     loading: false,
     setCandleId: null
 };
@@ -14,11 +13,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: true
             };
-        case actionTypes.EDIT_ICON_START:
-            return {
-                ...state,
-                iconLoading: true
-            };
         case actionTypes.ADD_CANDLE_SUCCESS:
             const newCandle = {
                 ...action.candleData, 
@@ -27,7 +21,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 candles: [newCandle],
-                iconLoading: false,
                 loading: false,
                 setCandleId: null
             };
@@ -46,7 +39,6 @@ const reducer = (state = initialState, action) => {
             });
             return {
                 ...state,
-                iconLoading: false,
                 setCandleId: null
             };
         case actionTypes.EDIT_CANDLE_FAIL:
