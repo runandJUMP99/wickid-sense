@@ -28,8 +28,7 @@ const RealmEditorForm = (props) => {
         //     elementType: 'input',
         //     elementConfig: {
         //         accept: "image/*",
-        //         type: 'file',
-        //         placeholder: 'Price'
+        //         type: 'file'
         //     },
         //     value: "",
         //     validation: {
@@ -71,8 +70,8 @@ const RealmEditorForm = (props) => {
         }
 
         setForm(updatedRealm);
-        setRealm(<Realm name={setRealmName} />)
-    }, [props.realms, props.setRealmId]);
+        setRealm(<Realm name={setRealmName} />);
+    }, [props.setRealmId]);
 
     function submitHandler(event) {
         event.preventDefault();

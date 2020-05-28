@@ -47,7 +47,7 @@ const Layout = (props) => {
                 showModal: false,
                 showSideDrawer: false
             });
-            
+        
             if (content !== "home") {
                 setTimeout(() => {
                     setModalContent()
@@ -59,15 +59,14 @@ const Layout = (props) => {
     const [content, setContent] = useState(<Home onClick={toggleModal} />);
 
     function handleChange(selection) {
-        if (selection) {
+        if (selection === "home") {
+            setContent(<Home onClick={toggleModal} />);
+            toggleModal("home");
+        }
+        else {
             props.onFetchCandles(selection);
             setContent(<Products />);
             toggleModal();
-        }
-        else {
-            console.log("else");
-            setContent(<Home onClick={toggleModal} />);
-            toggleModal("home");
         }
     }
 

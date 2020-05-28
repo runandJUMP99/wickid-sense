@@ -40,7 +40,8 @@ const ProductSelector = (props) => {
 
 const mapStateToProps = state => {
     return {
-        candles: state.candles.candles
+        candles: state.candles.candles,
+        loading: state.candles.loading
     };
 };
 

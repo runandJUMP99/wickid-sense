@@ -7,6 +7,7 @@ import ProductSelector from "./ProductSelector/ProductSelector";
 import Spinner from "../UI/Spinner/Spinner";
 
 import classes from "./Products.module.css"
+import * as actions from "../../store/actions/index";
 
 const Product = (props) => {
     const [selectedCandle, setSelectedCandle] = useState();
@@ -18,7 +19,7 @@ const Product = (props) => {
             price: props.candles[0].price,
             description: props.candles[0].description
         });
-    }, []);
+    }, [props.candles]);
 
     const handleClick = (selection) => {
         setFade(true);
@@ -52,8 +53,27 @@ const Product = (props) => {
             <Spinner />
         </div>
     );
+    
+    let selectedProduct = (
+        <div style={{
+            background: "#edffea",
+            borderRadius: "8px",
+            boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
+            margin: "auto",
+            padding: "1rem",
+            width: "325px"
+        }}>
+            <Spinner />
+        </div>
+    );
 
     if (!props.loading) {
+        selectedProduct = (
+            <ProductDisplay
+                img=""
+                name={selectedCandle.name}
+                fade={fade} />
+        );
         selectedInfo = (
             <ProductInfo 
                 name={selectedCandle.name}
@@ -66,9 +86,7 @@ const Product = (props) => {
     return (
         <div className={classes.Products}>
             <div className={classes.ProductsTop}>
-                {/* <ProductDisplay
-                    name={selectedCandle.name}
-                    fade={fade}/> */}
+                {selectedProduct}
                 {selectedInfo}  
             </div>
             <ProductSelector handleClick={handleClick}/>
@@ -83,10 +101,4 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default connect(mapStateToProps)(Product);
