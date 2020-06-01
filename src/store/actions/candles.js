@@ -11,6 +11,7 @@ export const addCandle = (token, candleData) => {
 
         axios.post("/candles.json?auth=" + token, candleData)
             .then(response => {
+                dispatch(setCandleId(response.data.name));
                 dispatch(addCandleSuccess(response.data.name, candleData));
             })
             .catch(error => {

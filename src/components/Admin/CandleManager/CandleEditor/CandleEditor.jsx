@@ -54,6 +54,7 @@ const CandleEditor = (props) => {
                 key={candle.id}
                 description={candle.description}
                 favorite={candle.favorite}
+                img={candle.img}
                 name={candle.name}
                 price={candle.price}
                 onDelete={() => props.onRemoveCandle(props.token, candle.id)}

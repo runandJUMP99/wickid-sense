@@ -22,7 +22,7 @@ const Favorites = (props) => {
             <Card
                 key={candle.id} 
                 name={candle.name}
-                img={null}
+                img={candle.img}
                 price={candle.price} />
         ));
     }

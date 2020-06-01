@@ -2,10 +2,10 @@ import React from "react";
 
 import classes from "./CandleImg.module.css";
 
-const CandleImg = () => {
+const CandleImg = (props) => {
     return (
         <div className={classes.CandleImg}>
-                img
+                <img src={props.img} alt={props.name} />
         </div>
     );
 }

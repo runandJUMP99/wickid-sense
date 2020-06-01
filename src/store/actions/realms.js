@@ -4,9 +4,10 @@ import axios from "../../axios";
 export const addRealm = (token, realmData) => {
     return dispatch => {
         dispatch(editRealmStart());
-
+        
         axios.post("/realms.json?auth=" + token, realmData)
             .then(response => {
+                dispatch(setRealmId(response.data.name));
                 dispatch(addRealmSuccess(response.data.name, realmData));
             })
             .catch(error => {
@@ -20,7 +21,7 @@ export const editRealm = (token, realmData, realmId) => {
         dispatch(editRealmStart());
         
         axios.put("/realms/" + realmId + ".json?auth=" + token, realmData)
-        .then(response => {
+            .then(response => {
                 dispatch(removeRealmSuccess(realmId));
                 dispatch(addRealmSuccess(realmId, realmData));
             })

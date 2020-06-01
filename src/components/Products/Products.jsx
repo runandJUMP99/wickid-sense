@@ -15,6 +15,7 @@ const Product = (props) => {
     useEffect(() => {
         setSelectedCandle({
             name: props.candles[0].name,
+            img: props.candles[0].img,
             price: props.candles[0].price,
             description: props.candles[0].description
         });
@@ -28,6 +29,7 @@ const Product = (props) => {
                 if (candle.id === selection) {
                     setSelectedCandle({
                         name: candle.name,
+                        img: candle.img,
                         price: candle.price,
                         description: candle.description
                     });
@@ -69,7 +71,7 @@ const Product = (props) => {
     if (!props.loading) {
         selectedProduct = (
             <ProductDisplay
-                img=""
+                img={selectedCandle.img}
                 name={selectedCandle.name}
                 fade={fade} />
         );

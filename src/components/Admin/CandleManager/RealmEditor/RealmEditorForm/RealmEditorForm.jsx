@@ -53,18 +53,27 @@ const RealmEditorForm = (props) => {
         
         if (props.setRealmId) {
             const setRealm = props.realms.filter(realm => realm.id === props.setRealmId);
-            setRealmName = setRealm[0].name;
-            setRealmImg = setRealm[0].img;
-            const setRealmInfo = [setRealmName, setRealmImg];    
+
+            if (setRealm.length !== 0) {
+                setRealmName = setRealm[0].name;
+                setRealmImg = setRealm[0].img;
                 
-            let i = 0;
-        
-            for (let key in updatedRealm) {
-                if (key !== "img") {
-                    updatedRealm[key].value = setRealmInfo[i];
-                    i++;
-                }
-            }    
+                const setRealmInfo = [setRealmName, setRealmImg];
+
+                let i = 0;
+            
+                for (let key in updatedRealm) {
+                    if (key !== "img") {
+                        updatedRealm[key].value = setRealmInfo[i];
+                        i++;
+                    }
+                }    
+            } else {   
+                for (let key in updatedRealm) {
+                    updatedRealm[key].value = "";
+                }    
+            }
+
         } else {   
             for (let key in updatedRealm) {
                 updatedRealm[key].value = "";
@@ -75,33 +84,34 @@ const RealmEditorForm = (props) => {
         setRealm(<Realm 
                     name={setRealmName}
                     img={setRealmImg} />);
-    }, [props.setRealmId]);
+    }, [props.setRealmId, props.realms]);
 
     function submitHandler(event) {
         event.preventDefault();
 
+        let formData = {};
+                    
+        for (let formElementIdentifier in form) {
+            if (formElementIdentifier !== "img") {
+                formData[formElementIdentifier] = form[formElementIdentifier].value;
+            }
+        }
+        
         if (form.img.value) {
+
             const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile);
-    
+
             uploadTask.on("state_changed", snapshot => {
                 setImgLoading(true);
                 console.log(snapshot);
             }, err => {
                 console.log(err);
             }, () => {
-                storage.ref('images').child(imageAsFile.name).getDownloadURL()
-                    .then(fireBaseUrl => {
-                        let formData = {};
-                        
-                        for (let formElementIdentifier in form) {
-                            if (formElementIdentifier !== "img") {
-                                formData[formElementIdentifier] = form[formElementIdentifier].value;
-                            }
-                        }
-    
+                storage.ref("images").child(imageAsFile.name).getDownloadURL()
+                    .then(firebaseUrl => {    
                         formData = {
                             ...formData,
-                            img: fireBaseUrl
+                            img: firebaseUrl
                         };
     
                         if (props.setRealmId) {
@@ -117,10 +127,12 @@ const RealmEditorForm = (props) => {
         } else {
             const setRealm = props.realms.filter(realm => realm.id === props.setRealmId);
 
-            let formData = {
-                name: form.name.value,
-                img: setRealm[0].img
-            };
+            if (props.setRealmId) {
+                formData = {
+                    ...formData,
+                    img: setRealm[0].img
+                };
+            }
 
             if (props.setRealmId) {
                 props.onEditRealm(props.token, formData, props.setRealmId);

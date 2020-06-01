@@ -11,7 +11,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.EDIT_CANDLE_START:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                setCandleId: null
             };
         case actionTypes.ADD_CANDLE_SUCCESS:
             const newCandle = {

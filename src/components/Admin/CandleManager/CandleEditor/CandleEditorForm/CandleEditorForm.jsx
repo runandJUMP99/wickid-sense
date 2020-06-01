@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
+import {storage} from "../../../../../firebase/firebase";
 
 import Button from "../../../../UI/Button/Button";
 import CandleImg from "../Candle/CandleImg/CandleImg";
@@ -63,41 +64,71 @@ const CandleEditorForm = (props) => {
             valid: false,
             touched: false
         },
+        img: {
+            elementType: 'input',
+            elementConfig: {
+                accept: "image/*",
+                type: 'file'
+            },
+            value: "",
+            validation: {},
+            valid: true
+        }
     });
 
     const [formIsValid, setFormIsValid] = useState(false);
+    const [candleImage, setCandleImage] = useState(<CandleImg />);
+    const [imageAsFile, setImageAsFile] = useState("");
+    const [imgLoading, setImgLoading] = useState(false);
 
     useEffect(() => {
         const updatedCandle = {
             ...form
         };
 
+        let setCandleName;
+        let setCandleImg;
+
         if (props.setCandleId) {
             const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
     
-            let setCandleRealm = setCandle[0].realm;
-            const setCandleName = setCandle[0].name;
-            const setCandlePrice = setCandle[0].price;
-            const setCandleDescription = setCandle[0].description;
-    
-            const setCandleInfo = [setCandleRealm, setCandleName, setCandlePrice, setCandleDescription];
-    
-            updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
-                value: realm.id, 
-                displayValue: realm.name
-            }));
-            
-            props.realms.forEach(realm => {
-                if (realm.id === setCandleRealm) {
-                    setCandleRealm = realm.name;
-                }
-            });
-    
-            let i = 0;
+            if (setCandle.length !== 0) {
+                let setCandleRealm = setCandle[0].realm;
+                setCandleName = setCandle[0].name;
+                setCandleImg = setCandle[0].img;
+                const setCandlePrice = setCandle[0].price;
+                const setCandleDescription = setCandle[0].description;
         
-            for (let key in updatedCandle) {
-                updatedCandle[key].value = setCandleInfo[i];
-                i++;
+                const setCandleInfo = [setCandleRealm, setCandleName, setCandlePrice, setCandleDescription, setCandleImg];
+        
+                updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
+                    value: realm.id, 
+                    displayValue: realm.name
+                }));
+                
+                props.realms.forEach(realm => {
+                    if (realm.id === setCandleRealm) {
+                        setCandleRealm = realm.name;
+                    }
+                });
+        
+                let i = 0;
+            
+                for (let key in updatedCandle) {
+                    if (key !== "img") {
+                        updatedCandle[key].value = setCandleInfo[i];
+                        i++;
+                    }
+                }
+            } else {
+                updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
+                    value: realm.id, 
+                    displayValue: realm.name
+                }));
+            
+                for (let key in updatedCandle) {
+                    updatedCandle[key].value = "";
+                }
             }
         } else {
             updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
@@ -111,14 +142,20 @@ const CandleEditorForm = (props) => {
         }
 
         setForm(updatedCandle);
+        setCandleImage(<CandleImg 
+                        name={setCandleName}
+                        img={setCandleImg} />);
     }, [props.candles, props.realms, props.setCandleId]);
 
     function submitHandler(event) {
         event.preventDefault();
+
         let formData = {};
         
         for (let formElementIdentifier in form) {
-            formData[formElementIdentifier] = form[formElementIdentifier].value;
+            if (formElementIdentifier !== "img") {
+                formData[formElementIdentifier] = form[formElementIdentifier].value;
+            }
         }
 
         if (!formData.realm) {
@@ -128,10 +165,49 @@ const CandleEditorForm = (props) => {
             }
         }
 
-        if (props.setCandleId) {
-            props.onEditCandle(props.token, formData, props.setCandleId);
+        if (form.img.value) {
+            const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile);
+            
+            uploadTask.on("state_changed", snapshot => {
+                setImgLoading(true);
+                console.log(snapshot);
+            }, err => {
+                console.log(err);
+            }, () => {
+                storage.ref("images").child(imageAsFile.name).getDownloadURL()
+                    .then(firebaseUrl => {
+                        formData = {
+                            ...formData,
+                            img: firebaseUrl
+                        };
+                
+                        if (props.setCandleId) {
+                            props.onEditCandle(props.token, formData, props.setCandleId);
+                        } else {
+                            props.onAddCandle(props.token, formData);
+                        }
+
+                        setImgLoading(false);
+                        props.onClick();
+                    });
+            });
         } else {
-            props.onAddCandle(props.token, formData);
+            const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
+
+            if (props.setCandleId) {
+                formData = {
+                    ...formData,
+                    img: setCandle[0].img
+                };
+            }
+
+            if (props.setCandleId) {
+                props.onEditCandle(props.token, formData, props.setCandleId);
+            } else {
+                props.onAddCandle(props.token, formData);
+            }
+
+            props.onClick();
         }
     }
 
@@ -142,6 +218,11 @@ const CandleEditorForm = (props) => {
         const updatedCandleElement = { 
             ...updatedCandle[inputIdentifier]
         };
+        
+        if (event.target.type === "file") {
+            const image = event.target.files[0];
+            setImageAsFile(imageFile => (image));
+        }
 
         updatedCandleElement.value = event.target.value;
         updatedCandleElement.valid = checkValidity(updatedCandleElement.value, updatedCandleElement.validation);
@@ -199,19 +280,19 @@ const CandleEditorForm = (props) => {
                         touched={formElement.config.touched}
                         changed={(event) => inputChangedHandler(event, formElement.id)} />
                 ))}
-                <Button clicked={props.onClick} btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
+                <Button btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
                 <div className={classes.Cancel} onClick={props.onClick}>CANCEL</div>
             </form> 
         </React.Fragment>
     );
 
-    if (props.loading) {
+    if (props.loading || imgLoading) {
         newForm = <Spinner />;
     }
 
     return (
         <div className={classes.CandleEditorForm}>
-            <CandleImg />
+            {candleImage}
             {newForm}
         </div>
     );

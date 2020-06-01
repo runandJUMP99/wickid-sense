@@ -9,7 +9,9 @@ const Candle = (props) => {
     return (
         <div>
             <div onClick={props.onEdit} className={classes.Candle}>
-                <CandleImg />
+                <CandleImg 
+                    img={props.img}
+                    name={props.name} />
                 <div className={classes.Info}>
                     <h2>{props.name}</h2>
                     <p>{props.price}</p>
