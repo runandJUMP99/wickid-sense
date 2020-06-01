@@ -1,29 +1,33 @@
 .Input {
-    width: 100%;
-    padding: 4px 10px;
     box-sizing: border-box;
+    padding: 4px 10px;
+    width: 100%;
 }
 
 .Label {
     font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
 }
 
 .InputElement {
-    outline: none;
-    border: 1px solid #ccc;
     background-color: white;
-    font: inherit;
-    padding: 6px 10px;
-    display: block;
-    width: 100%;
+    border: 1px solid #ccc;
     box-sizing: border-box;
+    display: block;
+    font: inherit;
+    outline: none;
+    padding: 6px 10px;
+    width: 100%;
+}
+
+.Price {
+    display: inline-block;
+    margin: 0 0.25rem;
+    width: 2.5rem !important;
 }
 
 .InputElement:focus {
-    outline: none;
     background-color: #ccc;
+    outline: none;
 }
 
 .Invalid {

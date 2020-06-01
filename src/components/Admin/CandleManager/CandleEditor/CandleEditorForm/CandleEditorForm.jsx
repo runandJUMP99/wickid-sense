@@ -22,7 +22,8 @@ const CandleEditorForm = (props) => {
             },
             value: "",
             validation: {},
-            valid: true
+            valid: true,
+            label: null
         },
         name: {
             elementType: 'input',
@@ -35,13 +36,14 @@ const CandleEditorForm = (props) => {
                 required: true
             },
             valid: false,
-            touched: false
+            touched: false,
+            label: null
         },
-        price: {
+        priceDollars: {
             elementType: 'input',
             elementConfig: {
                 type: 'text',
-                placeholder: 'Price'
+                placeholder: ''
             },
             value: '',
             validation: {
@@ -49,7 +51,23 @@ const CandleEditorForm = (props) => {
                 isNumeric: true
             },
             valid: false,
-            touched: false
+            touched: false,
+            label: "Price: "
+        },
+        priceCents: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: ''
+            },
+            value: '',
+            validation: {
+                required: true,
+                isNumeric: true
+            },
+            valid: false,
+            touched: false,
+            label: null
         },
         description: {
             elementType: 'textarea',
@@ -62,7 +80,8 @@ const CandleEditorForm = (props) => {
                 required: true
             },
             valid: false,
-            touched: false
+            touched: false,
+            label: null
         },
         img: {
             elementType: 'input',
@@ -72,7 +91,8 @@ const CandleEditorForm = (props) => {
             },
             value: "",
             validation: {},
-            valid: true
+            valid: true,
+            label: null
         }
     });
 
@@ -96,10 +116,11 @@ const CandleEditorForm = (props) => {
                 let setCandleRealm = setCandle[0].realm;
                 setCandleName = setCandle[0].name;
                 setCandleImg = setCandle[0].img;
-                const setCandlePrice = setCandle[0].price;
+                const setCandlePriceDollars = setCandle[0].priceDollars;
+                const setCandlePriceCents = setCandle[0].priceCents;
                 const setCandleDescription = setCandle[0].description;
         
-                const setCandleInfo = [setCandleRealm, setCandleName, setCandlePrice, setCandleDescription, setCandleImg];
+                const setCandleInfo = [setCandleRealm, setCandleName, setCandlePriceDollars, setCandlePriceCents, setCandleDescription, setCandleImg];
         
                 updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
                     value: realm.id, 
@@ -272,12 +293,14 @@ const CandleEditorForm = (props) => {
                 {formElementsArray.map(formElement => (
                     <Input 
                         key={formElement.id}
+                        id={formElement.id}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
                         invalid={!formElement.config.valid}
                         shouldValidate={formElement.config.validation}
                         touched={formElement.config.touched}
+                        label={formElement.config.label}
                         changed={(event) => inputChangedHandler(event, formElement.id)} />
                 ))}
                 <Button btnType="Success" disabled={!formIsValid}>SUBMIT</Button>

@@ -6,7 +6,8 @@ export const addCandle = (token, candleData) => {
         dispatch(editCandleStart());
         candleData = {
             ...candleData,
-            favorite: false
+            favorite: false,
+            price: `$${candleData.priceDollars}.${candleData.priceCents}`
         };
 
         axios.post("/candles.json?auth=" + token, candleData)

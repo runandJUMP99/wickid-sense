@@ -4,6 +4,9 @@ import classes from './Input.module.css';
 
 const input = (props) => {
     let inputElement = null;
+    let moneySymbol;
+    let labelStyle = {display: "none"};
+    let styles = null
     const inputClasses = [classes.InputElement];
 
     if (props.invalid && props.shouldValidate && props.touched) {
@@ -12,12 +15,33 @@ const input = (props) => {
 
     switch ( props.elementType ) {
         case ( 'input' ):
-            inputElement = <input
-            className={inputClasses.join(' ')}
-            {...props.elementConfig}
-            value={props.value}
-            onChange={props.changed} />;
-            break;
+            if (props.elementConfig.placeholder === "") {
+               inputClasses.push(classes.Price);
+               labelStyle = {display: "inline-block"};
+               styles = {
+                   display: "inline-block",
+                   padding: "8px 2px",
+                   width: "auto"
+                };
+
+               if (props.id === "priceDollars") {
+                   moneySymbol = " $";
+               } else if (props.id === "priceCents") {
+                   moneySymbol = ". ";
+               }
+            }
+
+            inputElement = (
+                <React.Fragment>
+                    <span>{moneySymbol}</span>
+                    <input
+                    className={inputClasses.join(' ')}
+                    {...props.elementConfig}
+                    value={props.value}
+                    onChange={props.changed} />
+                </React.Fragment>
+            );
+            break;                
         case ( 'textarea' ):
             inputElement = <textarea
                 className={inputClasses.join(' ')}
@@ -48,8 +72,8 @@ const input = (props) => {
     }
 
     return (
-        <div className={classes.Input}>
-            <label className={classes.Label}>{props.label}</label>
+        <div style={styles}className={classes.Input}>
+            <label style={labelStyle} className={classes.Label}>{props.label}</label>
             {inputElement}
         </div>
     );
