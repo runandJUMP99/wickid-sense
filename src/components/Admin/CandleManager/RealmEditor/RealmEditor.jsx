@@ -43,7 +43,6 @@ const RealmEditor = (props) => {
                 props.onSetRealmId(null);
             }, 500);
         }
-
     }
 
     useEffect(() => {
@@ -57,6 +56,7 @@ const RealmEditor = (props) => {
             <div key={realm.id}>
                 <Realm 
                     name={realm.name} 
+                    img={realm.img}
                     onClick={() => props.onFetchCandles(realm.id)} />
                 <div className={classes.Icons}>
                     <EditIcon onClick={() => toggleModal("edit", realm.id)}/>

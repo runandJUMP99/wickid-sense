@@ -11,7 +11,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.EDIT_REALM_START:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                setRealmId: null
             };
         case actionTypes.ADD_REALM_SUCCESS:
             const newRealm = {

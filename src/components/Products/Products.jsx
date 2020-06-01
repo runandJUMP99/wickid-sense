@@ -7,7 +7,6 @@ import ProductSelector from "./ProductSelector/ProductSelector";
 import Spinner from "../UI/Spinner/Spinner";
 
 import classes from "./Products.module.css"
-import * as actions from "../../store/actions/index";
 
 const Product = (props) => {
     const [selectedCandle, setSelectedCandle] = useState();

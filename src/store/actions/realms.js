@@ -20,7 +20,7 @@ export const editRealm = (token, realmData, realmId) => {
         dispatch(editRealmStart());
         
         axios.put("/realms/" + realmId + ".json?auth=" + token, realmData)
-            .then(response => {
+        .then(response => {
                 dispatch(removeRealmSuccess(realmId));
                 dispatch(addRealmSuccess(realmId, realmData));
             })

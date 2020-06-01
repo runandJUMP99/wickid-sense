@@ -19,7 +19,7 @@ const RealmSelector = (props) => {
             <Realm 
                 key={realm.id}
                 name={realm.name}
-                img={null}
+                img={realm.img}
                 onClick={() => props.onClick(realm.id)} />
         ));
     }

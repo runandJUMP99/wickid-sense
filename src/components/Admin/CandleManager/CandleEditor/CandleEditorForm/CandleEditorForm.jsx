@@ -99,7 +99,6 @@ const CandleEditorForm = (props) => {
                 updatedCandle[key].value = setCandleInfo[i];
                 i++;
             }
-
         } else {
             updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
                 value: realm.id, 
