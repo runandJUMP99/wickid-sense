@@ -6,3 +6,18 @@
     padding: 2rem;
     position: relative;
 }
+
+.AddCandle {
+    background: #edffea;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.5);
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+    transition: all 0.4s ease-out;
+}
+
+.AddCandle:hover {
+    background: #e1ecdf;
+    box-shadow: 0 1px 3px 2px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}

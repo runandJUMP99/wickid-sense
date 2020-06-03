@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from "react";
-import ItemsCarousel from "react-items-carousel";
 import {connect} from "react-redux";
 
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Card from "../../UI/Card/Card";
-import Spinner from "../../UI/Spinner/Spinner";
+import ItemsCarousel from "react-items-carousel";
+import SliderButton from "../../UI/SliderButton/SliderButton";
+import GlobalLoader from "../../UI/GlobalLoader/GlobalLoader";
 
 import classes from "./Favorites.module.css";
 import * as actions from "../../../store/actions/index";
@@ -16,19 +19,29 @@ const Favorites = (props) => {
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
-    let content = [<Spinner />];
+    let loadedCandles;
     let favoriteCandles = [];
 
     if (!props.loading) {
         favoriteCandles = props.candles.filter(candle => candle.favorite);
 
-        content = favoriteCandles.map(candle => (
+        loadedCandles = favoriteCandles.map(candle => (
             <Card
                 key={candle.id} 
                 name={candle.name}
                 img={candle.img}
                 price={candle.price} />
         ));
+    }
+
+    let numberOfCards = 1;
+
+    if (window.innerWidth >= 1400 && props.candles.length >= 4) {
+        numberOfCards = 4;
+    } else if (window.innerWidth >= 1080 && props.candles.length >= 3) {
+        numberOfCards = 3;
+    } else if (window.innerWidth >= 760) {
+        numberOfCards = 2;
     }
 
     return (
@@ -39,13 +52,17 @@ const Favorites = (props) => {
                     infiniteLoop
                     requestToChangeActive={setActiveItemIndex}
                     activeItemIndex={activeItemIndex}
-                    numberOfCards={1}
+                    numberOfCards={numberOfCards}
                     gutter={8}
-                    leftChevron={<button>{"<"}</button>}
-                    rightChevron={<button>{">"}</button>}
+                    leftChevron={<SliderButton>
+                                    <ArrowBackIosIcon />
+                                </SliderButton>}
+                    rightChevron={<SliderButton>
+                                    <ArrowForwardIosIcon />
+                                </SliderButton>}
                     outsideChevron
                     chevronWidth={40}
-                    children={content} />
+                    children={loadedCandles} />
             </div>
         </div>
     );

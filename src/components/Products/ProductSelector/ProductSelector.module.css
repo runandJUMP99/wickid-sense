@@ -1,9 +1,6 @@
 .ProductSelector {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 2rem;
-    padding: 2rem 0;
+    margin: 0 auto;
+    padding: 2rem 4rem;
 }
 
 .ProductSelector a:hover {

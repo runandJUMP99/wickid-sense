@@ -1,0 +1,6 @@
+.SliderButton {
+    border-radius: 50%;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.5);
+    color: #7a4d1d;
+    padding: 0.3rem;
+}

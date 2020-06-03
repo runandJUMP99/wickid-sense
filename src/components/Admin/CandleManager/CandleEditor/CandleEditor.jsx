@@ -72,7 +72,9 @@ const CandleEditor = (props) => {
                 </Modal>
                 {fetchedCandles}
             </div>
-            <Button clicked={() => toggleModal(null)} btnType="Success" disabled={props.realms.length === 0}>Add Candle</Button>
+            <div onClick={() => toggleModal(null)} className={classes.AddCandle}>
+                <Button btnType="Success" disabled={props.realms.length === 0}>Add Candle</Button>
+            </div>
         </React.Fragment>
     );
 }
