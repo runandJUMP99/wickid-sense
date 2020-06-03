@@ -30,7 +30,7 @@ const RealmSelector = (props) => {
             <div className={classes.Selections}>
                 {content}
             </div>
-            <p onClick={props.onClick}>... just show me some candles, please</p>
+            <p onClick={() => props.onClick(props.realms[0].id)}>... just show me some candles, please</p>
         </div>
     );
 }

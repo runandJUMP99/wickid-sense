@@ -1,5 +1,4 @@
 .ProductSelector {
-    border-top: 1px dashed #eee;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -9,4 +8,12 @@
 
 .ProductSelector a:hover {
     text-decoration: none;
+}
+
+.Divider {
+    border-top: 10px dotted #edffea;
+    left: 35%;
+    text-align: center;
+    position: relative;
+    width: 30%;
 }

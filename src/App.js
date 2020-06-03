@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
 import Layout from "./components/Layout";
-import Spinner from "./components/UI/Spinner/Spinner";
+import GlobalLoader from "./components/UI/GlobalLoader/GlobalLoader";
 
 import './App.css';
 import "./index.css";
@@ -43,7 +43,7 @@ function App(props) {
   }
   return (
     <BrowserRouter>
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<GlobalLoader />}>
         {routes}
       </Suspense>
     </BrowserRouter>

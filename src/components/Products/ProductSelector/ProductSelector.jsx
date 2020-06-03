@@ -32,9 +32,12 @@ const ProductSelector = (props) => {
     }
 
     return (
-        <div className={classes.ProductSelector}>
-            {fetchedCandles}
-        </div>
+        <React.Fragment>
+            <div className={classes.Divider}></div>
+            <div className={classes.ProductSelector}>
+                {fetchedCandles}
+            </div>
+        </React.Fragment>
     );
 }
 

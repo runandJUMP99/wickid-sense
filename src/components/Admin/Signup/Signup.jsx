@@ -2,7 +2,7 @@ import React, {  useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import Spinner from "../../UI/Spinner/Spinner";
+import GlobalLoader from "../../UI/GlobalLoader/GlobalLoader";
 
 import classes from "./Signup.module.css";
 import * as actions from "../../../store/actions/index";
@@ -90,7 +90,7 @@ const Signup = (props) => {
     );   
     
     if (props.loading) {
-        form = <Spinner />
+        form = <GlobalLoader />
     }
 
     return (

@@ -1,4 +1,5 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import ItemsCarousel from "react-items-carousel";
 import {connect} from "react-redux";
 
 import Card from "../../UI/Card/Card";
@@ -13,10 +14,13 @@ const Favorites = (props) => {
         props.onFetchCandles();
     }, [props.onFetchCandles]);
 
-    let content = <Spinner />;
+    const [activeItemIndex, setActiveItemIndex] = useState(0);
+
+    let content = [<Spinner />];
+    let favoriteCandles = [];
 
     if (!props.loading) {
-        const favoriteCandles = props.candles.filter(candle => candle.favorite);
+        favoriteCandles = props.candles.filter(candle => candle.favorite);
 
         content = favoriteCandles.map(candle => (
             <Card
@@ -31,7 +35,17 @@ const Favorites = (props) => {
         <div className={classes.Favorites}>
             <h2>our finest creations</h2>
             <div className={classes.Candles}>
-                {content}
+                <ItemsCarousel
+                    infiniteLoop
+                    requestToChangeActive={setActiveItemIndex}
+                    activeItemIndex={activeItemIndex}
+                    numberOfCards={1}
+                    gutter={8}
+                    leftChevron={<button>{"<"}</button>}
+                    rightChevron={<button>{">"}</button>}
+                    outsideChevron
+                    chevronWidth={40}
+                    children={content} />
             </div>
         </div>
     );

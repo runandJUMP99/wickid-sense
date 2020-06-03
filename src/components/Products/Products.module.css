@@ -4,11 +4,14 @@
 }
 
 .ProductsTop {
+    border-radius: 16px;
+    margin: auto;   
     padding: 2rem;
 }
 
 @media (min-width: 41rem) {
     .ProductsTop {
         display: flex;
+        justify-content: center;
     }
 }

@@ -2,7 +2,7 @@
     align-items: center;
     background: #75daad;
     display: flex;
+    height: 100vh;
     flex-direction: column;
-    height: 100%;
     text-align: center;
 }
