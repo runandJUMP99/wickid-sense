@@ -5,6 +5,19 @@ import classes from "./DeleteMessage.module.css";
 import * as actions from "../../../store/actions/index";
 
 const DeleteMessage = (props) => {
+    let message = "Deleting this realm will also delete all associated candles.";
+    let selectedFunction = removeRealm;
+
+    if (props.selection === "candle") {
+        message = "Once deleted, the candle data can never be recovered.";
+        selectedFunction = removeCandle;
+    }
+
+    function removeCandle() {
+        props.onRemoveCandle(props.token, props.setCandleId);
+        props.onClick();
+    }
+
     function removeRealm() {
         const realmId = props.setRealmId;
 
@@ -25,10 +38,10 @@ const DeleteMessage = (props) => {
 
     return (
         <div className={classes.DeleteMessage}>
-            <h2>Deleting this realm will also delete all associated candles.</h2>
+            <h2>{message}</h2>
             <h3>do you wish to continue?</h3>
             <div className={classes.DeleteMessageActions}>
-                <button className={classes.DeleteMessageAction} onClick={removeRealm}>Delete</button>
+                <button className={classes.DeleteMessageAction} onClick={selectedFunction}>Delete</button>
                 <button className={classes.DeleteMessageAction} onClick={props.onClick} type="button">Cancel</button>
             </div>
         </div>      
@@ -39,6 +52,7 @@ const mapStateToProps = state => {
     return {
         candles: state.candles.candles,
         realms: state.realms.realms,
+        setCandleId: state.candles.setCandleId,
         setRealmId: state.realms.setRealmId,
         token: state.auth.token
     };

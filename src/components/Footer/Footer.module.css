@@ -3,7 +3,6 @@
 }
 
 .Footer ul {
-    color: #ccc;
     list-style: none;
     display: flex;
     justify-content: space-around;
@@ -11,7 +10,12 @@
     padding: 1rem;
 }
 
-.Footer li:hover {
+.Links {
+    color: #ccc;
+}
+
+.Links:hover {
     color: #eee;
     cursor: pointer;
+    text-decoration: none;
 }

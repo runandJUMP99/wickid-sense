@@ -5,6 +5,7 @@ import Backdrop from "../../../UI/Backdrop/Backdrop";
 import Button from "../../../UI/Button/Button";
 import Candle from "./Candle/Candle";
 import CandleEditorForm from "./CandleEditorForm/CandleEditorForm";
+import DeleteMessage from "../../DeleteMessage/DeleteMessage";
 import Modal from "../../../UI/Modal/Modal";
 import Spinner from "../../../UI/Spinner/Spinner";
 
@@ -18,13 +19,21 @@ const CandleEditor = (props) => {
         showModal: false,
     });
 
-    function toggleModal(candleId) {
+    const [modalContent, setModalContent] = useState();
+
+    function toggleModal(selection, candleId) {
         setModal(prevValue => {
             return {
                 showBackdrop: !prevValue.showBackdrop,
                 showModal: !prevValue.showModal
             }
         });
+
+        if (selection === "edit") {
+            setModalContent(<CandleEditorForm onClick={toggleModal}/>);
+        } else if (selection === "delete") {
+            setModalContent(<DeleteMessage selection="candle" onClick={toggleModal}/>);
+        }
 
         if (!modal.showBackdrop && candleId) {
             props.onSetCandleId(candleId);
@@ -57,8 +66,8 @@ const CandleEditor = (props) => {
                 img={candle.img}
                 name={candle.name}
                 price={candle.price}
-                onDelete={() => props.onRemoveCandle(props.token, candle.id)}
-                onEdit={() => toggleModal(candle.id)}
+                onEdit={() => toggleModal("edit", candle.id)}
+                onDelete={() => toggleModal("delete", candle.id)}
                 onFavorite={() => props.onEditFavoriteCandle(props.token, candle)} />
         ));
     }
@@ -68,11 +77,11 @@ const CandleEditor = (props) => {
             <div className={classes.CandleEditor}>
                 <Backdrop show={modal.showBackdrop} onClick={toggleModal}/>
                 <Modal show={modal.showModal}>
-                    <CandleEditorForm onClick={toggleModal}/>
+                    {modalContent}
                 </Modal>
                 {fetchedCandles}
             </div>
-            <div onClick={() => toggleModal(null)} className={classes.AddCandle}>
+            <div onClick={() => toggleModal("edit", null)} className={classes.AddCandle}>
                 <Button btnType="Success" disabled={props.realms.length === 0}>Add Candle</Button>
             </div>
         </React.Fragment>

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 
+import GlobalLoader from "../UI/GlobalLoader/GlobalLoader";
 import ProductDisplay from "./ProductDisplay/ProductDisplay";
 import ProductInfo from "./ProductInfo/ProductInfo";
 import ProductSelector from "./ProductSelector/ProductSelector";
-import Spinner from "../UI/Spinner/Spinner";
 
 import classes from "./Products.module.css"
 
@@ -13,13 +13,26 @@ const Product = (props) => {
     const [fade, setFade] = useState(false);
 
     useEffect(() => {
+        let selection = 0;
+        let complete = false;
+
+        if (props.setCandleId) {
+            props.candles.forEach(candle => {
+                if (candle.id !== props.setCandleId && !complete) {
+                    selection++; 
+                } else {
+                    complete = true;
+                }
+            });
+        }
+
         setSelectedCandle({
-            name: props.candles[0].name,
-            img: props.candles[0].img,
-            price: props.candles[0].price,
-            description: props.candles[0].description
+            name: props.candles[selection].name,
+            img: props.candles[selection].img,
+            price: props.candles[selection].price,
+            description: props.candles[selection].description
         });
-    }, [props.candles]);
+    }, [props.candles, props.setCandleId]);
 
     const handleClick = (selection) => {
         setFade(true);
@@ -42,31 +55,8 @@ const Product = (props) => {
         }, 1000);
     }
 
-    let selectedInfo = (
-        <div style={{
-            background: "#edffea",
-            borderRadius: "8px",
-            boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
-            margin: "auto",
-            padding: "1rem",
-            width: "325px"
-        }}>
-            <Spinner />
-        </div>
-    );
-    
-    let selectedProduct = (
-        <div style={{
-            background: "#edffea",
-            borderRadius: "8px",
-            boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
-            margin: "auto",
-            padding: "1rem",
-            width: "325px"
-        }}>
-            <Spinner />
-        </div>
-    );
+    let selectedProduct;
+    let selectedInfo;
 
     if (!props.loading) {
         selectedProduct = (
@@ -86,6 +76,7 @@ const Product = (props) => {
 
     return (
         <div className={classes.Products}>
+            {props.loading && <GlobalLoader />}
             <div className={classes.ProductsTop}>
                 {selectedProduct}
                 {selectedInfo}  
@@ -98,7 +89,8 @@ const Product = (props) => {
 const mapStateToProps = state => {
     return {
         candles: state.candles.candles,
-        loading: state.candles.loading
+        loading: state.candles.loading,
+        setCandleId: state.candles.setCandleId
     };
 };
 

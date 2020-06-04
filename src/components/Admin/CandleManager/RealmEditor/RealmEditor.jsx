@@ -7,7 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DeleteMessage from "../../DeleteMessage/DeleteMessage";
 import EditIcon from '@material-ui/icons/Edit';
 import Modal from "../../../UI/Modal/Modal";
-import Realm from "../../../Products/RealmSelector/Realm/Realm";
+import Realm from "../../../UI/Realm/Realm";
 import RealmEditorForm from "./RealmEditorForm/RealmEditorForm";
 import Spinner from "../../../UI/Spinner/Spinner";
 
@@ -33,7 +33,7 @@ const RealmEditor = (props) => {
         if (selection === "edit") {
             setModalContent(<RealmEditorForm onClick={toggleModal}/>);
         } else if (selection === "delete") {
-            setModalContent(<DeleteMessage onClick={toggleModal}/>);
+            setModalContent(<DeleteMessage selection="realm" onClick={toggleModal}/>);
         }
 
         if (!modal.showBackdrop && realmId) {
@@ -75,6 +75,7 @@ const RealmEditor = (props) => {
                 {modalContent}
             </Modal>
             <div className={classes.Realms}>
+                {!props.loading && <h1>assistant regional candle manager</h1>}
                 {content}
             </div>
             <Button clicked={() => toggleModal("edit", null)} btnType="Success">Add Realm</Button>

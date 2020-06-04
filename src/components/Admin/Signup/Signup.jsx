@@ -68,7 +68,7 @@ const Signup = (props) => {
     let form = (
         <React.Fragment>
             {errorMessage ? errorMessage : <p className="mb-3 text-center">please sign in</p>}
-            <form onSubmit={submitHandler}>
+            <form className={classes.Form} onSubmit={submitHandler}>
                 {formElementsArray.map(formElement => (
                     <input 
                         key={formElement.id}
@@ -79,11 +79,6 @@ const Signup = (props) => {
                         value={formElement.config.value}
                         required />
                 ))}
-                <div className="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me" /> remember me
-                    </label>
-                </div>
                 <button className="btn btn-lg btn-block" type="submit">sign in</button>
             </form>
         </React.Fragment>

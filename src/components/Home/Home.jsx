@@ -14,7 +14,9 @@ const Home = (props) => {
         <div className={classes.Home}>
             {props.loading && <GlobalLoader />}
             <Jumbotron />
-            <Favorites />
+            <Favorites 
+                onClick={props.onClick} 
+                onFavoriteSelection={props.onFavoriteSelection}/>
             <Testimonials />
             <CTASection onClick={props.onClick}/>
         </div>

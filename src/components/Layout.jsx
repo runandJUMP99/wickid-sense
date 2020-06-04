@@ -19,8 +19,11 @@ const Layout = (props) => {
         showModal: false,
         showSideDrawer: false
     });
-
     const [modalContent, setModalContent] = useState();
+    const [content, setContent] = useState(<Home 
+        onClick={toggleModal} 
+        onFavoriteSelection={handleChange} />
+    );
 
     function toggleModal(content) {
         if (content === "sidedrawer") {
@@ -56,17 +59,22 @@ const Layout = (props) => {
         }
     }
 
-    const [content, setContent] = useState(<Home onClick={toggleModal} />);
-
     function handleChange(selection) {
         if (selection === "home") {
-            setContent(<Home onClick={toggleModal} />);
+            setContent(<Home 
+                onClick={toggleModal}
+                onFavoriteSelection={handleChange} />
+            );
             toggleModal("home");
         }
         else {
+            console.log(selection);
             props.onFetchCandles(selection);
             setContent(<Products />);
+            
+            if (modal.showBackdrop) {
             toggleModal();
+            }
         }
     }
 
@@ -89,7 +97,7 @@ const Layout = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchCandles: (realm) => dispatch(actions.fetchCandles(realm)),
+        onFetchCandles: (realm) => dispatch(actions.fetchCandles(realm))
     };
 };
 

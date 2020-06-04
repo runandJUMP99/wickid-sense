@@ -13,18 +13,7 @@ import classes from "./ProductSelector.module.css";
 const ProductSelector = (props) => {
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
-    let fetchedCandles = (
-        <div style={{
-            background: "#edffea",
-            borderRadius: "8px",
-            boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.5)",
-            margin: "auto",
-            padding: "1rem",
-            width: "325px"
-        }}>
-            <Spinner />
-        </div>
-    );
+    let fetchedCandles = [];
 
     if (!props.loading) {
         fetchedCandles = props.candles.map(candle => (

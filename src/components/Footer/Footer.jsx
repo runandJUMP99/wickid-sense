@@ -9,8 +9,8 @@ const Footer = (props) => {
         <div className={classes.Footer}>
             <Newsletter />
             <ul>
-                <li onClick={() => props.onClick("products")}>products</li>
-                <li>contact us</li>
+                <li className={classes.Links} onClick={() => props.onClick("products")}>products</li>
+                <a className={classes.Links} href="mailto:wickidsense@gmail.com">contact us</a>
             </ul>
         </div>
     )

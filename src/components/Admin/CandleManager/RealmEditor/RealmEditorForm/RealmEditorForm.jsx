@@ -4,7 +4,7 @@ import {storage} from "../../../../../firebase/firebase";
 
 import Button from "../../../../UI/Button/Button";
 import Input from "../../../../UI/Input/Input";
-import Realm from "../../../../Products/RealmSelector/Realm/Realm";
+import Realm from "../../../../UI/Realm/Realm";
 import Spinner from "../../../../UI/Spinner/Spinner";
 
 import classes from "./RealmEditorForm.module.css";

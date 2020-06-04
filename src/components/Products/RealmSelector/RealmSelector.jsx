@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 
-import Realm from "./Realm/Realm";
+import Realm from "../../UI/Realm/Realm";
 import Spinner from "../../UI/Spinner/Spinner"
 
 import classes from "./RealmSelector.module.css";
