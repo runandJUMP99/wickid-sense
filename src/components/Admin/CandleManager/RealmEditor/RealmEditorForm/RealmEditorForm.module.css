@@ -24,6 +24,11 @@
     outline: none;
 }
 
+.ImgLoading {
+    margin-bottom: 2rem;
+    width: 50%;
+}
+
 @media (min-width: 700px) {
     .RealmEditorForm {
         flex-direction: row;

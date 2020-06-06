@@ -4,6 +4,7 @@ import {storage} from "../../../../../firebase/firebase";
 
 import Button from "../../../../UI/Button/Button";
 import Input from "../../../../UI/Input/Input";
+import ProgressBar from "react-bootstrap/ProgressBar";
 import Realm from "../../../../UI/Realm/Realm";
 import Spinner from "../../../../UI/Spinner/Spinner";
 
@@ -43,6 +44,7 @@ const RealmEditorForm = (props) => {
     const [realm, setRealm] = useState(<Realm />);
     const [imageAsFile, setImageAsFile] = useState("");
     const [imgLoading, setImgLoading] = useState(false);
+    const [status, setStatus] = useState();
 
     
     useEffect(() => {
@@ -73,7 +75,7 @@ const RealmEditorForm = (props) => {
             } else {   
                 for (let key in updatedRealm) {
                     updatedRealm[key].value = "";
-                }    
+                }
             }
 
         } else {   
@@ -105,8 +107,8 @@ const RealmEditorForm = (props) => {
 
             uploadTask.on("state_changed", snapshot => {
                 setImgLoading(true);
-                console.log(snapshot);
-                status = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes)) * 100;
+                let progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes)) * 100;
+                setStatus(<ProgressBar animated variant="success" now={progress} />);
             }, err => {
                 console.log(err);
             }, () => {
@@ -217,16 +219,13 @@ const RealmEditorForm = (props) => {
             <div className={classes.Cancel} onClick={props.onClick}>CANCEL</div>
         </form>
     );
-
-    let status;
-    console.log(status);
     
     if (props.loading || imgLoading) {
         newForm = (
-            <React.Fragment>
+            <div className={classes.ImgLoading}>
                 <Spinner />
                 {status}
-            </React.Fragment>
+            </div>
         );
     }
 
