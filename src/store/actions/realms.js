@@ -1,3 +1,4 @@
+import {storage} from "../../firebase/firebase";
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios";
 
@@ -32,12 +33,20 @@ export const editRealm = (token, realmData, realmId) => {
 };
 
 
-export const removeRealm = (token, realmId) => {
+export const removeRealm = (token, realmId, imgName) => {
     return dispatch => {
         dispatch(editRealmStart());
-
+        
         axios.delete("/realms/" + realmId + ".json?auth=" + token)
             .then(response => {
+                const deleteTask = storage.ref(`/images/${imgName}`).delete()
+                    .then(() => {
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        dispatch(editRealmFail(error));
+                    });
+                    
                 dispatch(removeRealmSuccess(realmId));
             })
             .catch(error => {

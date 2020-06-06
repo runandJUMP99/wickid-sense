@@ -1,3 +1,4 @@
+import {storage} from "../../firebase/firebase";
 import * as actionTypes from "./actionTypes";
 import axios from "../../axios";
 
@@ -35,17 +36,25 @@ export const editCandle = (token, candleData, candleId) => {
     };
 };
 
-export const removeCandle = (token, candleId) => {
+export const removeCandle = (token, candleId, imgName) => {
     return dispatch => {
         dispatch(editCandleStart());
 
         axios.delete("/candles/" + candleId + ".json?auth=" + token)
             .then(response => {
+                const deleteTask = storage.ref(`/images/${imgName}`).delete()
+                    .then(() => {
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        dispatch(editCandleFail(error));
+                    });
+                
                 dispatch(removeCandleSuccess(candleId));
             })
             .catch(error => {
                 dispatch(editCandleFail(error));
-            });
+            });             
     };
 };
 

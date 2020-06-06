@@ -14,22 +14,25 @@ const DeleteMessage = (props) => {
     }
 
     function removeCandle() {
-        props.onRemoveCandle(props.token, props.setCandleId);
+        props.candles.forEach(candle => {
+            if (candle.id === props.setCandleId) {
+                props.onRemoveCandle(props.token, candle.id, candle.imgName);
+            }
+        })
+
         props.onClick();
     }
 
     function removeRealm() {
-        const realmId = props.setRealmId;
-
         props.realms.forEach(realm => {
-            if (realm.id === realmId) {
-                props.onRemoveRealm(props.token, realmId)
+            if (realm.id === props.setRealmId) {
+                props.onRemoveRealm(props.token, realm.id, realm.imgName);
             }
         });
         
         props.candles.forEach(candle => {
-            if (candle.realm === realmId) {
-                props.onRemoveCandle(props.token, candle.id)
+            if (candle.realm === props.setRealmId) {
+                props.onRemoveCandle(props.token, candle.id, candle.imgName);
             }
         });
 
@@ -60,8 +63,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRemoveCandle: (token, candleId) => dispatch(actions.removeCandle(token, candleId)),
-        onRemoveRealm: (token, realmId) => dispatch(actions.removeRealm(token, realmId))
+        onRemoveCandle: (token, candleId, imgName) => dispatch(actions.removeCandle(token, candleId, imgName)),
+        onRemoveRealm: (token, realmId, imgName) => dispatch(actions.removeRealm(token, realmId, imgName))
     };
 };
 

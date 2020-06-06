@@ -29,11 +29,13 @@ const RealmEditorForm = (props) => {
             elementType: 'input',
             elementConfig: {
                 accept: "image/*",
-                type: 'file'
+                type: 'file',
+                id: "upload"
             },
             value: "",
             validation: {},
-            valid: true
+            valid: true,
+            label: "Upload Image"
         }
     });
     
@@ -104,6 +106,7 @@ const RealmEditorForm = (props) => {
             uploadTask.on("state_changed", snapshot => {
                 setImgLoading(true);
                 console.log(snapshot);
+                status = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes)) * 100;
             }, err => {
                 console.log(err);
             }, () => {
@@ -111,7 +114,8 @@ const RealmEditorForm = (props) => {
                     .then(firebaseUrl => {    
                         formData = {
                             ...formData,
-                            img: firebaseUrl
+                            img: firebaseUrl,
+                            imgName: imageAsFile.name
                         };
     
                         if (props.setRealmId) {
@@ -199,21 +203,31 @@ const RealmEditorForm = (props) => {
             {formElementsArray.map(formElement => (
                 <Input 
                     key={formElement.id}
+                    id={formElement.id}
                     elementType={formElement.config.elementType}
                     elementConfig={formElement.config.elementConfig}
                     value={formElement.config.value}
                     invalid={!formElement.config.valid}
                     shouldValidate={formElement.config.validation}
                     touched={formElement.config.touched}
+                    label={formElement.config.label}
                     changed={(event) => inputChangedHandler(event, formElement.id)} />
             ))}
             <Button btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
             <div className={classes.Cancel} onClick={props.onClick}>CANCEL</div>
         </form>
     );
+
+    let status;
+    console.log(status);
     
     if (props.loading || imgLoading) {
-        newForm = <Spinner />;
+        newForm = (
+            <React.Fragment>
+                <Spinner />
+                {status}
+            </React.Fragment>
+        );
     }
 
     return (

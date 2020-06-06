@@ -196,7 +196,8 @@ const CandleEditorForm = (props) => {
                     .then(firebaseUrl => {
                         formData = {
                             ...formData,
-                            img: firebaseUrl
+                            img: firebaseUrl,
+                            imgName: imageAsFile.name
                         };
                 
                         if (props.setCandleId) {

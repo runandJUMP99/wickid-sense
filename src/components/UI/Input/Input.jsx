@@ -5,9 +5,9 @@ import classes from './Input.module.css';
 const input = (props) => {
     let inputElement = null;
     let moneySymbol;
-    let labelStyle = {display: "none"};
     let styles = null
     const inputClasses = [classes.InputElement];
+    const labelClasses = [classes.Label];
 
     if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
@@ -17,7 +17,7 @@ const input = (props) => {
         case ( 'input' ):
             if (props.elementConfig.placeholder === "") {
                inputClasses.push(classes.Price);
-               labelStyle = {display: "inline-block"};
+               labelClasses.push(classes.PriceLabel);
                styles = {
                    display: "inline-block",
                    padding: "8px 2px",
@@ -31,16 +31,7 @@ const input = (props) => {
                 }
             } else if (props.elementConfig.type === "file") {
                 inputClasses.push(classes.Upload);
-                labelStyle = {
-                    background: "white",
-                    border: "1px solid #ccc",
-                    boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.25)",
-                    borderRadius: "12px",
-                    cursor: "pointer",
-                    display: "inline-block",
-                    marginTop: "0.5rem",
-                    padding: "0.5rem 1rem"
-                };
+                labelClasses.push(classes.UploadLabel);
             }
 
             inputElement = (
@@ -82,10 +73,9 @@ const input = (props) => {
                 value={props.value}
                 onChange={props.changed} />;
     }
-
     return (
         <div style={styles}className={classes.Input}>
-            <label htmlFor={props.elementConfig.id} style={labelStyle} className={classes.Label}>{props.label}</label>
+            <label htmlFor={props.elementConfig.id} className={labelClasses.join(" ")}>{props.label}</label>
             {inputElement}
         </div>
     );
