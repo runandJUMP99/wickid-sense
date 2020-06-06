@@ -23,12 +23,24 @@ const input = (props) => {
                    padding: "8px 2px",
                    width: "auto"
                 };
-
-               if (props.id === "priceDollars") {
-                   moneySymbol = " $";
-               } else if (props.id === "priceCents") {
-                   moneySymbol = ". ";
-               }
+                
+                if (props.id === "priceDollars") {
+                    moneySymbol = " $";
+                } else if (props.id === "priceCents") {
+                    moneySymbol = ". ";
+                }
+            } else if (props.elementConfig.type === "file") {
+                inputClasses.push(classes.Upload);
+                labelStyle = {
+                    background: "white",
+                    border: "1px solid #ccc",
+                    boxShadow: "0 1px 2px 1px rgba(0, 0, 0, 0.25)",
+                    borderRadius: "12px",
+                    cursor: "pointer",
+                    display: "inline-block",
+                    marginTop: "0.5rem",
+                    padding: "0.5rem 1rem"
+                };
             }
 
             inputElement = (
@@ -73,7 +85,7 @@ const input = (props) => {
 
     return (
         <div style={styles}className={classes.Input}>
-            <label style={labelStyle} className={classes.Label}>{props.label}</label>
+            <label htmlFor={props.elementConfig.id} style={labelStyle} className={classes.Label}>{props.label}</label>
             {inputElement}
         </div>
     );

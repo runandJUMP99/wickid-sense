@@ -2,3 +2,5 @@
 [0604/144559.980:ERROR:process_info.cc(359)] UncheckedAllocate
 [0604/181209.934:ERROR:file_io.cc(89)] ReadExactly: expected 11480, observed 0
 [0604/181209.935:ERROR:crash_report_database_win.cc(445)] failed to read records
+[0605/200827.312:ERROR:process_info.cc(359)] UncheckedAllocate
+[0605/200827.622:ERROR:process_info.cc(359)] UncheckedAllocate

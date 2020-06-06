@@ -22,8 +22,7 @@ const CandleEditorForm = (props) => {
             },
             value: "",
             validation: {},
-            valid: true,
-            label: null
+            valid: true
         },
         name: {
             elementType: 'input',
@@ -36,8 +35,7 @@ const CandleEditorForm = (props) => {
                 required: true
             },
             valid: false,
-            touched: false,
-            label: null
+            touched: false
         },
         priceDollars: {
             elementType: 'input',
@@ -66,8 +64,7 @@ const CandleEditorForm = (props) => {
                 isNumeric: true
             },
             valid: false,
-            touched: false,
-            label: null
+            touched: false
         },
         description: {
             elementType: 'textarea',
@@ -80,19 +77,19 @@ const CandleEditorForm = (props) => {
                 required: true
             },
             valid: false,
-            touched: false,
-            label: null
+            touched: false
         },
         img: {
             elementType: 'input',
             elementConfig: {
                 accept: "image/*",
-                type: 'file'
+                type: 'file',
+                id: "upload"
             },
             value: "",
             validation: {},
             valid: true,
-            label: null
+            label: "Upload Image"
         }
     });
 

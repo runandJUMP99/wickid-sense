@@ -74,8 +74,8 @@ const RealmEditor = (props) => {
             <Modal show={modal.showModal}>
                 {modalContent}
             </Modal>
+            {!props.loading && <h1>assistant regional candle manager</h1>}
             <div className={classes.Realms}>
-                {!props.loading && <h1>assistant regional candle manager</h1>}
                 {content}
             </div>
             <Button clicked={() => toggleModal("edit", null)} btnType="Success">Add Realm</Button>

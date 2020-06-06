@@ -19,15 +19,19 @@
     width: 100%;
 }
 
+.InputElement:focus {
+    background-color: #ccc;
+    outline: none;
+}
+
 .Price {
     display: inline-block;
     margin: 0 0.25rem;
     width: 2.5rem !important;
 }
 
-.InputElement:focus {
-    background-color: #ccc;
-    outline: none;
+.Upload {
+    display: none;
 }
 
 .Invalid {

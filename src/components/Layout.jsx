@@ -54,7 +54,7 @@ const Layout = (props) => {
             if (content !== "home") {
                 setTimeout(() => {
                     setModalContent()
-                }, 1000);
+                }, 500);
             }
         }
     }
@@ -68,12 +68,11 @@ const Layout = (props) => {
             toggleModal("home");
         }
         else {
-            console.log(selection);
             props.onFetchCandles(selection);
             setContent(<Products />);
             
-            if (modal.showBackdrop) {
-            toggleModal();
+            if (!modal.showBackdrop) {
+                toggleModal();
             }
         }
     }

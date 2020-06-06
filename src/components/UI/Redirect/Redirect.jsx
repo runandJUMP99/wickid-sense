@@ -8,7 +8,7 @@ const Redirect = (props) => {
             <h2>to continue shopping, you will be redirected to another site</h2>
             <h3>do you wish to continue?</h3>
             <div className={classes.RedirectActions}>
-                <button className={classes.RedirectAction} onClick={props.onClick} type="button">no!</button>
+                <span className={classes.RedirectAction} onClick={props.onClick}>no!</span>
                 <a className={classes.RedirectAction} href="/">yes!</a>
             </div>
         </div>        

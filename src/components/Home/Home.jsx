@@ -13,12 +13,12 @@ const Home = (props) => {
     return (
         <div className={classes.Home}>
             {props.loading && <GlobalLoader />}
-            <Jumbotron />
+            {!props.loading && <Jumbotron />}
             <Favorites 
                 onClick={props.onClick} 
                 onFavoriteSelection={props.onFavoriteSelection}/>
-            <Testimonials />
-            <CTASection onClick={props.onClick}/>
+            {!props.loading && <Testimonials />}
+            {!props.loading && <CTASection onClick={props.onClick}/>}
         </div>
     );
 }

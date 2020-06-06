@@ -17,12 +17,12 @@
     text-align: center;
 }
 
-.RedirectActions button {
+.RedirectActions span {
     background: #616161;
 }
 
-.RedirectActions button:hover,
-.RedirectActions button:active {
+.RedirectActions span:hover,
+.RedirectActions span:active {
     background: #888888;
 }
 

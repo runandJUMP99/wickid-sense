@@ -6,3 +6,30 @@
     flex-direction: column;
     text-align: center;
 }
+
+.HomeIcon a {
+    background: #edffea;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.5);
+    color: #216353;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 2rem;
+    transition: all 0.25s ease-out;
+}
+
+.HomeIcon a:hover {
+    box-shadow: 0 1px 4px 2px rgba(0, 0, 0, 0.5);
+    color: #75daad;
+    cursor: pointer;
+}
+
+@media (min-width: 1150px) {
+    .HomeIcon a {
+        border-radius: 0 16px 16px 0;
+        left: 0;
+        padding: 1rem;
+        position: absolute;
+        top: 2rem;
+    }
+}

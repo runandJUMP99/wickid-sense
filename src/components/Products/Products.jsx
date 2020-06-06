@@ -32,7 +32,7 @@ const Product = (props) => {
             price: props.candles[selection].price,
             description: props.candles[selection].description
         });
-    }, [props.candles, props.setCandleId]);
+    }, [props.candles]);
 
     const handleClick = (selection) => {
         setFade(true);

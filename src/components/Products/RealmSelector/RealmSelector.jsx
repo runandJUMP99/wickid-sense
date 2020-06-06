@@ -10,7 +10,8 @@ import * as actions from "../../../store/actions/index";
 const RealmSelector = (props) => {
     useEffect(() => {
         props.onFetchRealms();
-    }, [props.onFetchRealms]);
+        props.onSetCandleId(null);
+    }, [props.onFetchRealms, props.onSetCandleId]);
 
     let content = <Spinner />;
 
@@ -30,7 +31,7 @@ const RealmSelector = (props) => {
             <div className={classes.Selections}>
                 {content}
             </div>
-            <p onClick={() => props.onClick(props.realms[0].id)}>... just show me some candles, please</p>
+            <p onClick={() => props.onClick(null)}>... just show me some candles, please</p>
         </div>
     );
 }
@@ -44,7 +45,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchRealms: () => dispatch(actions.fetchRealms())
+        onFetchRealms: () => dispatch(actions.fetchRealms()),
+        onSetCandleId: (candleId) => dispatch(actions.setCandleId(candleId))
     };
 };
 
