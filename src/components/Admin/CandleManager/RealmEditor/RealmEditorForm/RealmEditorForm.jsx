@@ -44,10 +44,10 @@ const RealmEditorForm = (props) => {
     const [realm, setRealm] = useState(<Realm />);
     const [imageAsFile, setImageAsFile] = useState("");
     const [imgLoading, setImgLoading] = useState(false);
-    const [status, setStatus] = useState();
-
+    const [status, setStatus] = useState(null);
     
     useEffect(() => {
+        setFormIsValid(false);
         const updatedRealm = {
             ...form
         };
@@ -57,15 +57,16 @@ const RealmEditorForm = (props) => {
         
         if (props.setRealmId) {
             const setRealm = props.realms.filter(realm => realm.id === props.setRealmId);
-
+            setFormIsValid(true);
+            
             if (setRealm.length !== 0) {
                 setRealmName = setRealm[0].name;
                 setRealmImg = setRealm[0].img;
                 
                 const setRealmInfo = [setRealmName, setRealmImg];
-
+                
                 let i = 0;
-            
+                
                 for (let key in updatedRealm) {
                     if (key !== "img") {
                         updatedRealm[key].value = setRealmInfo[i];
@@ -77,24 +78,24 @@ const RealmEditorForm = (props) => {
                     updatedRealm[key].value = "";
                 }
             }
-
+            
         } else {   
             for (let key in updatedRealm) {
                 updatedRealm[key].value = "";
             }    
         }
-
+        
         setForm(updatedRealm);
         setRealm(<Realm 
-                    name={setRealmName}
-                    img={setRealmImg} />);
+            name={setRealmName}
+            img={setRealmImg} />);
     }, [props.setRealmId, props.realms]);
-
+                
     function submitHandler(event) {
         event.preventDefault();
-
+        
         let formData = {};
-                    
+        
         for (let formElementIdentifier in form) {
             if (formElementIdentifier !== "img") {
                 formData[formElementIdentifier] = form[formElementIdentifier].value;
@@ -102,12 +103,14 @@ const RealmEditorForm = (props) => {
         }
         
         if (form.img.value) {
-
             const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile);
+            let progress;
 
             uploadTask.on("state_changed", snapshot => {
+                console.log(snapshot);
                 setImgLoading(true);
-                let progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes)) * 100;
+                progress = Math.floor(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log(progress);
                 setStatus(<ProgressBar animated variant="success" now={progress} />);
             }, err => {
                 console.log(err);
@@ -127,6 +130,7 @@ const RealmEditorForm = (props) => {
                         }
     
                         setImgLoading(false);
+                        setStatus(null);
                         props.onClick();
                     });
             });

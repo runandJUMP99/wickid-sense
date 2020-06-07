@@ -25,6 +25,10 @@ export const addCandle = (token, candleData) => {
 export const editCandle = (token, candleData, candleId) => {
     return dispatch => {
         dispatch(editCandleStart());
+        candleData = {
+            ...candleData,
+            price: `$${candleData.priceDollars}.${candleData.priceCents}`
+        };
 
         axios.put("/candles/" + candleId + ".json?auth=" + token, candleData)
             .then(response => {

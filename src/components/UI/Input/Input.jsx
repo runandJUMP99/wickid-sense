@@ -15,6 +15,7 @@ const input = (props) => {
 
     switch ( props.elementType ) {
         case ( 'input' ):
+            console.log(props.elementConfig.type);
             if (props.elementConfig.placeholder === "") {
                inputClasses.push(classes.Price);
                labelClasses.push(classes.PriceLabel);

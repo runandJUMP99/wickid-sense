@@ -22,8 +22,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 candles: [newCandle],
-                loading: false,
-                setCandleId: null
+                loading: false
             };
         case actionTypes.REMOVE_CANDLE_SUCCESS:
             return {

@@ -5,6 +5,7 @@ import {storage} from "../../../../../firebase/firebase";
 import Button from "../../../../UI/Button/Button";
 import CandleImg from "../Candle/CandleImg/CandleImg";
 import Input from "../../../../UI/Input/Input";
+import ProgressBar from "react-bootstrap/ProgressBar";
 import Spinner from "../../../../UI/Spinner/Spinner";
 
 import classes from "./CandleEditorForm.module.css";
@@ -97,8 +98,10 @@ const CandleEditorForm = (props) => {
     const [candleImage, setCandleImage] = useState(<CandleImg />);
     const [imageAsFile, setImageAsFile] = useState("");
     const [imgLoading, setImgLoading] = useState(false);
+    const [status, setStatus] = useState(null);
 
     useEffect(() => {
+        setFormIsValid(false);
         const updatedCandle = {
             ...form
         };
@@ -108,6 +111,7 @@ const CandleEditorForm = (props) => {
 
         if (props.setCandleId) {
             const setCandle = props.candles.filter(candle => candle.id === props.setCandleId);
+            setFormIsValid(true);
     
             if (setCandle.length !== 0) {
                 let setCandleRealm = setCandle[0].realm;
@@ -161,8 +165,8 @@ const CandleEditorForm = (props) => {
 
         setForm(updatedCandle);
         setCandleImage(<CandleImg 
-                        name={setCandleName}
-                        img={setCandleImg} />);
+            name={setCandleName}
+            img={setCandleImg} />);
     }, [props.candles, props.realms, props.setCandleId]);
 
     function submitHandler(event) {
@@ -183,12 +187,18 @@ const CandleEditorForm = (props) => {
             }
         }
 
+        console.log(form.img.value);
+
         if (form.img.value) {
             const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile);
-            
+            let progress;
+
             uploadTask.on("state_changed", snapshot => {
-                setImgLoading(true);
                 console.log(snapshot);
+                setImgLoading(true);
+                progress = Math.floor(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log(progress);
+                setStatus(<ProgressBar animated variant="success" now={(snapshot.bytesTransferred / snapshot.totalBytes) * 100} />);
             }, err => {
                 console.log(err);
             }, () => {
@@ -207,6 +217,7 @@ const CandleEditorForm = (props) => {
                         }
 
                         setImgLoading(false);
+                        setStatus(null);
                         props.onClick();
                     });
             });
@@ -308,7 +319,12 @@ const CandleEditorForm = (props) => {
     );
 
     if (props.loading || imgLoading) {
-        newForm = <Spinner />;
+        newForm = (
+            <div className={classes.ImgLoading}>
+                <Spinner />
+                {status}
+            </div>    
+        );
     }
 
     return (
