@@ -48,3 +48,5 @@
 [0609/164128.661:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
 [0609/164128.661:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
 [0609/164128.661:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0610/115000.584:ERROR:process_info.cc(359)] UncheckedAllocate
+[0610/115005.757:ERROR:process_info.cc(359)] UncheckedAllocate
