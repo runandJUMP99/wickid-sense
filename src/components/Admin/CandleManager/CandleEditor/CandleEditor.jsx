@@ -100,7 +100,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onEditFavoriteCandle: (token, candleId) => dispatch(actions.editFavoriteCandle(token, candleId)),
-        onRemoveCandle: (token, candleId) => dispatch(actions.removeCandle(token, candleId)),
         onSetCandleId: (candleId) => dispatch(actions.setCandleId(candleId))
     };
 };

@@ -28,8 +28,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 candles: state.candles.filter(candle => candle.id !== action.candleId),
-                loading: false,
-                setCandleId: null
+                loading: false
             };
         case actionTypes.EDIT_FAVORITE_CANDLE_SUCCESS:
             state.candles.forEach(candle => {
@@ -48,7 +47,8 @@ const reducer = (state = initialState, action) => {
             };
         case actionTypes.FETCH_CANDLES_START:
             return {
-                ...state, loading: true
+                ...state, 
+                loading: true
             };
         case actionTypes.FETCH_CANDLES_SUCCESS:
             return {

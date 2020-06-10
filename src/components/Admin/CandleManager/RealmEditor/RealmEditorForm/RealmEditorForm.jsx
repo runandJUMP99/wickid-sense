@@ -104,14 +104,10 @@ const RealmEditorForm = (props) => {
         
         if (form.img.value) {
             const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile);
-            let progress;
 
             uploadTask.on("state_changed", snapshot => {
-                console.log(snapshot);
                 setImgLoading(true);
-                progress = Math.floor(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log(progress);
-                setStatus(<ProgressBar animated variant="success" now={progress} />);
+                setStatus(<ProgressBar animated variant="success" now={(snapshot.bytesTransferred / snapshot.totalBytes) * 100} />);
             }, err => {
                 console.log(err);
             }, () => {

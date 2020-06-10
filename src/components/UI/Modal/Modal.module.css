@@ -59,6 +59,12 @@
     border-color: #ff5454;
 }
 
+@media (max-width: 374px) {
+    .Modal {
+        position: absolute !important;
+    }
+}
+
 @media (min-width: 1000px) {
     .Modal {
         left: 20%;

@@ -39,12 +39,11 @@ export const removeRealm = (token, realmId, imgName) => {
         
         axios.delete("/realms/" + realmId + ".json?auth=" + token)
             .then(response => {
-                const deleteTask = storage.ref(`/images/${imgName}`).delete()
+                storage.ref(`/images/${imgName}`).delete()
                     .then(() => {
                     })
                     .catch(error => {
                         console.log(error);
-                        dispatch(editRealmFail(error));
                     });
                     
                 dispatch(removeRealmSuccess(realmId));

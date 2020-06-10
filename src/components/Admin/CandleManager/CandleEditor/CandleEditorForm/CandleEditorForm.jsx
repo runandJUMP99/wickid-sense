@@ -151,13 +151,14 @@ const CandleEditorForm = (props) => {
                 for (let key in updatedCandle) {
                     updatedCandle[key].value = "";
                 }
+
             }
         } else {
             updatedCandle.realm.elementConfig.options = props.realms.map(realm => ({
                 value: realm.id, 
                 displayValue: realm.name
             }));
-        
+            
             for (let key in updatedCandle) {
                 updatedCandle[key].value = "";
             }
@@ -187,17 +188,11 @@ const CandleEditorForm = (props) => {
             }
         }
 
-        console.log(form.img.value);
-
         if (form.img.value) {
             const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile);
-            let progress;
 
             uploadTask.on("state_changed", snapshot => {
-                console.log(snapshot);
                 setImgLoading(true);
-                progress = Math.floor(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log(progress);
                 setStatus(<ProgressBar animated variant="success" now={(snapshot.bytesTransferred / snapshot.totalBytes) * 100} />);
             }, err => {
                 console.log(err);
@@ -248,6 +243,8 @@ const CandleEditorForm = (props) => {
         const updatedCandleElement = { 
             ...updatedCandle[inputIdentifier]
         };
+
+        console.log(event.target);
         
         if (event.target.type === "file") {
             const image = event.target.files[0];
@@ -297,25 +294,23 @@ const CandleEditorForm = (props) => {
     }
 
     let newForm = (
-        <React.Fragment>
-            <form onSubmit={submitHandler}>
-                {formElementsArray.map(formElement => (
-                    <Input 
-                        key={formElement.id}
-                        id={formElement.id}
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        value={formElement.config.value}
-                        invalid={!formElement.config.valid}
-                        shouldValidate={formElement.config.validation}
-                        touched={formElement.config.touched}
-                        label={formElement.config.label}
-                        changed={(event) => inputChangedHandler(event, formElement.id)} />
-                ))}
-                <Button btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
-                <div className={classes.Cancel} onClick={props.onClick}>CANCEL</div>
-            </form> 
-        </React.Fragment>
+        <form onSubmit={submitHandler}>
+            {formElementsArray.map(formElement => (
+                <Input 
+                    key={formElement.id}
+                    id={formElement.id}
+                    elementType={formElement.config.elementType}
+                    elementConfig={formElement.config.elementConfig}
+                    value={formElement.config.value}
+                    invalid={!formElement.config.valid}
+                    shouldValidate={formElement.config.validation}
+                    touched={formElement.config.touched}
+                    label={formElement.config.label}
+                    changed={(event) => inputChangedHandler(event, formElement.id)} />
+            ))}
+            <Button btnType="Success" disabled={!formIsValid}>SUBMIT</Button>
+            <div className={classes.Cancel} onClick={props.onClick}>CANCEL</div>
+        </form> 
     );
 
     if (props.loading || imgLoading) {
@@ -348,7 +343,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAddCandle: (token, candleData) => dispatch(actions.addCandle(token, candleData)),
-        onEditCandle: (token, candleData, candleId) => dispatch(actions.editCandle(token, candleData, candleId)),
+        onEditCandle: (token, candleData, candleId) => dispatch(actions.editCandle(token, candleData, candleId))
     };
 };
 
