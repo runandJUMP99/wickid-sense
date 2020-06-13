@@ -1,23 +1,37 @@
 .CTAButton {
     animation: float 4s infinite ease-in-out;
-    background: #eee;
-    border: 8px solid #ccc;
-    border-radius: 32px;
-    box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
     cursor: pointer;
     font-family: initial;
     font-weight: bold;
-    margin: 1rem 2rem;
+    margin: 0.5rem 2rem;
+    padding: 0.2rem;
+    position: relative;
     text-align: center;
-    transition: box-shadow 0.7s ease-out;
+    transition: all 0.5s ease-out;
     width: 200px;
 }
 
 .CTAButton:hover {
-    box-shadow: 2px 4px 12px 3px rgba(0, 0, 0, 0.5);
-    background: #ccc;
-    border: 8px solid #eee;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5);
+}
+
+.CTAButton p {
+    bottom: 35%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    z-index: 5;
+}
+
+@media (min-width: 41rem) and (max-width: 1000px) {
+    .CTAButton p {
+        font-size: 1rem;
+    }
 }
 
 @keyframes float {
