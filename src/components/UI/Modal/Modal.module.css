@@ -67,7 +67,15 @@
 
 @media (min-width: 1000px) {
     .Modal {
-        left: 20%;
+        left: 50%;
+        margin-left: -30%;
         width: 60%;
+    }
+}
+
+@media (min-width: 1700px) {
+    .Modal {
+        margin-left: -500px;
+
     }
 }
