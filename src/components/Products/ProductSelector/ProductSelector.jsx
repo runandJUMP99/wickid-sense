@@ -6,7 +6,6 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Card from "../../UI/Card/Card";
 import ItemsCarousel from "react-items-carousel";
 import SliderButton from "../../UI/SliderButton/SliderButton";
-import Spinner from "../../UI/Spinner/Spinner";
 
 import classes from "./ProductSelector.module.css";
 

@@ -15,7 +15,6 @@ const input = (props) => {
 
     switch ( props.elementType ) {
         case ( 'input' ):
-            console.log(props.elementConfig.type);
             if (props.elementConfig.placeholder === "") {
                inputClasses.push(classes.Price);
                labelClasses.push(classes.PriceLabel);
@@ -74,13 +73,13 @@ const input = (props) => {
                 value={props.value}
                 onChange={props.changed} />;
     }
+
     return (
         <div style={styles}className={classes.Input}>
             <label htmlFor={props.elementConfig.id} className={labelClasses.join(" ")}>{props.label}</label>
             {inputElement}
         </div>
     );
-
 };
 
 export default input;

@@ -71,7 +71,7 @@ const Layout = (props) => {
             props.onFetchCandles(selection);
             setContent(<Products />);
             
-            if (!modal.showBackdrop) {
+            if (!modal.showModal) {
                 toggleModal();
             }
         }

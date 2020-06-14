@@ -7,12 +7,13 @@
     flex-direction: column;
     font-family: "Lexend Giga";
     margin: 2rem;
-    padding: 2rem;
+    max-width: 750px;
+    padding: 4rem 1rem;
     text-align: center;
     width: 85%;
 }
 
 .CTASection h1 {
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }

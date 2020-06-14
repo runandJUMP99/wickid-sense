@@ -27,4 +27,14 @@
     .CTAButton {
         display: block;
     }
+
+    .CTAButton div {
+        width: 150px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .CTAButton div {
+        width: 200px
+    }
 }

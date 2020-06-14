@@ -46,12 +46,11 @@ export const removeCandle = (token, candleId, imgName) => {
 
         axios.delete("/candles/" + candleId + ".json?auth=" + token)
             .then(response => {
-                const deleteTask = storage.ref(`/images/${imgName}`).delete()
+                storage.ref(`/images/${imgName}`).delete()
                     .then(() => {
                     })
                     .catch(error => {
                         console.log(error);
-                        dispatch(editCandleFail(error));
                     });
                 
                 dispatch(removeCandleSuccess(candleId));

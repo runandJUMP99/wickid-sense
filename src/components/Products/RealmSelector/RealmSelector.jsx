@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 
 import Realm from "../../UI/Realm/Realm";
-import Spinner from "../../UI/Spinner/Spinner"
+import GlobalLoader from "../../UI/GlobalLoader/GlobalLoader"
 
 import classes from "./RealmSelector.module.css";
 import * as actions from "../../../store/actions/index";
@@ -13,7 +13,11 @@ const RealmSelector = (props) => {
         props.onSetCandleId(null);
     }, [props.onFetchRealms, props.onSetCandleId]);
 
-    let content = <Spinner />;
+    let content = (
+        <div style={{height: "15rem"}}>
+            <GlobalLoader />
+        </div>
+    );
 
     if (!props.loading) {
         content = props.realms.map(realm => (

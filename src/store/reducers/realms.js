@@ -19,12 +19,14 @@ const reducer = (state = initialState, action) => {
                 ...action.realmData, 
                 id: action.realmId
             };
+            console.log(state.realms.concat(newRealm));
             return {
                 ...state,
                 loading: false,
                 realms: state.realms.concat(newRealm)
             };
         case actionTypes.REMOVE_REALM_SUCCESS:
+            console.log(state.realms.filter(realm => realm.id !== action.realmId));
             return {
                 ...state,
                 loading: false,
@@ -34,12 +36,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, 
                 loading: false
-            };
+        };
         case actionTypes.FETCH_REALMS_START:
             return {
                 ...state, 
                 loading: true
-            };
+        };
         case actionTypes.FETCH_REALMS_SUCCESS:
             return {
                 ...state, 
@@ -58,7 +60,8 @@ const reducer = (state = initialState, action) => {
             };
         default:
             return state;
-    }
+        }
+    console.log(state);
 };
 
 export default reducer;
