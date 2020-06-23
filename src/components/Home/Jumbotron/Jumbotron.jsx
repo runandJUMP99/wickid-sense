@@ -11,8 +11,8 @@ const Jumbotron = (props) => {
                 <Header onClick={props.onClick} onChange={() => props.onChange}/>
             </div>
             <div className={classes.Text}>
-                <h1>scents designed to transport you to a far away land</h1>
-                <h3>...or at least to a less stressful one</h3>
+                <h1>Wickid Sense</h1>
+                <h3>...because our candles just make scents</h3>
             </div>
         </div>
     );

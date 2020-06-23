@@ -1,6 +1,6 @@
 .Jumbotron {
     background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent), 
-    url("https://firebasestorage.googleapis.com/v0/b/wickid-sense.appspot.com/o/images%2Ftea-lights-2611196_1920.jpg?alt=media&token=8893cb9c-3097-460a-9906-96a64770d680") center/cover no-repeat border-box, #ff1b68;
+    url("https://firebasestorage.googleapis.com/v0/b/wickid-sense.appspot.com/o/images%2Ftea-lights-2611196_1920.jpg?alt=media&token=8893cb9c-3097-460a-9906-96a64770d680") center/cover no-repeat border-box, #75daad;
     color: #edffea;
     height: 30rem;
     position: relative;
@@ -9,8 +9,9 @@
 }
 
 .Jumbotron h1 {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
     right: 2rem;
 }
 
@@ -19,10 +20,10 @@
 }
 
 .Text {
-    bottom: 8rem;
+    bottom: 9rem;
     left: 7.5%;
     position: absolute;
-    width: 40%;
+    width: 45%;
 }
 
 .Header {
