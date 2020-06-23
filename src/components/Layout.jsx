@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 
 import Backdrop from "./UI/Backdrop/Backdrop";
@@ -11,6 +11,7 @@ import RealmSelector from "./Products/RealmSelector/RealmSelector";
 import Redirect from "./UI/Redirect/Redirect";
 import SideDrawer from "./UI/SideDrawer/SideDrawer";
 
+import classes from "./Layout.module.css";
 import * as actions from "../store/actions/index";
 
 const Layout = (props) => {
@@ -24,6 +25,26 @@ const Layout = (props) => {
         onClick={toggleModal} 
         onFavoriteSelection={handleChange} />
     );
+    const [visible, setVisible] = useState(false);
+    
+    useEffect(() => {
+        if (content.type.displayName === "Connect(Product)") {
+            setVisible(true);
+        } else {
+            setVisible(false);
+            window.addEventListener("scroll", handleScroll);
+        }
+        
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [content]);
+
+    function handleScroll() {
+        const currentScrollPos = window.pageYOffset;
+        const visible = currentScrollPos > 475;
+        setVisible(visible);
+    };
 
     function toggleModal(content) {
         if (content === "sidedrawer") {
@@ -63,6 +84,7 @@ const Layout = (props) => {
         if (selection === "home") {
             setContent(<Home 
                 onClick={toggleModal}
+                onChange={handleChange}
                 onFavoriteSelection={handleChange} />
             );
             toggleModal("home");
@@ -77,6 +99,14 @@ const Layout = (props) => {
         }
     }
 
+    let headerStyle;
+
+    if (window.innerWidth > 655 && !visible) {
+        headerStyle = {transform: "translateY(-7rem)"};
+    } else {
+        headerStyle = null;
+    }
+
     return (
         <div>
             <Backdrop show={modal.showBackdrop} onClick={toggleModal}/>
@@ -87,7 +117,9 @@ const Layout = (props) => {
                 show={modal.showSideDrawer} 
                 onClick={toggleModal} 
                 onChange={() => handleChange("home")} />
-            <Header onClick={toggleModal} onChange={() => handleChange("home")}/>
+            <div className={classes.Header} style={headerStyle}>
+                <Header onClick={toggleModal} onChange={() => handleChange("home")}/>
+            </div>
             {content}
             <Footer onClick={toggleModal}/>
         </div>

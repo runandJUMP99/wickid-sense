@@ -19,6 +19,10 @@
     margin: 1rem 0;
 }
 
+.NavigationLinks li:first-child {
+    margin-left: 0;
+}
+
 .NavigationLinks li:hover {
     color: #216353;
     cursor: pointer;

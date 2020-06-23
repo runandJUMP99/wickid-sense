@@ -1,0 +1,8 @@
+.Header {
+    background: #75daad;
+    box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    transition: all 0.5s ease-in-out;
+    width: 100%;
+    z-index: 20;
+}

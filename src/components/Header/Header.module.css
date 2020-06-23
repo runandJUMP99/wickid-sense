@@ -1,11 +1,9 @@
 .Header {
-    background: #75daad;
-    box-shadow: 0 1px 8px 1px rgba(0, 0, 0, 0.5);
     display: flex;
     height: 4rem;
     justify-content: space-between;
     left: 0;
-    position: fixed;
+    margin: auto;
     top: 0;
     width: 100%;
     z-index: 20;
@@ -16,10 +14,16 @@
 }
 
 .CTAButton {
+    bottom: 1rem;
     display: none;
+    position: relative;
 }
 
 @media (min-width: 41rem) {
+    .Header {
+        width: 85%;
+    }
+
     .Header nav {
         display: flex;
     }

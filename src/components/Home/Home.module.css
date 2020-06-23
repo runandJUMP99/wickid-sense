@@ -1,6 +1,14 @@
 .Home {
     align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.Body {
+    align-items: center;
     background-image: -webkit-linear-gradient(65deg, #7a4d1d 50%, #216353 50%);
     display: flex;
     flex-direction: column;
+    padding: 4rem 0;
+    width: 100%;
 }
