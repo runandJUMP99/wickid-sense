@@ -11,5 +11,12 @@
 
 .Testimonials h2 {
     font-family: "Lexend Giga";
+    font-size: 1.5rem;
     padding-bottom: 2rem;
+}
+
+@media (min-width: 41rem) {
+    .Testimonials h2 {
+        font-size: 2rem;
+    }
 }

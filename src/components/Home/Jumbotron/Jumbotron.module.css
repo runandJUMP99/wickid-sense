@@ -1,5 +1,5 @@
 .Jumbotron {
-    background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent), 
+    background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 40%, transparent), 
     url("https://firebasestorage.googleapis.com/v0/b/wickid-sense.appspot.com/o/images%2Ftea-lights-2611196_1920.jpg?alt=media&token=8893cb9c-3097-460a-9906-96a64770d680") center/cover no-repeat border-box, #75daad;
     color: #edffea;
     height: 30rem;
@@ -20,10 +20,10 @@
 }
 
 .Text {
-    bottom: 9rem;
+    bottom: 7rem;
     left: 7.5%;
     position: absolute;
-    width: 45%;
+    width: 50%;
 }
 
 .Header {

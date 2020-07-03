@@ -26,6 +26,7 @@
 
 .Text h2 {
     font-family: "Lexend Giga";
+    font-size: 1.5rem;
     margin: 2rem 0;
 }
 
@@ -41,5 +42,9 @@
     .Text {
         text-align: right;
         width: 50%;
+    }
+
+    .Text h2 {
+        font-size: 1.8rem;
     }
 }
