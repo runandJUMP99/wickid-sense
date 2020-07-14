@@ -1,12 +1,7 @@
-.NavigationLinks div {
-    display: flex;
-    flex-direction: column;
-}
-
 .NavigationLinks ul {
     display: flex;
     flex-direction: column;
-    font-family: "Lexend Giga";
+    font-family: 'Baloo Da 2', cursive;
     font-size: 1.5rem;
     list-style: none;
     padding: 0;
@@ -14,18 +9,18 @@
     width: 100%;
 }
 
-.NavigationLinks li {
+.Link {
     color: white;
     margin: 1rem 0;
+    position: relative;
+    transition: all 0.2s ease-out;
 }
 
-.NavigationLinks li:first-child {
-    margin-left: 0;
-}
-
-.NavigationLinks li:hover {
+.Link:hover {
+    border-bottom: 4px solid white;
     color: #216353;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .NavigationLinks a {
@@ -37,16 +32,45 @@
     color: #216353;
 }
 
+.Dropdown {
+    background: #313131;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    position: absolute;
+    transition: all 0.2s ease-out;
+    visibility: hidden;
+    z-index: 10;
+}
+
+.Dropdown li {
+    border: 1px solid #ccc;
+    color: white;
+    font-weight: normal;
+    padding: 0.2rem 0.5rem;
+    transition: all 0.2s ease-out;
+}
+
+.Dropdown li:hover {
+    background: #4d4d4d;
+    cursor: pointer;
+}
+
+.Dropdown::before {
+}
+
 @media (min-width: 41rem) {
     .NavigationLinks ul {
         align-items: center;
         flex-direction: row;
-        font-size: 1rem;
+        flex-wrap: wrap;
+        font-size: 1.2rem;
         height: 4rem;
+        justify-content: center;
         margin: 0;
     }
 
-    .NavigationLinks li {
+    .Link {
         margin: 0 2rem;
+        padding: 1rem 0;
     }
 }

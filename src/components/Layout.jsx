@@ -26,6 +26,10 @@ const Layout = (props) => {
         onFavoriteSelection={handleChange} />
     );
     const [visible, setVisible] = useState(false);
+
+
+    // SECTION FOR HANDLING FIXED NAVBAR
+
     
     useEffect(() => {
         if (content.type.displayName === "Connect(Product)") {
@@ -108,7 +112,7 @@ const Layout = (props) => {
     }
 
     return (
-        <div>
+        <div className={classes.Layout}>
             <Backdrop show={modal.showBackdrop} onClick={toggleModal}/>
             <Modal show={modal.showModal} onClick={toggleModal}>
                 {modalContent}
@@ -120,6 +124,8 @@ const Layout = (props) => {
             <div className={classes.Header} style={headerStyle}>
                 <Header onClick={toggleModal} onChange={() => handleChange("home")}/>
             </div>
+            <h1 className={classes.Logo}>Wickid Sense</h1>
+            <Header onClick={toggleModal} onChange={() => handleChange("home")} />
             {content}
             <Footer onClick={toggleModal}/>
         </div>

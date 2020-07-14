@@ -1,6 +1,5 @@
 import React from "react";
 
-import CTAButton from "../CTAButton/CTAButton";
 import NavigationLinks from "./NavigationLinks/NavigationLinks";
 import ToggleButton from "../UI/ToggleButton/ToggleButton";
 
@@ -13,9 +12,6 @@ const Header = (props) => {
             <nav>
                 <NavigationLinks onClick={props.onClick} onChange={props.onChange}/>
             </nav>
-            <div className={classes.CTAButton}>
-                <CTAButton onClick={props.onClick}/>
-            </div>
         </div>
     );
 }

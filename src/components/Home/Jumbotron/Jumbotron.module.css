@@ -8,15 +8,8 @@
     width: 100%;
 }
 
-.Jumbotron h1 {
-    font-size: 3.5rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    right: 2rem;
-}
-
 .Jumbotron h3 {
-    font-size: 1rem;
+    font-size: 1.7rem;
 }
 
 .Text {
