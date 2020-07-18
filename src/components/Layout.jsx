@@ -124,7 +124,6 @@ const Layout = (props) => {
             <div className={classes.Header} style={headerStyle}>
                 <Header onClick={toggleModal} onChange={() => handleChange("home")}/>
             </div>
-            <h1 className={classes.Logo}>Wickid Sense</h1>
             <Header onClick={toggleModal} onChange={() => handleChange("home")} />
             {content}
             <Footer onClick={toggleModal}/>

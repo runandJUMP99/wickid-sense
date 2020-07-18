@@ -9,6 +9,7 @@ const Header = (props) => {
     return (
         <div className={classes.Header}>
             <ToggleButton onClick={props.onClick}/>
+            <h1 className={classes.Logo}>Wickid Sense</h1>
             <nav>
                 <NavigationLinks onClick={props.onClick} onChange={props.onChange}/>
             </nav>

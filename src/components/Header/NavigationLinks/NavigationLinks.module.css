@@ -10,7 +10,10 @@
 }
 
 .Link {
+    align-items: center;
+    align-self: stretch;
     color: white;
+    display: flex;
     margin: 1rem 0;
     position: relative;
     transition: all 0.2s ease-out;
@@ -34,6 +37,7 @@
 
 .Dropdown {
     background: #313131;
+    top: 107%;
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     opacity: 0;
     position: absolute;
@@ -70,7 +74,6 @@
     }
 
     .Link {
-        margin: 0 2rem;
-        padding: 1rem 0;
+        margin: 0 1rem;
     }
 }

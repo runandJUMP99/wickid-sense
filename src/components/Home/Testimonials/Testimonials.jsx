@@ -7,7 +7,7 @@ import classes from "./Testimonials.module.css"
 const Testimonials = () => {
     return (
         <div className={classes.Testimonials}>
-            <h2>messages from afar</h2>
+            <h2>Messages From Afar</h2>
             <Carousel />
         </div>
     );

@@ -1,25 +1,19 @@
 .BathBomb {
-    align-items: center;
-    background: #edffea;
-    border-radius: 16px;
-    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.5);
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 100%, transparent), 
+    url("https://cdn.pixabay.com/photo/2017/08/01/00/19/bath-2562225_960_720.jpg") center/cover fixed border-box, #75daad;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.8, inset);
+    color: white;
     margin: 4rem 0;
     max-width: 1500px;
-    padding: 2rem;
-    width: 85%;
-}
-
-.BathBomb img {
-    border-radius: 8px;
-    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
+    padding: 8rem 2rem;
     width: 100%;
 }
 
 .Text {
+    margin: auto;
     text-align: center;
     width: 100%;
 }
@@ -27,7 +21,8 @@
 .Text h2 {
     font-family: "Lexend Giga";
     font-size: 1.5rem;
-    margin: 2rem 0;
+    font-weight: bold;
+    margin: 0 0 4rem;
 }
 
 @media (min-width: 41rem) {
@@ -40,11 +35,10 @@
     }
 
     .Text {
-        text-align: left;
         width: 50%;
     }
     
     .Text h2 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 }

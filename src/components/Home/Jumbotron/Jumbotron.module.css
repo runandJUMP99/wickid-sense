@@ -9,11 +9,8 @@
 }
 
 .Jumbotron h3 {
-    font-size: 1.7rem;
-}
-
-.Text {
     bottom: 7rem;
+    font-size: 1.4rem;
     left: 7.5%;
     position: absolute;
     width: 50%;

@@ -51,7 +51,7 @@ const Favorites = (props) => {
 
     return (
         <div className={classes.Favorites}>
-            <h2>our finest creations</h2>
+            <h2>Our Finest Creations</h2>
             <div className={classes.Candles}>
                 <ItemsCarousel
                     infiniteLoop

@@ -17,12 +17,12 @@ const Home = (props) => {
             {props.loading && <GlobalLoader />}
             {!props.loading && <Jumbotron onClick={props.onClick} onChange={props.onChange}/>}
             <div className={classes.Body}>
-            {   !props.loading && <Intro />}
                 <Favorites 
                     onClick={props.onClick} 
                     onFavoriteSelection={props.onFavoriteSelection}/>
-                {!props.loading && <BathBomb />}
+                {!props.loading && <Intro />}
                 {!props.loading && <Testimonials />}
+                {!props.loading && <BathBomb />}
                 {!props.loading && <CTASection onClick={props.onClick}/>}
             </div>
         </div>

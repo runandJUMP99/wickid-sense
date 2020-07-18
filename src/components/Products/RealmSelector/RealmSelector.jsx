@@ -31,7 +31,7 @@ const RealmSelector = (props) => {
 
     return (
         <div className={classes.RealmSelector}>
-            <h1>choose wisely...</h1>
+            <h1>Choose Wisely...</h1>
             <div className={classes.Selections}>
                 {content}
             </div>
