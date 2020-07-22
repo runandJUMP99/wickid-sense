@@ -6,7 +6,7 @@
 
 .Body {
     align-items: center;
-    background-image: -webkit-linear-gradient(65deg, #7a4d1d 50%, #216353 50%);
+    background: #edffea;
     display: flex;
     flex-direction: column;
     padding: 4rem 0;

@@ -1,11 +1,12 @@
 .Header {
     align-items: center;
-    background: #313131;
+    background: transparent;
     display: flex;
     flex-direction: row-reverse;
     height: 4rem;
     justify-content: space-between;
     left: 0;
+    position: absolute;
     top: 0;
     width: 100%;
     z-index: 20;
@@ -16,7 +17,6 @@
 }
 
 .Logo {
-    background: #313131;
     color: white;
     font-size: 2rem;
     font-weight: bold;
@@ -36,26 +36,12 @@
     position: relative;
 }
 
-@media (min-width: 41rem) {
+@media (min-width: 900px) {
     .Header {
         flex-direction: row;
     }
 
     .Header nav {
         display: flex;
-    }
-
-    .CTAButton {
-        display: block;
-    }
-
-    .CTAButton div {
-        width: 150px;
-    }
-}
-
-@media (min-width: 1000px) {
-    .CTAButton div {
-        width: 200px
     }
 }

@@ -1,9 +1,6 @@
 .Intro {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 100%, transparent), 
     url("https://firebasestorage.googleapis.com/v0/b/wickid-sense.appspot.com/o/images%2Fcandle-335965_1920.jpg?alt=media&token=0b8f9840-fcaf-4639-8f89-4126876c688b") center/cover fixed border-box, #75daad;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
     color: #edffea;
     margin: 4rem 0;
     max-width: 1500px;
@@ -19,9 +16,13 @@
 
 .Text h2 {
     font-family: "Lexend Giga";
-    font-size: 1.5rem;
+    font-size: 2;
     font-weight: bold;
     margin: 0 0 4rem;
+}
+
+.Text p {
+    line-height: 1.8;
 }
 
 @media (min-width: 41rem) {
@@ -30,10 +31,10 @@
     }
 
     .Text {
-        width: 40%;
+        width: 45%;
     }
 
     .Text h2 {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
 }

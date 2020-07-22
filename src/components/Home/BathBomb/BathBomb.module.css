@@ -20,9 +20,13 @@
 
 .Text h2 {
     font-family: "Lexend Giga";
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: bold;
     margin: 0 0 4rem;
+}
+
+.Text p {
+    line-height: 1.8;
 }
 
 @media (min-width: 41rem) {
@@ -30,15 +34,7 @@
         flex-direction: row;
     }
 
-    .BathBomb img {
-        width: 40%;
-    }
-
     .Text {
-        width: 50%;
-    }
-    
-    .Text h2 {
-        font-size: 2.5rem;
+        width: 45%;
     }
 }

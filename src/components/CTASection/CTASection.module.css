@@ -1,25 +1,23 @@
 .CTASection {
     align-items: center;
-    background: #edffea;
-    border-radius: 16px;
     box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     font-family: "Lexend Giga";
     margin: 4rem 0;
-    max-width: 750px;
-    padding: 4rem 1rem;
+    padding: 5rem;
     text-align: center;
-    width: 85%;
+    width: 100%;
 }
 
 .CTASection h1 {
-    font-size: 1.5rem;
+    font-family: "Parisienne", cursive;
+    font-size: 3rem;
     margin-bottom: 4rem;
 }
 
 @media (min-width: 41rem) {
     .CTASection h1 {
-        font-size: 2rem;
+        font-size: 3rem;
     }
 }

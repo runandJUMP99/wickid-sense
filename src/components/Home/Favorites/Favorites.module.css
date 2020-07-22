@@ -1,19 +1,16 @@
 .Favorites {
     background: #edffea;
-    border-radius: 16px;
-    box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.5);
     color: black;
-    margin: 4rem 0;
     max-width: 1500px;
     padding: 4rem 2rem;
     text-align: center;
-    width: 85%;
+    width: 100%;
 }
 
 .Favorites h2 {
-    font-family: "Lexend Giga";
-    font-size: 1.5rem;
-    margin: 0 0 2rem;
+    font-family: "Parisienne", cursive;
+    font-size: 3rem;
+    margin: 0 0 4rem;
 }
 
 .Candles {
@@ -24,10 +21,4 @@
 
 .Candles a:hover {
     text-decoration: none;
-}
-
-@media (min-width: 41rem) {
-    .Favorites h2 {
-        font-size: 2rem;
-    }
 }

@@ -1,22 +1,15 @@
 .Testimonials {
-    background: #edffea;
-    border-radius: 16px;
+    background: hsl(111, 100%, 96%);
     box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.5);
     margin: 4rem 0;
     max-width: 1500px;
     padding: 6rem 2rem;
     text-align: center;
-    width: 85%;
+    width: 100%;
 }
 
 .Testimonials h2 {
-    font-family: "Lexend Giga";
-    font-size: 1.5rem;
-    padding-bottom: 2rem;
-}
-
-@media (min-width: 41rem) {
-    .Testimonials h2 {
-        font-size: 2rem;
-    }
+    font-family: "Parisienne", cursive;
+    font-size: 3rem;
+    margin: 0 0 4rem;
 }

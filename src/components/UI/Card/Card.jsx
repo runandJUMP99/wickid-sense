@@ -5,9 +5,14 @@ import classes from "./Card.module.css";
 const Card = (props) => {
     return (
         <div onClick={props.onClick} className={classes.Card}>
-            <h3>{props.name}</h3>
             <img src={props.img} alt={props.name}/>
-            <p>{props.price}</p>
+            <div className={classes.CardBottom}>
+                <div className={classes.CardName}>
+                    <h3>{props.name}</h3>
+                    <p>Realm Name</p>
+                </div>
+                <p>{props.price}</p>
+            </div>
         </div>
     );
 }

@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     font-family: 'Baloo Da 2', cursive;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     list-style: none;
-    padding: 0;
+    padding: 0 1rem;
     margin: 2rem 0;
     width: 100%;
 }
@@ -62,7 +62,7 @@
 .Dropdown::before {
 }
 
-@media (min-width: 41rem) {
+@media (min-width: 900px) {
     .NavigationLinks ul {
         align-items: center;
         flex-direction: row;
@@ -71,6 +71,7 @@
         height: 4rem;
         justify-content: center;
         margin: 0;
+        padding: 0;
     }
 
     .Link {

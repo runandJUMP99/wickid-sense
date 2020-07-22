@@ -2,6 +2,7 @@
     background: #313131;
     height: 100%;
     left: 0;
+    max-width: 400px;
     position: fixed;
     text-align: center;
     top: 0;

@@ -106,7 +106,7 @@ const Layout = (props) => {
     let headerStyle;
 
     if (window.innerWidth > 655 && !visible) {
-        headerStyle = {transform: "translateY(-7rem)"};
+        headerStyle = {backgroundColor: "#313131", transform: "translateY(-7rem)"};
     } else {
         headerStyle = null;
     }
