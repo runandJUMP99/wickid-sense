@@ -90,6 +90,10 @@ const RealmEditorForm = (props) => {
             name={setRealmName}
             img={setRealmImg} />);
     }, [props.setRealmId, props.realms]);
+
+
+    // SUBMIT FORM HANDLER
+
                 
     function submitHandler(event) {
         event.preventDefault();
@@ -101,6 +105,10 @@ const RealmEditorForm = (props) => {
                 formData[formElementIdentifier] = form[formElementIdentifier].value;
             }
         }
+
+
+        // HANDLE SUBMITS WITH IMAGES THROUGH FIREBASE
+
         
         if (form.img.value) {
             const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile);
@@ -130,7 +138,7 @@ const RealmEditorForm = (props) => {
                         props.onClick();
                     });
             });
-        } else {
+        } else { //HANDLE SUBMITS WITHOUT IMAGES
             const setRealm = props.realms.filter(realm => realm.id === props.setRealmId);
 
             if (props.setRealmId) {
@@ -149,6 +157,10 @@ const RealmEditorForm = (props) => {
             props.onClick();
         }
     }
+
+
+    // HANDLE TWO-WAY BINDING INPUT CHANGE
+
 
     function inputChangedHandler(event, inputIdentifier) {
         const updatedRealm = {
@@ -177,6 +189,10 @@ const RealmEditorForm = (props) => {
         setForm(updatedRealm);
         setFormIsValid(formIsValid);
     }
+
+
+    // CHECK TO MAKE SURE INPUT IN FORM IS VALID
+
 
     function checkValidity(value, rules) {
         let isValid = true;
