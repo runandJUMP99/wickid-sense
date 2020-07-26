@@ -1,7 +1,7 @@
 .Intro {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 100%, transparent), 
     url("https://firebasestorage.googleapis.com/v0/b/wickid-sense.appspot.com/o/images%2Fcandle-335965_1920.jpg?alt=media&token=0b8f9840-fcaf-4639-8f89-4126876c688b") center/cover fixed border-box, #75daad;
-    color: #edffea;
+    color: white;
     margin: 4rem 0;
     max-width: 1500px;
     padding: 8rem 2rem;
