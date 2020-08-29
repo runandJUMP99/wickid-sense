@@ -5,6 +5,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Card from "../../UI/Card/Card";
 import ItemsCarousel from "react-items-carousel";
+import Slide from "react-reveal/Slide";
 import SliderButton from "../../UI/SliderButton/SliderButton";
 
 import classes from "./Favorites.module.css";
@@ -52,23 +53,25 @@ const Favorites = (props) => {
     return (
         <div className={classes.Favorites}>
             <h2>Our Finest Creations</h2>
-            <div className={classes.Candles}>
-                <ItemsCarousel
-                    infiniteLoop
-                    requestToChangeActive={setActiveItemIndex}
-                    activeItemIndex={activeItemIndex}
-                    numberOfCards={numberOfCards}
-                    gutter={8}
-                    leftChevron={<SliderButton>
-                                    <ArrowBackIosIcon />
-                                </SliderButton>}
-                    rightChevron={<SliderButton>
-                                    <ArrowForwardIosIcon />
-                                </SliderButton>}
-                    outsideChevron
-                    chevronWidth={40}
-                    children={favoriteCandles} />
-            </div>
+            <Slide left>
+                <div className={classes.Candles}>
+                    <ItemsCarousel
+                        infiniteLoop
+                        requestToChangeActive={setActiveItemIndex}
+                        activeItemIndex={activeItemIndex}
+                        numberOfCards={numberOfCards}
+                        gutter={8}
+                        leftChevron={<SliderButton>
+                                        <ArrowBackIosIcon />
+                                    </SliderButton>}
+                        rightChevron={<SliderButton>
+                                        <ArrowForwardIosIcon />
+                                    </SliderButton>}
+                        outsideChevron
+                        chevronWidth={40}
+                        children={favoriteCandles} />
+                </div>
+            </Slide>
         </div>
     );
 }

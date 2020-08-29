@@ -11,5 +11,6 @@
 .Testimonials h2 {
     font-family: "Parisienne", cursive;
     font-size: 3rem;
+    font-weight: bold;
     margin: 0 0 4rem;
 }

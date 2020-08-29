@@ -48,11 +48,12 @@ const Product = (props) => {
                     });
                 }
             });
-        }, 1000);
 
-        setTimeout(() => {
             setFade(false);
         }, 1000);
+
+        // setTimeout(() => {
+        // }, 1000);
     }
 
     let selectedProduct;
