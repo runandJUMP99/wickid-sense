@@ -15,14 +15,27 @@ const ProductSelector = (props) => {
     let fetchedCandles = [];
 
     if (!props.loading) {
-        fetchedCandles = props.candles.map(candle => (
-            <Card
-                key={candle.id}
-                name={candle.name}
-                img={candle.img}
-                price={candle.price}
-                onClick={() => props.handleClick(candle.id)} />
-        ));
+        
+        fetchedCandles = props.candles.map(candle => {
+            let realmName = "";
+
+            props.realms.forEach(realm => {
+                if (realm.id === candle.realm) {
+                    realmName = realm.name;
+                }
+            });
+        
+            return (
+                <Card
+                    key={candle.id}
+                    img={candle.img}
+                    name={candle.name}
+                    onClick={() => props.handleClick(candle.id)} 
+                    price={candle.price}
+                    realmName={realmName}
+                />
+            );
+        });
     }
 
     let numberOfCards = 1;
@@ -62,7 +75,8 @@ const ProductSelector = (props) => {
 const mapStateToProps = state => {
     return {
         candles: state.candles.candles,
-        loading: state.candles.loading
+        loading: state.candles.loading,
+        realms: state.realms.realms
     };
 };
 

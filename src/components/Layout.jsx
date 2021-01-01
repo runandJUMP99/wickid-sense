@@ -84,6 +84,8 @@ const Layout = (props) => {
         }
     }
 
+    //CHANGE PAGES
+
     function handleChange(selection) {
         if (selection === "home") {
             setContent(<Home 

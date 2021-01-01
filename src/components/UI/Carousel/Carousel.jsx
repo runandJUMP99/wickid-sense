@@ -1,29 +1,26 @@
 import React from "react";
 
 import classes from "./Carousel.module.css";
-import spike from "../../../assets/images/spike.png";
-import sleepygrape from "../../../assets/images/sleepygrape.png";
-import sandwalrus from "../../../assets/images/sand-walrus.png";
 
-const Carousel = () => {
+const Carousel = (props) => {
     return (
         <div className={classes.Carousel}>
-            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <h4>"light up a candle and whatever happens, happens"</h4>
-                        <p>-spike</p>
-                        <img src={spike} className="d-block" alt="testimonial" />
+            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{height: "100%"}}>
+                <div className="carousel-inner" style={{height: "100%"}}>
+                    <div className="carousel-item active" style={{position: "relative"}}>
+                        <h4 style={props.firstSlide.style.header}>{props.firstSlide.header}</h4>
+                        <p style={props.firstSlide.style.comment}>{props.firstSlide.comment}</p>
+                        <img style={props.firstSlide.style.img} src={props.firstSlide.img} className="d-block" alt={props.firstSlide.alt} />
                     </div>
-                    <div className="carousel-item">
-                        <h4>"ZZZzzzZZZzzz..."</h4>
-                        <p>-sleepygrape</p>
-                        <img src={sleepygrape} className="d-block" alt="testimonial" />
+                    <div className="carousel-item" style={{position: "relative"}}>
+                        <h4 style={props.secondSlide.style.header}>{props.secondSlide.header}</h4>
+                        <p style={props.secondSlide.style.comment}>{props.secondSlide.comment}</p>
+                        <img style={props.secondSlide.style.img} src={props.secondSlide.img} className="d-block" alt={props.secondSlide.alt} />
                     </div>
-                    <div className="carousel-item">
-                        <h4>"i like sand. and the sand scented candles really helped remind me of home"</h4>
-                        <p>-walrus</p>
-                        <img src={sandwalrus} className="d-block" alt="testimonial" />
+                    <div className="carousel-item" style={{position: "relative"}}>
+                        <h4 style={props.thirdSlide.style.header}>{props.thirdSlide.header}</h4>
+                        <p style={props.thirdSlide.style.comment}>{props.thirdSlide.comment}</p>
+                        <img style={props.thirdSlide.style.img} src={props.thirdSlide.img} className="d-block" alt={props.thirdSlide.alt} />
                     </div>
                 </div>
             </div>

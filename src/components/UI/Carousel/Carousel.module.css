@@ -1,11 +1,4 @@
 .Carousel {
+    height: 100%;
     margin: auto;
-    width: 65%;
-}
-
-.Carousel img {
-    border-radius: 50%;
-    height: 5rem;
-    margin: auto;
-    width: 5rem;
 }

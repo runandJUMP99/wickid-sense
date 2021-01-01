@@ -1,9 +1,12 @@
 .Header {
     align-items: center;
-    background: transparent;
+    background: white;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
     display: flex;
     flex-direction: row-reverse;
-    height: 4rem;
+    font-family: 'Oswald', sans-serif;
+    height: 10vh;
     justify-content: space-between;
     left: 0;
     position: absolute;
@@ -12,22 +15,23 @@
     z-index: 20;
 }
 
+.Header a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .Header nav {
     display: none;
 }
 
 .Logo {
-    color: white;
-    font-size: 2rem;
+    cursor: pointer;
+    font-size: 3rem;
     font-weight: bold;
     letter-spacing: 2px;
     margin: 0;
     padding-left: 1rem;
     text-align: center;
-}
-
-.Logo:hover {
-    cursor: pointer;
 }
 
 .CTAButton {

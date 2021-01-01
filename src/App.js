@@ -5,7 +5,6 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Layout from "./components/Layout";
 import GlobalLoader from "./components/UI/GlobalLoader/GlobalLoader";
 
-import './App.css';
 import "./index.css";
 import * as actions from "./store/actions/index";
 

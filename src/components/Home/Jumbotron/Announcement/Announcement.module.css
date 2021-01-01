@@ -1,0 +1,13 @@
+.Announcement {
+    color: black;
+    position: absolute;
+    text-align: center;
+    top: -2rem;
+    width: 100%;
+}
+
+.Announcement span {
+    bottom: 0.2rem;
+    margin: 0 0.5rem;
+    position: relative;
+}

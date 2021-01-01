@@ -8,7 +8,7 @@
     color: white;
     margin: 4rem 0;
     max-width: 1500px;
-    padding: 8rem 2rem;
+    padding: 4rem 2rem;
     width: 100%;
 }
 
@@ -19,8 +19,8 @@
 }
 
 .Text h2 {
-    font-family: "Lexend Giga";
-    font-size: 3rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 4rem;
     font-weight: bold;
     margin: 0 0 4rem;
 }

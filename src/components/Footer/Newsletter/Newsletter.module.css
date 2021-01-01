@@ -1,13 +1,12 @@
 .Newsletter {
     color: white;
-    padding: 2rem;
+    padding: 2rem 2rem 1rem;
     text-align: center;
 }
 
 .Newsletter h3 {
     font-family: "Lexend Giga";
     font-size: 2rem;
-    padding-top: 2rem;
 }
 
 .Newsletter p {

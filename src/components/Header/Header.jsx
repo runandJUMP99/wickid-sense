@@ -7,13 +7,15 @@ import classes from "./Header.module.css";
 
 const Header = (props) => {
     return (
-        <div className={classes.Header}>
-            <ToggleButton onClick={props.onClick}/>
-            <h1 className={classes.Logo}>Wickid Sense</h1>
-            <nav>
-                <NavigationLinks onClick={props.onClick} onChange={props.onChange}/>
-            </nav>
-        </div>
+        <>
+            <div className={classes.Header}>
+                <ToggleButton onClick={props.onClick}/>
+                <a href="/"><h1 className={classes.Logo} >Wickid Sense</h1></a>
+                <nav>
+                    <NavigationLinks onClick={props.onClick} onChange={props.onChange}/>
+                </nav>
+            </div>
+        </>
     );
 }
 

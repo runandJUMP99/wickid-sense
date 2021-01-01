@@ -15,7 +15,8 @@ import * as actions from "../../../store/actions/index";
 const Favorites = (props) => {
     useEffect(() => {
         props.onFetchCandles();
-    }, [props.onFetchCandles]);
+        props.onFetchRealms();
+    }, [props.onFetchCandles, props.onFetchRealms]);
 
     const [activeItemIndex, setActiveItemIndex] = useState(0);
 
@@ -30,14 +31,26 @@ const Favorites = (props) => {
     if (!props.loading) {
         loadedCandles = props.candles.filter(candle => candle.favorite);
 
-        favoriteCandles = loadedCandles.map(candle => (
-            <Card
-                key={candle.id} 
-                name={candle.name}
-                img={candle.img}
-                price={candle.price}
-                onClick={() => selectFavorite(candle.id, candle.realm)} />
-        ));
+        favoriteCandles = loadedCandles.map(candle => {
+            let realmName = "";
+
+            props.realms.forEach(realm => {
+                if (realm.id === candle.realm) {
+                    realmName = realm.name;
+                }
+            });
+
+            return (
+                <Card
+                    key={candle.id} 
+                    img={candle.img}
+                    name={candle.name}
+                    onClick={() => selectFavorite(candle.id, candle.realm)}
+                    price={candle.price}
+                    realmName={realmName}
+                />
+            )
+        });
     }
 
     let numberOfCards = 1;
@@ -53,6 +66,7 @@ const Favorites = (props) => {
     return (
         <div className={classes.Favorites}>
             <h2>Our Finest Creations</h2>
+            <p>Browse through our most popular candles!</p>
             <Slide left>
                 <div className={classes.Candles}>
                     <ItemsCarousel
@@ -80,6 +94,7 @@ const mapStateToProps = state => {
     return {
         candles: state.candles.candles,
         loading: state.candles.loading,
+        realms: state.realms.realms,
         setCandleId: state.candles.setCandleId
     };
 };
@@ -87,6 +102,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchCandles: () => dispatch(actions.fetchCandles()),
+        onFetchRealms: () => dispatch(actions.fetchRealms()),
         onSetCandleId: (candleId) => dispatch(actions.setCandleId(candleId))
     };
 };

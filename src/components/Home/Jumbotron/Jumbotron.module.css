@@ -1,56 +1,10 @@
 .Jumbotron {
-    background: linear-gradient(rgba(0, 0, 0, 0.6) 100%, transparent), 
-    url("https://firebasestorage.googleapis.com/v0/b/wickid-sense.appspot.com/o/images%2Ftea-lights-2611196_1920.jpg?alt=media&token=8893cb9c-3097-460a-9906-96a64770d680") center/cover no-repeat border-box, #75daad;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
     color: #edffea;
-    filter: grayscale(70%);
-    height: 100vh;
+    height: 70vh;
+    margin-top: 15vh;
     position: relative;
     text-align: left;
     width: 100%;
-}
-
-.Text {
-    margin: 15rem auto;
-    text-align: center;
-    width: 50%;
-}
-
-.Text h3 {
-    font-family: "Parisienne", cursive;
-    font-size: 2.5rem;
-}
-
-.Text button {
-    background: #216353;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 2rem 0;
-    padding: 0.5rem 1rem;
-}
-
-.Text button:hover {
-    background: white;
-    color: #216353;
-    cursor: pointer;
-}
-
-@media (min-width: 700px) {
-    .Text {
-        left: 7.5%;
-        margin: 0;
-        position: absolute;
-        text-align: left;
-        top: 15rem;
-    }
-
-    .Text h3 {
-        font-size: 3rem;
-    }
-    
-    .Text button {
-        font-size: 1.5rem;
-    }
 }
